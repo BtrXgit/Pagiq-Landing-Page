@@ -12,16 +12,65 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
   <style>
-    .legal-container { max-width: 800px; margin: 120px auto 80px; padding: 0 20px; }
-    .legal-container h1 { font-size: 2.5rem; margin-bottom: 10px; color: var(--text-dark); }
-    .legal-container p.updated { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 40px; }
-    .legal-container h2 { font-size: 1.5rem; margin-top: 40px; margin-bottom: 15px; color: var(--text-dark); border-bottom: 1px solid var(--border); padding-bottom: 10px; }
-    .legal-container h3 { font-size: 1.25rem; margin-top: 30px; margin-bottom: 10px; color: var(--text-dark); }
-    .legal-container p { margin-bottom: 16px; color: var(--text-muted); line-height: 1.6; }
-    .legal-container ul { margin-bottom: 16px; padding-left: 20px; color: var(--text-muted); line-height: 1.6; }
-    .legal-container li { margin-bottom: 8px; }
-    .legal-container a { color: var(--primary); text-decoration: none; }
-    .legal-container a:hover { text-decoration: underline; }
+    .legal-container {
+      max-width: 800px;
+      margin: 120px auto 80px;
+      padding: 0 20px;
+    }
+
+    .legal-container h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      color: var(--text-dark);
+    }
+
+    .legal-container p.updated {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 40px;
+    }
+
+    .legal-container h2 {
+      font-size: 1.5rem;
+      margin-top: 40px;
+      margin-bottom: 15px;
+      color: var(--text-dark);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 10px;
+    }
+
+    .legal-container h3 {
+      font-size: 1.25rem;
+      margin-top: 30px;
+      margin-bottom: 10px;
+      color: var(--text-dark);
+    }
+
+    .legal-container p {
+      margin-bottom: 16px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .legal-container ul {
+      margin-bottom: 16px;
+      padding-left: 20px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .legal-container li {
+      margin-bottom: 8px;
+    }
+
+    .legal-container a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    .legal-container a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 
@@ -31,7 +80,8 @@
   <header class="navbar" id="navbar">
     <nav class="navbar-inner">
       <a href="index.html" class="logo">
-        <img src="pagiq_logo.png" alt="PagiQ Logo" class="logo-icon" style="width: 36px; height: 36px; border-radius: 10px;">
+        <img src="pagiq_logo.png" alt="PagiQ Logo" class="logo-icon"
+          style="width: 36px; height: 36px; border-radius: 10px;">
         <span>PagiQ</span>
       </a>
       <ul class="nav-links">
@@ -43,11 +93,18 @@
       </ul>
       <div class="nav-right">
         <a href="index.html#download" class="btn-download">
-          <svg viewBox="0 0 24 24" class="icon"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="5 12 12 19 19 12"/></svg>
+          <svg viewBox="0 0 24 24" class="icon">
+            <line x1="12" y1="5" x2="12" y2="19" />
+            <polyline points="5 12 12 19 19 12" />
+          </svg>
           Download App
         </a>
         <button class="hamburger" id="hamburger" aria-label="Open menu">
-          <svg viewBox="0 0 24 24" class="icon"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          <svg viewBox="0 0 24 24" class="icon">
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <line x1="3" y1="12" x2="21" y2="12" />
+            <line x1="3" y1="18" x2="21" y2="18" />
+          </svg>
         </button>
       </div>
     </nav>
@@ -58,10 +115,14 @@
   <div class="drawer" id="drawer">
     <div class="drawer-header">
       <div class="drawer-logo">
-        <img src="pagiq_logo.png" alt="PagiQ Logo" class="logo-icon" style="width: 28px; height: 28px; border-radius: 8px;">
+        <img src="pagiq_logo.png" alt="PagiQ Logo" class="logo-icon"
+          style="width: 28px; height: 28px; border-radius: 8px;">
       </div>
       <button class="drawer-close" id="drawerClose" aria-label="Close menu">
-        <svg viewBox="0 0 24 24" class="icon"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        <svg viewBox="0 0 24 24" class="icon">
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
       </button>
     </div>
     <div class="drawer-divider"></div>
@@ -75,7 +136,10 @@
     <div class="drawer-divider"></div>
     <div class="drawer-cta">
       <a href="index.html#download" class="btn-download">
-        <svg viewBox="0 0 24 24" class="icon"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="5 12 12 19 19 12"/></svg>
+        <svg viewBox="0 0 24 24" class="icon">
+          <line x1="12" y1="5" x2="12" y2="19" />
+          <polyline points="5 12 12 19 19 12" />
+        </svg>
         Download App
       </a>
     </div>
@@ -86,15 +150,23 @@
       <h1>Privacy Policy</h1>
       <p class="updated">Last Updated: July 2026</p>
 
-      <p>Welcome to PagiQ. Your privacy is of paramount importance to us. This Privacy Policy outlines how PagiQ ("we," "our," or "us") collects, uses, protects, and handles your personal information when you use our website, mobile application, and related PDF solutions (collectively, the "Services").</p>
-      
+      <p>Welcome to PagiQ. Your privacy is of paramount importance to us. This Privacy Policy outlines how PagiQ ("we,"
+        "our," or "us") collects, uses, protects, and handles your personal information when you use our website, mobile
+        application, and related PDF solutions (collectively, the "Services").</p>
+
       <h2>1. Information We Collect</h2>
-      <p>We collect information to provide better services to all our users. The types of information we collect include:</p>
+      <p>We collect information to provide better services to all our users. The types of information we collect
+        include:</p>
       <ul>
-        <li><strong>Account Information:</strong> Name, email address, and profile details when you register for a PagiQ account.</li>
-        <li><strong>Usage Data:</strong> Information about how you use our app, such as features accessed (e.g., scanning, converting, editing) and time spent, to improve performance.</li>
-        <li><strong>Device Information:</strong> Hardware model, operating system version, and unique device identifiers to ensure compatibility and troubleshoot issues.</li>
-        <li><strong>User Content:</strong> Files (such as PDFs, images) that you choose to process using our AI tools or cloud conversion features. <em>Note: Files processed entirely offline remain on your device and are not collected by us.</em></li>
+        <li><strong>Account Information:</strong> Name, email address, and profile details when you register for a PagiQ
+          account.</li>
+        <li><strong>Usage Data:</strong> Information about how you use our app, such as features accessed (e.g.,
+          scanning, converting, editing) and time spent, to improve performance.</li>
+        <li><strong>Device Information:</strong> Hardware model, operating system version, and unique device identifiers
+          to ensure compatibility and troubleshoot issues.</li>
+        <li><strong>User Content:</strong> Files (such as PDFs, images) that you choose to process using our AI tools or
+          cloud conversion features. <em>Note: Files processed entirely offline remain on your device and are not
+            collected by us.</em></li>
       </ul>
 
       <h2>2. How We Use Your Information</h2>
@@ -108,16 +180,19 @@
       </ul>
 
       <h2>3. Data Processing and AI Features</h2>
-      <p>PagiQ utilizes Artificial Intelligence (AI) to provide smart features like document summarization, translation, and interactive chat. When you use these features:</p>
+      <p>PagiQ utilizes Artificial Intelligence (AI) to provide smart features like document summarization, translation,
+        and interactive chat. When you use these features:</p>
       <ul>
         <li>Your documents may be temporarily processed on our secure servers.</li>
         <li>We do not use your personal documents to train our AI models unless you explicitly opt-in.</li>
-        <li>Processed data is encrypted in transit and at rest, and is deleted from our servers shortly after processing is complete.</li>
+        <li>Processed data is encrypted in transit and at rest, and is deleted from our servers shortly after processing
+          is complete.</li>
       </ul>
 
       <h2>4. International Privacy Rights</h2>
-      <p>PagiQ operates globally and complies with major international privacy frameworks. Depending on your location, you have specific rights regarding your personal data:</p>
-      
+      <p>PagiQ operates globally and complies with major international privacy frameworks. Depending on your location,
+        you have specific rights regarding your personal data:</p>
+
       <h3>Europe (GDPR & UK GDPR)</h3>
       <p>If you are a resident of the European Economic Area (EEA) or the UK, you have the right to:</p>
       <ul>
@@ -132,37 +207,49 @@
       <ul>
         <li>Know what personal information is being collected and how it is used.</li>
         <li>Request the deletion of your personal information.</li>
-        <li>Opt-out of the "sale" or "sharing" of personal information. <em>Note: PagiQ does not sell your personal data to third parties.</em></li>
+        <li>Opt-out of the "sale" or "sharing" of personal information. <em>Note: PagiQ does not sell your personal data
+            to third parties.</em></li>
         <li>Non-discrimination for exercising your privacy rights.</li>
       </ul>
 
       <h3>China (PIPL)</h3>
-      <p>If you are a resident of the People's Republic of China, we process your personal information in compliance with the Personal Information Protection Law (PIPL):</p>
+      <p>If you are a resident of the People's Republic of China, we process your personal information in compliance
+        with the Personal Information Protection Law (PIPL):</p>
       <ul>
-        <li>We will obtain explicit consent before processing sensitive personal information or transferring data cross-border.</li>
+        <li>We will obtain explicit consent before processing sensitive personal information or transferring data
+          cross-border.</li>
         <li>You have the right to know, decide, restrict, and refuse the processing of your personal information.</li>
         <li>You have the right to request the deletion or correction of your data.</li>
       </ul>
 
       <h3>Rest of the World</h3>
-      <p>We extend foundational privacy rights (access, correction, and deletion) to all our users globally, regardless of their location, in accordance with applicable local laws (e.g., LGPD in Brazil, APPI in Japan).</p>
+      <p>We extend foundational privacy rights (access, correction, and deletion) to all our users globally, regardless
+        of their location, in accordance with applicable local laws (e.g., LGPD in Brazil, APPI in Japan).</p>
 
       <h2>5. Data Security</h2>
-      <p>We implement industry-standard security measures, including end-to-end encryption for cloud transfers and strict access controls, to protect your personal information against unauthorized access, alteration, disclosure, or destruction. However, no internet transmission or electronic storage is 100% secure.</p>
+      <p>We implement industry-standard security measures, including end-to-end encryption for cloud transfers and
+        strict access controls, to protect your personal information against unauthorized access, alteration,
+        disclosure, or destruction. However, no internet transmission or electronic storage is 100% secure.</p>
 
       <h2>6. Third-Party Services</h2>
-      <p>We may employ third-party companies and individuals to facilitate our Services (e.g., cloud hosting providers, payment processors). These third parties have access to your personal information only to perform specific tasks on our behalf and are obligated not to disclose or use it for any other purpose.</p>
+      <p>We may employ third-party companies and individuals to facilitate our Services (e.g., cloud hosting providers,
+        payment processors). These third parties have access to your personal information only to perform specific tasks
+        on our behalf and are obligated not to disclose or use it for any other purpose.</p>
 
       <h2>7. Children's Privacy</h2>
-      <p>Our Services are not directed to individuals under the age of 13 (or under 16 in the EEA). We do not knowingly collect personal information from children. If we become aware that a child has provided us with personal information, we will take steps to delete such information.</p>
+      <p>Our Services are not directed to individuals under the age of 13 (or under 16 in the EEA). We do not knowingly
+        collect personal information from children. If we become aware that a child has provided us with personal
+        information, we will take steps to delete such information.</p>
 
       <h2>8. Changes to This Privacy Policy</h2>
-      <p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last Updated" date. You are advised to review this Privacy Policy periodically for any changes.</p>
+      <p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new
+        Privacy Policy on this page and updating the "Last Updated" date. You are advised to review this Privacy Policy
+        periodically for any changes.</p>
 
       <h2>9. Contact Us</h2>
-      <p>If you have any questions or requests regarding this Privacy Policy or your personal data, please contact us at:</p>
+      <p>If you have any questions or requests regarding this Privacy Policy or your personal data, please contact us
+        at:</p>
       <p><strong>Email:</strong> privacy@pagiq.app<br>
-      <strong>Address:</strong> PagiQ Legal Dept, Global Operations</p>
     </section>
   </main>
 
@@ -199,4 +286,5 @@
 
   <script src="script.js"></script>
 </body>
+
 </html>
