@@ -12,16 +12,65 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
   <style>
-    .legal-container { max-width: 800px; margin: 120px auto 80px; padding: 0 20px; }
-    .legal-container h1 { font-size: 2.5rem; margin-bottom: 10px; color: var(--text-dark); }
-    .legal-container p.updated { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 40px; }
-    .legal-container h2 { font-size: 1.5rem; margin-top: 40px; margin-bottom: 15px; color: var(--text-dark); border-bottom: 1px solid var(--border); padding-bottom: 10px; }
-    .legal-container h3 { font-size: 1.25rem; margin-top: 30px; margin-bottom: 10px; color: var(--text-dark); }
-    .legal-container p { margin-bottom: 16px; color: var(--text-muted); line-height: 1.6; }
-    .legal-container ul { margin-bottom: 16px; padding-left: 20px; color: var(--text-muted); line-height: 1.6; }
-    .legal-container li { margin-bottom: 8px; }
-    .legal-container a { color: var(--primary); text-decoration: none; }
-    .legal-container a:hover { text-decoration: underline; }
+    .legal-container {
+      max-width: 800px;
+      margin: 120px auto 80px;
+      padding: 0 20px;
+    }
+
+    .legal-container h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      color: var(--text-dark);
+    }
+
+    .legal-container p.updated {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 40px;
+    }
+
+    .legal-container h2 {
+      font-size: 1.5rem;
+      margin-top: 40px;
+      margin-bottom: 15px;
+      color: var(--text-dark);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 10px;
+    }
+
+    .legal-container h3 {
+      font-size: 1.25rem;
+      margin-top: 30px;
+      margin-bottom: 10px;
+      color: var(--text-dark);
+    }
+
+    .legal-container p {
+      margin-bottom: 16px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .legal-container ul {
+      margin-bottom: 16px;
+      padding-left: 20px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .legal-container li {
+      margin-bottom: 8px;
+    }
+
+    .legal-container a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    .legal-container a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 
@@ -31,7 +80,8 @@
   <header class="navbar" id="navbar">
     <nav class="navbar-inner">
       <a href="index.html" class="logo">
-        <img src="pagiq_logo.png" alt="PagiQ Logo" class="logo-icon" style="width: 36px; height: 36px; border-radius: 10px;">
+        <img src="pagiq_logo.png" alt="PagiQ Logo" class="logo-icon"
+          style="width: 36px; height: 36px; border-radius: 10px;">
         <span>PagiQ</span>
       </a>
       <ul class="nav-links">
@@ -43,11 +93,18 @@
       </ul>
       <div class="nav-right">
         <a href="index.html#download" class="btn-download">
-          <svg viewBox="0 0 24 24" class="icon"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="5 12 12 19 19 12"/></svg>
+          <svg viewBox="0 0 24 24" class="icon">
+            <line x1="12" y1="5" x2="12" y2="19" />
+            <polyline points="5 12 12 19 19 12" />
+          </svg>
           Download App
         </a>
         <button class="hamburger" id="hamburger" aria-label="Open menu">
-          <svg viewBox="0 0 24 24" class="icon"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          <svg viewBox="0 0 24 24" class="icon">
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <line x1="3" y1="12" x2="21" y2="12" />
+            <line x1="3" y1="18" x2="21" y2="18" />
+          </svg>
         </button>
       </div>
     </nav>
@@ -58,10 +115,14 @@
   <div class="drawer" id="drawer">
     <div class="drawer-header">
       <div class="drawer-logo">
-        <img src="pagiq_logo.png" alt="PagiQ Logo" class="logo-icon" style="width: 28px; height: 28px; border-radius: 8px;">
+        <img src="pagiq_logo.png" alt="PagiQ Logo" class="logo-icon"
+          style="width: 28px; height: 28px; border-radius: 8px;">
       </div>
       <button class="drawer-close" id="drawerClose" aria-label="Close menu">
-        <svg viewBox="0 0 24 24" class="icon"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        <svg viewBox="0 0 24 24" class="icon">
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
       </button>
     </div>
     <div class="drawer-divider"></div>
@@ -75,7 +136,10 @@
     <div class="drawer-divider"></div>
     <div class="drawer-cta">
       <a href="index.html#download" class="btn-download">
-        <svg viewBox="0 0 24 24" class="icon"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="5 12 12 19 19 12"/></svg>
+        <svg viewBox="0 0 24 24" class="icon">
+          <line x1="12" y1="5" x2="12" y2="19" />
+          <polyline points="5 12 12 19 19 12" />
+        </svg>
         Download App
       </a>
     </div>
@@ -86,51 +150,80 @@
       <h1>Terms of Use</h1>
       <p class="updated">Last Updated: July 2026</p>
 
-      <p>Please read these Terms of Use ("Terms") carefully before using the PagiQ mobile application and website (the "Services") operated by PagiQ ("we", "us", or "our").</p>
-      <p>By accessing or using the Services, you agree to be bound by these Terms. If you disagree with any part of the terms, you may not access the Services.</p>
-      
+      <p>Please read these Terms of Use ("Terms") carefully before using the PagiQ mobile application and website (the
+        "Services") operated by PagiQ ("we", "us", or "our").</p>
+      <p>By accessing or using the Services, you agree to be bound by these Terms. If you disagree with any part of the
+        terms, you may not access the Services.</p>
+
       <h2>1. Use of Services</h2>
-      <p>PagiQ provides PDF scanning, editing, converting, and AI-assisted document management tools. You agree to use the Services only for lawful purposes and in accordance with these Terms.</p>
+      <p>PagiQ provides PDF scanning, editing, converting, and AI-assisted document management tools. You agree to use
+        the Services only for lawful purposes and in accordance with these Terms.</p>
       <ul>
-        <li>You must be at least 13 years old (or the minimum age of digital consent in your country) to use the Services.</li>
+        <li>You must be at least 13 years old (or the minimum age of digital consent in your country) to use the
+          Services.</li>
         <li>You are responsible for maintaining the confidentiality of your account credentials.</li>
-        <li>You may not use the Services to process, store, or transmit any material that is illegal, defamatory, or infringes on any third party's intellectual property rights.</li>
+        <li>You may not use the Services to process, store, or transmit any material that is illegal, defamatory, or
+          infringes on any third party's intellectual property rights.</li>
       </ul>
 
       <h2>2. AI Features and Limitations</h2>
-      <p>Our AI Assistant, summarizing, and translation features are provided "as is" and rely on machine learning algorithms.</p>
+      <p>Our AI Assistant, summarizing, and translation features are provided "as is" and rely on machine learning
+        algorithms.</p>
       <ul>
-        <li><strong>Accuracy:</strong> While we strive for high accuracy, AI-generated content may occasionally be incorrect or misleading. You should always verify critical information.</li>
-        <li><strong>Responsibility:</strong> We are not liable for any actions taken or decisions made based on the output of our AI features.</li>
-        <li><strong>Fair Use:</strong> Usage of AI features may be subject to fair usage limits, depending on your subscription tier, to ensure service quality for all users.</li>
+        <li><strong>Accuracy:</strong> While we strive for high accuracy, AI-generated content may occasionally be
+          incorrect or misleading. You should always verify critical information.</li>
+        <li><strong>Responsibility:</strong> We are not liable for any actions taken or decisions made based on the
+          output of our AI features.</li>
+        <li><strong>Fair Use:</strong> Usage of AI features may be subject to fair usage limits, depending on your
+          subscription tier, to ensure service quality for all users.</li>
       </ul>
 
       <h2>3. Intellectual Property</h2>
-      <p>The Services and their original content (excluding User Content), features, and functionality are and will remain the exclusive property of PagiQ and its licensors. Our trademarks, logos, and trade dress may not be used in connection with any product or service without our prior written consent.</p>
+      <p>The Services and their original content (excluding User Content), features, and functionality are and will
+        remain the exclusive property of PagiQ and its licensors. Our trademarks, logos, and trade dress may not be used
+        in connection with any product or service without our prior written consent.</p>
 
       <h2>4. User Content</h2>
-      <p>You retain any and all of your rights to any content you submit, post, or display on or through the Services ("User Content"), and you are responsible for protecting those rights. By processing files through our cloud-based features, you grant us a temporary license to host, process, and transmit your User Content solely for the purpose of providing the requested service (e.g., file conversion or AI analysis). <strong>We do not claim ownership of your documents.</strong></p>
+      <p>You retain any and all of your rights to any content you submit, post, or display on or through the Services
+        ("User Content"), and you are responsible for protecting those rights. By processing files through our
+        cloud-based features, you grant us a temporary license to host, process, and transmit your User Content solely
+        for the purpose of providing the requested service (e.g., file conversion or AI analysis). <strong>We do not
+          claim ownership of your documents.</strong></p>
 
       <h2>5. Subscriptions and Purchases</h2>
-      <p>Some parts of the Service are billed on a subscription basis ("Premium"). You will be billed in advance on a recurring and periodic basis (e.g., monthly or annually). Your subscription will automatically renew under the exact same conditions unless you cancel it or PagiQ cancels it.</p>
-      <p>Refunds are processed in accordance with the policies of the platform through which you made the purchase (e.g., Apple App Store, Google Play Store).</p>
+      <p>Some parts of the Service are billed on a subscription basis ("Premium"). You will be billed in advance on a
+        recurring and periodic basis (e.g., monthly or annually). Your subscription will automatically renew under the
+        exact same conditions unless you cancel it or PagiQ cancels it.</p>
+      <p>Refunds are processed in accordance with the policies of the platform through which you made the purchase
+        (e.g., Apple App Store, Google Play Store).</p>
 
       <h2>6. Termination</h2>
-      <p>We may terminate or suspend your account immediately, without prior notice or liability, for any reason whatsoever, including without limitation if you breach the Terms. Upon termination, your right to use the Services will immediately cease.</p>
+      <p>We may terminate or suspend your account immediately, without prior notice or liability, for any reason
+        whatsoever, including without limitation if you breach the Terms. Upon termination, your right to use the
+        Services will immediately cease.</p>
 
       <h2>7. Limitation of Liability</h2>
-      <p>In no event shall PagiQ, nor its directors, employees, partners, agents, suppliers, or affiliates, be liable for any indirect, incidental, special, consequential or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from (i) your access to or use of or inability to access or use the Services; (ii) any conduct or content of any third party on the Services; or (iii) unauthorized access, use or alteration of your transmissions or content.</p>
+      <p>In no event shall PagiQ, nor its directors, employees, partners, agents, suppliers, or affiliates, be liable
+        for any indirect, incidental, special, consequential or punitive damages, including without limitation, loss of
+        profits, data, use, goodwill, or other intangible losses, resulting from (i) your access to or use of or
+        inability to access or use the Services; (ii) any conduct or content of any third party on the Services; or
+        (iii) unauthorized access, use or alteration of your transmissions or content.</p>
 
       <h2>8. Governing Law and Dispute Resolution</h2>
-      <p>These Terms shall be governed and construed in accordance with the laws of the jurisdiction in which PagiQ is legally established, without regard to its conflict of law provisions.</p>
-      <p>Depending on your region (e.g., EU, USA, China), mandatory consumer protection laws of your country of residence may apply. Any dispute arising out of these Terms shall first be attempted to be resolved informally. If unresolved, it will be subject to the exclusive jurisdiction of the competent courts.</p>
+      <p>These Terms shall be governed and construed in accordance with the laws of the jurisdiction in which PagiQ is
+        legally established, without regard to its conflict of law provisions.</p>
+      <p>Depending on your region (e.g., EU, USA, China), mandatory consumer protection laws of your country of
+        residence may apply. Any dispute arising out of these Terms shall first be attempted to be resolved informally.
+        If unresolved, it will be subject to the exclusive jurisdiction of the competent courts.</p>
 
       <h2>9. Changes to Terms</h2>
-      <p>We reserve the right, at our sole discretion, to modify or replace these Terms at any time. By continuing to access or use our Services after those revisions become effective, you agree to be bound by the revised terms.</p>
+      <p>We reserve the right, at our sole discretion, to modify or replace these Terms at any time. By continuing to
+        access or use our Services after those revisions become effective, you agree to be bound by the revised terms.
+      </p>
 
       <h2>10. Contact Us</h2>
       <p>If you have any questions about these Terms, please contact us:</p>
-      <p><strong>Email:</strong> legal@pagiq.app</p>
+      <p><strong>Email:</strong> heliosbytes@outlook.com</p>
     </section>
   </main>
 
@@ -167,4 +260,5 @@
 
   <script src="script.js"></script>
 </body>
+
 </html>
