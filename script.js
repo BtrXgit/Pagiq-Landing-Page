@@ -154,13 +154,13 @@ function initHeroPillRotation() {
     const nextWord = words[nextIndex];
     const nextW = getPillWidthFor(nextWord);
 
-    // ——— OUT: whole pill + word disappear ———
-    pill.style.transition = 'width 0.32s cubic-bezier(0.4, 0, 1, 1), opacity 0.28s ease, transform 0.32s cubic-bezier(0.4, 0, 1, 1), filter 0.28s ease';
+    // ——— OUT: whole pill + word disappear — slow & smooth ———
+    pill.style.transition = 'width 0.48s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.38s ease, transform 0.48s cubic-bezier(0.4, 0, 0.2, 1), filter 0.38s ease';
     pill.style.width = '0px';
     pill.style.opacity = '0';
     pill.style.transform = 'scale(0.96)';
     pill.style.filter = 'blur(6px)';
-    pillText.style.transition = 'transform 0.30s cubic-bezier(0.4, 0, 1, 1), opacity 0.26s ease, filter 0.26s ease';
+    pillText.style.transition = 'transform 0.44s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.36s ease, filter 0.36s ease';
     pillText.style.transform = 'translateY(-8px) scale(0.98)';
     pillText.style.opacity = '0';
     pillText.style.filter = 'blur(5px)';
@@ -176,9 +176,9 @@ function initHeroPillRotation() {
       pill.style.transition = 'none';
       void pill.offsetWidth;
 
-      // ——— IN: expand to the right from 0 ———
-      pill.style.transition = 'width 0.54s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.36s ease, transform 0.54s cubic-bezier(0.16, 1, 0.3, 1), filter 0.36s ease';
-      pillText.style.transition = 'transform 0.54s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.36s ease, filter 0.36s ease';
+      // ——— IN: expand to the right from 0 — slow spring ———
+      pill.style.transition = 'width 0.72s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.52s ease, transform 0.72s cubic-bezier(0.16, 1, 0.3, 1), filter 0.52s ease';
+      pillText.style.transition = 'transform 0.72s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.52s ease, filter 0.52s ease';
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
           pill.style.width = nextW + 'px';
@@ -191,9 +191,9 @@ function initHeroPillRotation() {
         });
       });
       index = nextIndex;
-      setTimeout(() => { isAnimating = false; }, 620);
-    }, 340);
-  }, 2800);
+      setTimeout(() => { isAnimating = false; }, 820);
+    }, 480);
+  }, 3000);
 }
 
 /* ================================================================
