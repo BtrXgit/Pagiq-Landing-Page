@@ -87,7 +87,7 @@ function initHeroPillRotation() {
   let index = 0;
   let isAnimating = false;
 
-  // Accurate pill width for any word — clone in same parent so clamp() em sizes are exact
+  // Accurate pill width for any word - clone in same parent so clamp() em sizes are exact
   function getPillWidthFor(text) {
     const parent = pill.parentElement;
     if (!parent) return pill.offsetWidth;
@@ -123,7 +123,7 @@ function initHeroPillRotation() {
     pill.style.width = w + 'px';
   }
 
-  // Initial lock — wait for fonts so clamp() sizes are final
+  // Initial lock - wait for fonts so clamp() sizes are final
   const init = () => lockPillWidth();
   if (document.fonts && document.fonts.ready) {
     document.fonts.ready.then(init);
@@ -132,7 +132,7 @@ function initHeroPillRotation() {
   }
   window.addEventListener('load', () => setTimeout(lockPillWidth, 80));
 
-  // Keep pill width correct on resize (responsive clamp) — no animation during resize
+  // Keep pill width correct on resize (responsive clamp) - no animation during resize
   let resizeTimer;
   window.addEventListener('resize', () => {
     clearTimeout(resizeTimer);
@@ -154,7 +154,7 @@ function initHeroPillRotation() {
     const nextWord = words[nextIndex];
     const nextW = getPillWidthFor(nextWord);
 
-    // ——— OUT: whole pill + word disappear — slower ———
+    // --- OUT: whole pill + word disappear - slower ---
     pill.style.transition = 'width 0.58s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.46s ease, transform 0.58s cubic-bezier(0.4, 0, 0.2, 1), filter 0.46s ease';
     pill.style.width = '0px';
     pill.style.opacity = '0';
@@ -176,7 +176,7 @@ function initHeroPillRotation() {
       pill.style.transition = 'none';
       void pill.offsetWidth;
 
-      // ——— IN: expand to the right from 0 — slower spring ———
+      // --- IN: expand to the right from 0 - slower spring ---
       pill.style.transition = 'width 0.88s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.62s ease, transform 0.88s cubic-bezier(0.16, 1, 0.3, 1), filter 0.62s ease';
       pillText.style.transition = 'transform 0.88s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.62s ease, filter 0.62s ease';
       requestAnimationFrame(() => {
