@@ -4348,8 +4348,34 @@ section,
 
   .hero-title {
     max-width: 100%;
-    font-size: clamp(2rem, 10vw, 2.75rem);
+    font-size: clamp(1.85rem, 9vw, 2.45rem);
     letter-spacing: -0.035em;
+    line-height: 1.18;
+    text-wrap: balance;
+  }
+
+  .hero-pill {
+    gap: 0.32em;
+    padding: 0.11em 0.48em 0.11em 0.40em;
+    font-size: 0.82em;
+    letter-spacing: -0.02em;
+    vertical-align: baseline;
+    top: -0.02em;
+  }
+
+  .hero-pill-dot {
+    width: 7px;
+    height: 7px;
+    min-width: 7px;
+    min-height: 7px;
+  }
+
+  .hero-pill-dot::after {
+    inset: -6px;
+  }
+
+  #heroPillText {
+    letter-spacing: -0.01em;
   }
 
   .hero-subtitle {
