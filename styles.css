@@ -112,7 +112,6 @@ html {
 body {
   font-family: var(--font-body);
   line-height: 1.6;
-  overflow-x: hidden;
   background-color: var(--bg);
   color: var(--text);
   min-height: 100vh;
@@ -137,6 +136,7 @@ button {
 img, svg {
   display: block;
   max-width: 100%;
+  height: auto;
 }
 
 ul {
@@ -659,29 +659,71 @@ html.dark .hero-grid-pattern {
   align-items: center;
   vertical-align: middle;
   position: relative;
-  top: -0.06em;
-  gap: 0.22em;
-  padding: 0.06em 0.36em;
-  border-radius: var(--radius-full);
-  background-color: var(--brand-light);
-  color: var(--brand-primary);
-  border: 1.5px solid rgba(37, 99, 235, 0.25);
-  box-shadow: 0 0 25px rgba(37, 99, 235, 0.2);
+  top: -0.04em;
+  gap: 0.42em;
+  padding: 0.14em 0.62em 0.14em 0.52em;
+  border-radius: 9999px;
+  background: #0F172A;
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06), 0 8px 24px rgba(15, 23, 42, 0.10), 0 0 0 1px rgba(255, 255, 255, 0.04) inset;
   line-height: 1;
-  font-size: 0.92em;
-  transition: all var(--transition-fast);
+  font-size: 0.88em;
+  font-weight: 750;
+  letter-spacing: -0.025em;
+  overflow: hidden;
+  will-change: width;
+  isolation: isolate;
+  transition: width 0.52s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.hero-pill:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.10), 0 12px 32px rgba(15, 23, 42, 0.14), 0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+}
+
+.hero-pill::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(105deg, transparent 35%, rgba(255, 255, 255, 0.08) 48%, rgba(255, 255, 255, 0.14) 52%, transparent 68%);
+  transform: translateX(-120%);
+  animation: pillShine 3.8s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
 }
 
 .hero-pill-dot {
-  width: 0.22em;
-  height: 0.22em;
+  width: 8px;
+  height: 8px;
   min-width: 8px;
   min-height: 8px;
   border-radius: 50%;
-  background-color: var(--brand-primary);
-  box-shadow: 0 0 10px var(--brand-primary);
-  animation: pulseDot 2s infinite ease-in-out;
+  background: #00E5FF;
+  box-shadow: 0 0 10px rgba(0, 229, 255, 0.9), 0 0 18px rgba(0, 229, 255, 0.45);
+  position: relative;
   flex-shrink: 0;
+  z-index: 1;
+}
+
+.hero-pill-dot::after {
+  content: "";
+  position: absolute;
+  inset: -7px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 229, 255, 0.32);
+  animation: pillDotRing 2.4s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+@keyframes pillDotRing {
+  0% { transform: scale(0.65); opacity: 1; }
+  100% { transform: scale(1.9); opacity: 0; }
+}
+
+@keyframes pillShine {
+  0%, 65% { transform: translateX(-120%); }
+  100% { transform: translateX(120%); }
 }
 
 @keyframes pulseDot {
@@ -690,9 +732,38 @@ html.dark .hero-grid-pattern {
 }
 
 #heroPillText {
+  position: relative;
+  z-index: 1;
   display: inline-block;
   line-height: 1;
-  transition: transform 0.25s ease, opacity 0.25s ease;
+  white-space: nowrap;
+  will-change: transform, opacity, filter;
+  transform: translateY(0);
+  opacity: 1;
+  filter: blur(0px);
+  font-variant-ligatures: common-ligatures;
+  -webkit-font-smoothing: antialiased;
+  transition: transform 0.52s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.40s ease, filter 0.40s ease;
+}
+
+html.dark .hero-pill {
+  background: #F8FAFC;
+  color: #0F172A;
+  border-color: rgba(15, 23, 42, 0.06);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08), 0 8px 24px rgba(0, 0, 0, 0.18), 0 0 0 1px rgba(255, 255, 255, 0.9) inset;
+}
+
+html.dark .hero-pill::before {
+  background: linear-gradient(105deg, transparent 35%, rgba(15, 23, 42, 0.04) 48%, rgba(15, 23, 42, 0.07) 52%, transparent 68%);
+}
+
+html.dark .hero-pill-dot {
+  background: #2563EB;
+  box-shadow: 0 0 10px rgba(37, 99, 235, 0.65), 0 0 16px rgba(37, 99, 235, 0.35);
+}
+
+html.dark .hero-pill-dot::after {
+  border-color: rgba(37, 99, 235, 0.22);
 }
 
 .hero-subtitle {
@@ -789,6 +860,8 @@ html.dark .hero-grid-pattern {
 .store-badge-strip {
   display: flex;
   align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
   gap: 16px;
 }
 
@@ -924,67 +997,120 @@ html.dark .floating-card {
   color: var(--text-secondary);
 }
 
-/* Authentic iPhone Frame */
+/* Authentic iPhone 15 Pro Frame — Natural Titanium */
 .phone-stage {
   position: relative;
   z-index: 5;
-  perspective: 1000px;
+  perspective: 1200px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  filter: drop-shadow(0 28px 48px rgba(15, 23, 42, 0.22)) drop-shadow(0 8px 16px rgba(15, 23, 42, 0.12));
 }
 
 .iphone-shell {
-  width: 330px;
+  width: min(330px, 100%);
+  max-width: 100%;
   height: 680px;
-  background: #1C1E24;
-  border-radius: 54px;
-  padding: 10px;
+  background: linear-gradient(90deg, #2E323C 0%, #3B404E 7%, #343842 14%, #232730 22%, #1A1D24 50%, #232730 78%, #343842 86%, #3B404E 93%, #2E323C 100%);
+  border-radius: 58px;
+  padding: 11px;
   position: relative;
-  box-shadow: var(--shadow-mockup);
-  border: 4px solid #333842;
+  border: 1px solid #0A0C10;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.55),
+    inset 0 -2px 6px rgba(0, 0, 0, 0.35),
+    0 0 0 1px rgba(0, 0, 0, 0.9),
+    0 12px 24px rgba(0, 0, 0, 0.16),
+    0 24px 48px rgba(0, 0, 0, 0.20),
+    0 48px 80px -20px rgba(0, 0, 0, 0.32);
+  overflow: visible;
+}
+
+/* subtle brushed highlight */
+.iphone-shell::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  border-radius: 57px;
+  background: linear-gradient(105deg, transparent 28%, rgba(255, 255, 255, 0.06) 42%, rgba(255, 255, 255, 0.07) 50%, transparent 62%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* bottom speaker / USB-C / mic — iPhone 15 Pro */
+.iphone-shell::after {
+  content: "";
+  position: absolute;
+  bottom: 4.5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 42px;
+  height: 4px;
+  background: #0D0F13;
+  border-radius: 1.5px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
 @media (min-width: 480px) {
   .iphone-shell {
-    width: 360px;
+    width: min(360px, 100%);
     height: 730px;
   }
 }
 
-/* Hardware Buttons */
+/* Hardware Buttons — iPhone 15 Pro: Action + Volume + Side */
 .iphone-button {
   position: absolute;
-  background: #333842;
-  border-radius: 2px;
+  background: linear-gradient(90deg, #2A2E38 0%, #3A3F4B 50%, #2A2E38 100%);
+  border: 1px solid #0A0C10;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.13), inset 0 -1px 0 rgba(0, 0, 0, 0.45), 0 1px 2px rgba(0, 0, 0, 0.28);
+}
+
+.iphone-button.action {
+  left: -3.5px;
+  top: 102px;
+  width: 3.2px;
+  height: 32px;
+  border-radius: 1.5px;
 }
 
 .iphone-button.vol-up {
-  left: -7px;
-  top: 140px;
-  width: 3px;
-  height: 45px;
+  left: -3.5px;
+  top: 148px;
+  width: 3.5px;
+  height: 62px;
+  border-radius: 1.5px;
 }
 
 .iphone-button.vol-down {
-  left: -7px;
-  top: 200px;
-  width: 3px;
-  height: 45px;
+  left: -3.5px;
+  top: 218px;
+  width: 3.5px;
+  height: 62px;
+  border-radius: 1.5px;
 }
 
 .iphone-button.power {
-  right: -7px;
-  top: 160px;
-  width: 3px;
-  height: 65px;
+  right: -3.5px;
+  top: 178px;
+  width: 3.8px;
+  height: 84px;
+  border-radius: 1.5px;
 }
 
 .iphone-bezel-inner {
   width: 100%;
   height: 100%;
   background: #000000;
-  border-radius: 46px;
-  padding: 2px;
+  border-radius: 47px;
+  padding: 3px;
   position: relative;
   overflow: hidden;
+  z-index: 2;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05), inset 0 2px 10px rgba(0, 0, 0, 0.85);
 }
 
 .iphone-screen-surface {
@@ -1000,26 +1126,50 @@ html.dark .floating-card {
   text-align: left;
 }
 
+.iphone-screen-surface::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 44px;
+  background: linear-gradient(105deg, rgba(255, 255, 255, 0.08) 0%, transparent 22%, transparent 78%, rgba(255, 255, 255, 0.05) 100%);
+  pointer-events: none;
+  z-index: 2;
+}
+
 html.dark .iphone-screen-surface {
   background: #0B0E17;
   color: #F8FAFC;
 }
 
-/* iOS Status Bar */
+/* iOS Status Bar — iPhone 15 Pro original */
 .mobile-statusbar {
-  height: 42px;
-  padding: 0 20px;
+  height: 44px;
+  padding: 11px 28px 0 28px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 0.75rem;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+  font-size: 15px;
   font-weight: 600;
+  font-feature-settings: "tnum";
+  letter-spacing: -0.28px;
+  line-height: 1;
+  color: #0F172A;
+  background: transparent;
   position: relative;
   z-index: 20;
 }
 
+html.dark .iphone-screen-surface .mobile-statusbar {
+  color: #F8FAFC;
+}
+
 .mobile-time {
-  font-family: var(--font-display);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", sans-serif;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.2px;
+  min-width: 38px;
 }
 
 .dynamic-island {
@@ -1027,29 +1177,47 @@ html.dark .iphone-screen-surface {
   top: 8px;
   left: 50%;
   transform: translateX(-50%);
-  width: 95px;
-  height: 24px;
+  width: 98px;
+  height: 26px;
   background: #000000;
   border-radius: 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 10px;
+  padding: 0 11px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07), 0 1px 6px rgba(0, 0, 0, 0.38);
+  z-index: 5;
 }
 
 .island-camera {
-  width: 10px;
-  height: 10px;
+  width: 11px;
+  height: 11px;
   border-radius: 50%;
-  background: #0a1128;
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: radial-gradient(circle at 30% 30%, #1e2e4a 0%, #0a1128 55%, #000000 100%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.08), 0 0 4px rgba(0, 0, 0, 0.6);
+  position: relative;
+}
+
+.island-camera::after {
+  content: "";
+  position: absolute;
+  top: 2.5px;
+  left: 3px;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.22) 0%, transparent 70%);
 }
 
 .island-indicator {
-  width: 7px;
-  height: 7px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
-  background: #000000;
+  background: #0A0A0A;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.9);
 }
 
 .mobile-status-icons {
@@ -1059,23 +1227,40 @@ html.dark .iphone-screen-surface {
 }
 
 .icon-stat {
-  width: 14px;
-  height: 10px;
+  width: 17px;
+  height: 11px;
+  display: block;
 }
 
 .battery-pill {
-  width: 20px;
-  height: 10px;
-  border: 1.2px solid currentColor;
-  border-radius: 3px;
-  padding: 1px;
+  width: 26px;
+  height: 12.5px;
+  border: 1px solid currentColor;
+  border-radius: 4.2px;
+  padding: 1.5px 1.5px 1.5px 1.5px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  opacity: 0.92;
+}
+
+.battery-pill::after {
+  content: "";
+  position: absolute;
+  right: -3.2px;
+  top: 3.5px;
+  width: 1.6px;
+  height: 4.2px;
+  background: currentColor;
+  border-radius: 0 1px 1px 0;
+  opacity: 0.92;
 }
 
 .battery-level {
-  width: 80%;
+  width: 76%;
   height: 100%;
-  background: #10B981;
-  border-radius: 1px;
+  background: currentColor;
+  border-radius: 1.8px;
 }
 
 /* ================================================================
@@ -1800,44 +1985,208 @@ html.dark .mobile-home-indicator {
   font-weight: 500;
 }
 
-/* Mobile Feature Showcase Frame */
+/* Mobile Feature Showcase Frame — iPhone 15 Pro — true replica */
 .mobile-showcase-frame {
-  width: 100%;
-  max-width: 440px;
+  width: min(330px, 100%);
+  max-width: 100%;
   margin: 0 auto;
+  position: relative;
+  background: linear-gradient(90deg, #2E323C 0%, #3B404E 7%, #343842 14%, #232730 22%, #1A1D24 50%, #232730 78%, #343842 86%, #3B404E 93%, #2E323C 100%);
+  border-radius: 54px;
+  padding: 10px;
+  border: 1px solid #0A0C10;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.13),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.45),
+    0 16px 36px rgba(0, 0, 0, 0.16),
+    0 28px 64px rgba(0, 0, 0, 0.20);
+}
+
+@media (min-width: 480px) {
+  .mobile-showcase-frame {
+    width: min(360px, 100%);
+  }
+}
+
+.mobile-showcase-frame::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  border-radius: 53px;
+  background: linear-gradient(105deg, transparent 30%, rgba(255, 255, 255, 0.05) 45%, transparent 62%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.mobile-showcase-frame::after {
+  content: "";
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 38px;
+  height: 3.5px;
+  background: #0D0F13;
+  border-radius: 1.5px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  z-index: 3;
 }
 
 .mobile-app-window {
-  background: #FFFFFF;
-  border: 1px solid var(--border-strong);
-  border-radius: 36px;
-  box-shadow: var(--shadow-lg);
+  background: #000000;
+  border-radius: 44px;
+  padding: 3px;
   overflow: hidden;
+  position: relative;
+  z-index: 2;
   display: flex;
   flex-direction: column;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05), inset 0 2px 8px rgba(0, 0, 0, 0.85);
+  height: 680px;
+  min-height: 680px;
+}
+
+@media (min-width: 480px) {
+  .mobile-app-window {
+    height: 730px;
+    min-height: 730px;
+  }
+}
+
+/* inner screen — clips to rounded OLED */
+.mobile-app-window > .mobile-statusbar-mini,
+.mobile-app-window > .chat-mockup-header,
+.mobile-app-window > .chat-stream,
+.mobile-app-window > .chat-input-bar,
+.mobile-app-window > .resume-mockup-header,
+.mobile-app-window > .resume-step-indicator,
+.mobile-app-window > .resume-sheet-preview,
+.mobile-app-window > .sign-mockup-header,
+.mobile-app-window > .sign-doc-sheet,
+.mobile-app-window > .camera-viewfinder-screen,
+.mobile-app-window > .mobile-statusbar-mini + * {
+  position: relative;
+  z-index: 1;
+}
+
+/* screen surface — first and last child rounded via parent overflow */
+.mobile-app-window > :first-child {
+  border-top-left-radius: 41px;
+  border-top-right-radius: 41px;
+  overflow: hidden;
+}
+
+.mobile-app-window > :last-child {
+  border-bottom-left-radius: 41px;
+  border-bottom-right-radius: 41px;
+  overflow: hidden;
+}
+
+.mobile-app-window::after {
+  content: "";
+  position: absolute;
+  bottom: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 96px;
+  height: 4px;
+  background: #0F172A;
+  border-radius: 9999px;
+  opacity: 0.18;
+  z-index: 3;
+  pointer-events: none;
 }
 
 html.dark .mobile-app-window {
-  background: #141A26;
+  background: #000000;
+}
+
+html.dark .mobile-app-window::after {
+  background: #FFFFFF;
+  opacity: 0.22;
 }
 
 .mobile-statusbar-mini {
-  height: 32px;
-  padding: 0 18px;
+  height: 44px;
+  padding: 11px 22px 0 22px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 0.7rem;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", sans-serif;
+  font-size: 14px;
   font-weight: 600;
-  color: var(--text-muted);
+  letter-spacing: -0.22px;
+  color: #0F172A;
+  background: var(--bg-card);
   border-bottom: 1px solid var(--border);
+  position: relative;
+  z-index: 2;
+}
+
+html.dark .mobile-statusbar-mini {
+  color: #F8FAFC;
+}
+
+.mobile-time-mini {
+  font-variant-numeric: tabular-nums;
+  min-width: 34px;
 }
 
 .dynamic-island-mini {
-  width: 60px;
-  height: 16px;
-  background: #000;
+  position: absolute;
+  top: 7px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 76px;
+  height: 22px;
+  background: #000000;
   border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 1px 4px rgba(0, 0, 0, 0.35);
+}
+
+.mobile-status-icons-mini {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.icon-stat-mini {
+  width: 15px;
+  height: 10px;
+  display: block;
+}
+
+.battery-pill-mini {
+  width: 24px;
+  height: 11px;
+  border: 1px solid currentColor;
+  border-radius: 3.8px;
+  padding: 1.2px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  opacity: 0.92;
+}
+
+.battery-pill-mini::after {
+  content: "";
+  position: absolute;
+  right: -3px;
+  top: 3px;
+  width: 1.4px;
+  height: 3.8px;
+  background: currentColor;
+  border-radius: 0 1px 1px 0;
+  opacity: 0.92;
+}
+
+.battery-level-mini {
+  width: 74%;
+  height: 100%;
+  background: currentColor;
+  border-radius: 1.6px;
 }
 
 /* AI Chat Screen Mockup */
@@ -1893,6 +2242,9 @@ html.dark .mobile-app-window {
   flex-direction: column;
   gap: 14px;
   background: var(--bg-subtle);
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
 }
 
 .chat-bubble {
@@ -2069,6 +2421,9 @@ html.dark .mobile-app-window {
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid var(--border);
+  background: var(--bg-card);
+  position: relative;
+  z-index: 1;
 }
 
 .resume-score-pill {
@@ -2130,6 +2485,9 @@ html.dark .mobile-app-window {
   background: #FFFFFF;
   color: #0F172A;
   font-family: 'Times New Roman', serif;
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
 }
 
 html.dark .resume-sheet-preview {
@@ -2166,6 +2524,8 @@ html.dark .resume-section-divider {
 .job-line-top {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
+  column-gap: 8px;
   font-size: 0.75rem;
   margin-bottom: 6px;
 }
@@ -2456,11 +2816,14 @@ html.dark .mock-line {
    8. SIGNATURES & SECURITY VISUALS
    ================================================================ */
 .sign-mockup-header {
-  padding: 12px 18px;
+  padding: 14px 18px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid var(--border);
+  background: var(--bg-card);
+  position: relative;
+  z-index: 1;
 }
 
 .sign-shield-badge {
@@ -2485,6 +2848,9 @@ html.dark .mock-line {
   padding: 20px;
   background: #FFFFFF;
   color: #0F172A;
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
 }
 
 html.dark .sign-doc-sheet {
@@ -3825,5 +4191,438 @@ html.dark .toast-notification {
 
 .toast-close:hover {
   color: #FFFFFF;
+}
+
+/* ================================================================
+   20. RESPONSIVE LAYOUT SAFEGUARDS
+   ================================================================ */
+
+/* Flexible defaults keep nested flex and grid children from forcing
+   their parent wider than the viewport. */
+main,
+section,
+.container,
+.feature-split-layout,
+.feature-split-text,
+.feature-split-visual,
+.tool-card-content,
+.footer-col,
+.legal-container {
+  min-width: 0;
+}
+
+.navbar-inner {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.nav-right,
+.cta-button-group,
+.store-badge-strip,
+.final-cta-buttons {
+  min-width: 0;
+}
+
+.btn-primary,
+.btn-secondary,
+.btn-download,
+.store-badge-pill {
+  max-width: 100%;
+  min-width: 0;
+}
+
+.btn-primary span,
+.btn-secondary span,
+.store-badge-text,
+.btn-download {
+  overflow-wrap: anywhere;
+}
+
+.btn-download {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  background: var(--brand-primary);
+  color: #FFFFFF;
+  font-family: var(--font-display);
+  font-size: 0.875rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.legal-container p,
+.legal-container li,
+.legal-container code,
+.legal-container a {
+  overflow-wrap: anywhere;
+}
+
+.legal-container code {
+  white-space: normal;
+}
+
+.tool-card-top,
+.pro-title-wrap,
+.price-amount-box {
+  min-width: 0;
+  flex-wrap: wrap;
+}
+
+.tool-card-title,
+.price-plan-name,
+.faq-trigger span,
+.use-case-list li,
+.pillar-bullets li {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.faq-trigger span {
+  flex: 1;
+}
+
+@media (min-width: 768px) {
+  .navbar-inner {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+}
+
+/* Mobile phones: 320px through 479px */
+@media (max-width: 479px) {
+  .container,
+  .navbar-inner {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .navbar {
+    height: 64px;
+  }
+
+  .logo {
+    gap: 7px;
+    font-size: 1.1rem;
+  }
+
+  .logo-img {
+    width: 32px;
+    height: 32px;
+  }
+
+  .nav-right {
+    gap: 6px;
+  }
+
+  .nav-right > .btn-primary {
+    display: none;
+  }
+
+  .theme-toggle,
+  .hamburger {
+    width: 36px;
+    height: 36px;
+  }
+
+  .hero {
+    padding-top: 104px;
+    padding-bottom: 56px;
+  }
+
+  .hero-badge {
+    max-width: 100%;
+    margin-bottom: 18px;
+    padding: 6px 10px;
+    gap: 6px;
+  }
+
+  .badge-brand,
+  .badge-tag {
+    font-size: 0.72rem;
+  }
+
+  .hero-title {
+    max-width: 100%;
+    font-size: clamp(2rem, 10vw, 2.75rem);
+    letter-spacing: -0.035em;
+  }
+
+  .hero-subtitle {
+    max-width: 36rem;
+    font-size: 0.98rem;
+    margin-bottom: 28px;
+  }
+
+  .hero-badges-row {
+    width: 100%;
+    gap: 16px 14px;
+    margin-bottom: 32px;
+  }
+
+  .hero-feature-item {
+    flex: 0 0 calc(25% - 11px);
+  }
+
+  .hero-feature-circle {
+    width: 46px;
+    height: 46px;
+  }
+
+  .hero-feature-label {
+    font-size: 0.7rem;
+  }
+
+  .cta-button-group,
+  .store-badge-strip,
+  .final-cta-buttons {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .cta-button-group > *,
+  .store-badge-strip > *,
+  .final-cta-buttons > * {
+    width: 100%;
+  }
+
+  .btn-lg {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .hero-actions {
+    width: 100%;
+    margin-bottom: 40px;
+  }
+
+  .hero-mockup-wrapper {
+    max-width: 100%;
+  }
+
+  .iphone-shell {
+    width: min(360px, calc(100vw - 32px));
+    height: clamp(560px, calc(202.7vw - 97.3px), 730px);
+    border-radius: clamp(42px, 13vw, 54px);
+  }
+
+  .iphone-bezel-inner {
+    border-radius: clamp(36px, 11vw, 46px);
+  }
+
+  .iphone-screen-surface {
+    border-radius: clamp(34px, 10.5vw, 44px);
+  }
+
+  .app-badge-credits {
+    max-width: 92px;
+  }
+
+  .app-badge-credits span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .section {
+    padding: 56px 0;
+  }
+
+  .section-header {
+    margin-bottom: 36px;
+  }
+
+  .section-heading,
+  .feature-split-title {
+    font-size: clamp(1.85rem, 8vw, 2.25rem);
+  }
+
+  .pillar-card,
+  .use-case-card,
+  .price-plan-card,
+  .step-card {
+    padding: 24px 20px;
+  }
+
+  .compression-showcase-box {
+    border-radius: var(--radius-lg);
+  }
+
+  .compression-header-stats {
+    gap: 14px;
+  }
+
+  .stat-val {
+    font-size: 1.8rem;
+  }
+
+  .tools-tabs {
+    width: 100%;
+    justify-content: flex-start;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 4px;
+  }
+
+  .tool-tab {
+    flex: 0 0 auto;
+  }
+
+  .tools-search-box {
+    max-width: none;
+  }
+
+  .faq-trigger {
+    padding: 16px;
+    font-size: 0.95rem;
+  }
+
+  .faq-content {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .final-cta-section {
+    padding: 56px 0 64px;
+  }
+
+  .final-cta-box {
+    padding: 48px 20px;
+    border-radius: var(--radius-lg);
+  }
+
+  .final-cta-title {
+    font-size: clamp(1.9rem, 8vw, 2.5rem);
+  }
+
+  .footer {
+    padding-top: 48px;
+  }
+
+  .footer-links-group {
+    gap: 20px;
+  }
+
+  .footer-inner,
+  .footer-links {
+    align-items: flex-start;
+  }
+
+  .footer-links {
+    flex-wrap: wrap;
+    gap: 10px 16px;
+  }
+
+  .legal-container {
+    margin-top: 96px;
+    margin-bottom: 56px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .legal-container h1 {
+    font-size: clamp(2rem, 9vw, 2.5rem);
+  }
+
+  .legal-container h2 {
+    font-size: 1.3rem;
+    margin-top: 32px;
+  }
+
+  .highlight-box,
+  .notice-box {
+    padding: 16px;
+  }
+}
+
+/* Tablets: 480px through 767px */
+@media (min-width: 480px) and (max-width: 767px) {
+  .nav-right > .btn-primary {
+    display: none;
+  }
+
+  .hero-title {
+    font-size: clamp(2.75rem, 8vw, 3.5rem);
+  }
+
+  .iphone-shell {
+    width: min(360px, calc(100vw - 48px));
+    height: min(730px, calc(202.7vw - 97.3px));
+  }
+
+  .cta-button-group,
+  .final-cta-buttons {
+    flex-direction: row;
+  }
+
+  .store-badge-strip {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+/* Laptop and desktop density adjustments */
+@media (min-width: 768px) and (max-width: 1199px) {
+  .nav-links {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .hero {
+    padding-top: 118px;
+  }
+
+  .hero-mockup-wrapper {
+    max-width: 760px;
+  }
+
+  .floating-card {
+    display: none;
+  }
+}
+
+@media (min-width: 1200px) {
+  .navbar-inner,
+  .container {
+    max-width: 1280px;
+  }
+}
+
+/* Large screens: keep reading width and visual scale intentional. */
+@media (min-width: 1920px) {
+  .navbar-inner,
+  .container {
+    max-width: 1440px;
+  }
+
+  .section {
+    padding-top: 120px;
+    padding-bottom: 120px;
+  }
+
+  .hero {
+    padding-top: 156px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
