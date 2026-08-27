@@ -76,28 +76,116 @@ function initTheme() {
    Rotating between: Convert., Chat AI., Resume., Compress.
    ================================================================ */
 function initHeroPillRotation() {
+  const pill = document.getElementById('heroPillContainer');
   const pillText = document.getElementById('heroPillText');
-  if (!pillText) return;
+  if (!pill || !pillText) return;
+
+  // Respect reduced motion
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
   const words = ['Convert.', 'Chat AI.', 'Resume.', 'Compress.'];
   let index = 0;
+  let isAnimating = false;
+
+  // Accurate pill width for any word — clone in same parent so clamp() em sizes are exact
+  function getPillWidthFor(text) {
+    const parent = pill.parentElement;
+    if (!parent) return pill.offsetWidth;
+    const clone = pill.cloneNode(true);
+    clone.style.position = 'absolute';
+    clone.style.visibility = 'hidden';
+    clone.style.pointerEvents = 'none';
+    clone.style.width = 'auto';
+    clone.style.maxWidth = 'none';
+    clone.style.transition = 'none';
+    clone.style.transform = 'none';
+    clone.style.left = '-9999px';
+    clone.style.top = '0';
+    clone.removeAttribute('id');
+    const inner = clone.querySelector('#heroPillText');
+    if (inner) {
+      inner.removeAttribute('id');
+      inner.textContent = text;
+      inner.style.transition = 'none';
+      inner.style.transform = 'none';
+      inner.style.opacity = '1';
+      inner.style.filter = 'none';
+    }
+    parent.appendChild(clone);
+    const w = clone.getBoundingClientRect().width;
+    parent.removeChild(clone);
+    return Math.ceil(w);
+  }
+
+  // Lock pill to its current width so width-morph can animate smoothly (no auto→px jump)
+  function lockPillWidth() {
+    const w = getPillWidthFor(pillText.textContent.trim());
+    pill.style.width = w + 'px';
+  }
+
+  // Initial lock — wait for fonts so clamp() sizes are final
+  const init = () => lockPillWidth();
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(init);
+  } else {
+    requestAnimationFrame(init);
+  }
+  window.addEventListener('load', () => setTimeout(lockPillWidth, 80));
+
+  // Keep pill width correct on resize (responsive clamp) — no animation during resize
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      const curWord = words[index];
+      const w = getPillWidthFor(curWord);
+      pill.style.transition = 'none';
+      pill.style.width = w + 'px';
+      void pill.offsetWidth;
+      pill.style.transition = '';
+    }, 120);
+  });
 
   setInterval(() => {
-    // Fade out and shift up slightly
+    if (isAnimating) return;
+    isAnimating = true;
+
+    const curW = pill.getBoundingClientRect().width;
+    const nextIndex = (index + 1) % words.length;
+    const nextWord = words[nextIndex];
+    const nextW = getPillWidthFor(nextWord);
+    const isExpanding = nextW > curW + 1;
+
+    // out: weightless lift + blur — let it finish before swapping (prevents Chat AI flicker)
+    pillText.style.transition = 'transform 0.34s cubic-bezier(0.4, 0, 1, 1), opacity 0.30s ease, filter 0.30s ease';
+    pillText.style.transform = 'translateY(-10px) scale(0.985)';
     pillText.style.opacity = '0';
-    pillText.style.transform = 'translateY(-6px)';
+    pillText.style.filter = 'blur(5px)';
+    // width morph runs in parallel — same spring as pill CSS
+    pill.style.width = nextW + 'px';
+
+    // wait until out fully done; expanding waits a touch longer so long word isn't clipped by overflow:hidden
+    const swapDelay = isExpanding ? 400 : 340;
 
     setTimeout(() => {
-      index = (index + 1) % words.length;
-      pillText.textContent = words[index];
-      pillText.style.transform = 'translateY(6px)';
-
-      // Fade in and return to baseline
-      setTimeout(() => {
-        pillText.style.opacity = '1';
-        pillText.style.transform = 'translateY(0)';
-      }, 50);
-    }, 250);
+      // swap while invisible — snap new word below without animating the snap
+      pillText.style.transition = 'none';
+      pillText.textContent = nextWord;
+      pillText.style.transform = 'translateY(10px) scale(0.98)';
+      pillText.style.filter = 'blur(6px)';
+      pillText.style.opacity = '0';
+      void pillText.offsetWidth;
+      pillText.style.transition = 'transform 0.52s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.40s ease, filter 0.40s ease';
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          pillText.style.transform = 'translateY(0) scale(1)';
+          pillText.style.opacity = '1';
+          pillText.style.filter = 'blur(0px)';
+        });
+      });
+      index = nextIndex;
+      setTimeout(() => { isAnimating = false; }, 580);
+    }, swapDelay);
   }, 2800);
 }
 
