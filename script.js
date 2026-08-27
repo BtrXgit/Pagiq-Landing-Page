@@ -150,42 +150,49 @@ function initHeroPillRotation() {
     if (isAnimating) return;
     isAnimating = true;
 
-    const curW = pill.getBoundingClientRect().width;
     const nextIndex = (index + 1) % words.length;
     const nextWord = words[nextIndex];
     const nextW = getPillWidthFor(nextWord);
-    const isExpanding = nextW > curW + 1;
 
-    // out: weightless lift + blur — let it finish before swapping (prevents Chat AI flicker)
-    pillText.style.transition = 'transform 0.34s cubic-bezier(0.4, 0, 1, 1), opacity 0.30s ease, filter 0.30s ease';
-    pillText.style.transform = 'translateY(-10px) scale(0.985)';
+    // ——— OUT: whole pill + word disappear ———
+    pill.style.transition = 'width 0.32s cubic-bezier(0.4, 0, 1, 1), opacity 0.28s ease, transform 0.32s cubic-bezier(0.4, 0, 1, 1), filter 0.28s ease';
+    pill.style.width = '0px';
+    pill.style.opacity = '0';
+    pill.style.transform = 'scale(0.96)';
+    pill.style.filter = 'blur(6px)';
+    pillText.style.transition = 'transform 0.30s cubic-bezier(0.4, 0, 1, 1), opacity 0.26s ease, filter 0.26s ease';
+    pillText.style.transform = 'translateY(-8px) scale(0.98)';
     pillText.style.opacity = '0';
     pillText.style.filter = 'blur(5px)';
-    // width morph runs in parallel — same spring as pill CSS
-    pill.style.width = nextW + 'px';
-
-    // wait until out fully done; expanding waits a touch longer so long word isn't clipped by overflow:hidden
-    const swapDelay = isExpanding ? 400 : 340;
 
     setTimeout(() => {
-      // swap while invisible — snap new word below without animating the snap
-      pillText.style.transition = 'none';
+      // swap while collapsed & invisible
       pillText.textContent = nextWord;
-      pillText.style.transform = 'translateY(10px) scale(0.98)';
-      pillText.style.filter = 'blur(6px)';
+      pillText.style.transition = 'none';
+      pillText.style.transform = 'translateY(8px) scale(0.98)';
+      pillText.style.filter = 'blur(5px)';
       pillText.style.opacity = '0';
-      void pillText.offsetWidth;
-      pillText.style.transition = 'transform 0.52s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.40s ease, filter 0.40s ease';
+      // keep pill collapsed with no transition for the snap
+      pill.style.transition = 'none';
+      void pill.offsetWidth;
+
+      // ——— IN: expand to the right from 0 ———
+      pill.style.transition = 'width 0.54s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.36s ease, transform 0.54s cubic-bezier(0.16, 1, 0.3, 1), filter 0.36s ease';
+      pillText.style.transition = 'transform 0.54s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.36s ease, filter 0.36s ease';
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
+          pill.style.width = nextW + 'px';
+          pill.style.opacity = '1';
+          pill.style.transform = 'scale(1)';
+          pill.style.filter = 'blur(0px)';
           pillText.style.transform = 'translateY(0) scale(1)';
           pillText.style.opacity = '1';
           pillText.style.filter = 'blur(0px)';
         });
       });
       index = nextIndex;
-      setTimeout(() => { isAnimating = false; }, 580);
-    }, swapDelay);
+      setTimeout(() => { isAnimating = false; }, 620);
+    }, 340);
   }, 2800);
 }
 
