@@ -644,42 +644,96 @@ html.dark .hero-grid-pattern {
   line-height: 1.15;
   letter-spacing: -0.04em;
   color: var(--text);
-  max-width: 860px;
-  margin-bottom: 20px;
+    overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
+max-width: 1000px;
+  margin-inline: auto;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto 20px;
+
+  text-align: center;
 }
 
 @media (min-width: 768px) {
   .hero-title {
     font-size: 4.25rem;
+    max-width: 920px;
   }
 }
-
-.hero-pill {
+.hero-pill,
+.hero-pill *,
+#heroPillText {
+  white-space: nowrap;
+  word-break: keep-all;
+  overflow-wrap: normal;
+  hyphens: none;
+}
+.hero-line--pill {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+}
+#heroPillText {
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.hero-pill {
+  display: inline-flex;
+    white-space: nowrap;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
   vertical-align: middle;
+
   position: relative;
   top: -0.04em;
-  gap: 0.36em;
-  padding: 0.14em 0.42em 0.14em 0.38em;
+
+  gap: 0.28em;
+
+  /* Keep it compact */
+  padding: 0.13em 0.38em 0.13em 0.34em;
+
   border-radius: 9999px;
+
   background: #0F172A;
   color: #FFFFFF;
-  border: 1px solid rgba(255, 255, 255, 0.09);
-  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06), 0 8px 24px rgba(15, 23, 42, 0.10), 0 0 0 1px rgba(255, 255, 255, 0.04) inset;
+
+  border: 1px solid rgba(255, 255, 255, 0.10);
+
+  box-shadow:
+    0 1px 2px rgba(15, 23, 42, 0.08),
+    0 6px 18px rgba(15, 23, 42, 0.10),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+
   line-height: 1;
-  font-size: 0.88em;
-  font-weight: 750;
+  font-size: 0.86em;
+  font-weight: 700;
   letter-spacing: -0.025em;
+
+  white-space: nowrap;
+  flex-shrink: 0;
+
   overflow: hidden;
-  will-change: width;
   isolation: isolate;
-  transition: width 0.52s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+
+  transform: translateZ(0);
+
+  transition:
+    transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.3s ease;
 }
 
 .hero-pill:hover {
   transform: translateY(-1px);
-  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.10), 0 12px 32px rgba(15, 23, 42, 0.14), 0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+
+  box-shadow:
+    0 3px 8px rgba(15, 23, 42, 0.10),
+    0 10px 24px rgba(15, 23, 42, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 .hero-pill::before {
@@ -4359,15 +4413,22 @@ section,
   }
 
   .hero-line--pill {
-    font-size: clamp(0.88rem, 3.9vw, 1.38rem);
-    white-space: nowrap;
+    font-size: clamp(1.05rem, 4.6vw, 1.55rem);
+    white-space: normal;
     letter-spacing: -0.02em;
     line-height: 1.35;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.12em;
-    flex-wrap: nowrap;
+    gap: 0.2em;
+    flex-wrap: wrap;
+  }
+
+  .hero-in-one {
+    flex: 0 0 100%;
+    text-align: center;
+    white-space: nowrap;
+    margin-top: 0.08em;
   }
 
   .hero-pill {
