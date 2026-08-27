@@ -349,215 +349,227 @@
                         <path d="M7 9a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" fill="currentColor" />
                         <path d="M4 6.5a4.5 4.5 0 0 1 6 0" fill="none" stroke="currentColor" stroke-width="1.2" />
                         <path d="M1.5 4a8 8 0 0 1 11 0" fill="none" stroke="currentColor" stroke-width="1.2" />
-                      </svg>
                       <div class="battery-pill">
                         <div class="battery-level"></div>
                       </div>
                     </div>
                   </div>
 
-                  <!-- Mobile App Header -->
-                  <div class="app-header">
-                    <div class="app-header-left">
-                      <img src="pagiq_logo.png" alt="PagiQ icon" class="app-brand-logo" width="24" height="24" />
-                      <div>
-                        <p class="app-brand-title">PagiQ</p>
-                        <p class="app-brand-sub">All-in-One Studio</p>
-                      </div>
+                  <!-- Mobile App Header (Greeting & Badges) -->
+                  <div class="app-header-home">
+                    <div class="app-greeting-col">
+                      <span class="app-greeting-time">Good Morning,</span>
+                      <h3 class="app-greeting-name">Alex Morgan</h3>
                     </div>
                     <div class="app-header-actions">
                       <div class="app-badge-credits">
-                        <span class="credit-dot"></span>
+                        <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor">
+                          <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+                        </svg>
                         <span>100 Credits</span>
                       </div>
-                      <div class="app-user-avatar">
-                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
-                          stroke-width="2">
-                          <circle cx="12" cy="8" r="4" />
-                          <path d="M6 20v-2a6 6 0 0 1 12 0v2" />
-                        </svg>
+                      <div class="app-user-avatar-initials">
+                        <span>AM</span>
                       </div>
                     </div>
                   </div>
 
-                  <!-- App Body Content -->
+                  <!-- App Body Content (Clamping Scroll View) -->
                   <div class="app-scroll-body">
-                    <!-- Scan Hero Card inside App -->
-                    <div class="app-scan-card">
-                      <div class="app-scan-bg-glow"></div>
-                      <div class="app-scan-content">
-                        <div class="app-scan-badge">
-                          <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor"
-                            stroke-width="2.5">
-                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
-                          </svg>
-                          <span>HD Smart Scanner</span>
-                        </div>
-                        <h4 class="app-scan-title">Scan Any Document</h4>
-                        <p class="app-scan-desc">Auto edge detection & instant OCR</p>
-                        <div class="app-scan-btn">
-                          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
-                            stroke-width="2">
+                    <!-- SECTION 1: SCAN -->
+                    <div class="app-section-header-compact">
+                      <span class="app-section-title">Scan</span>
+                    </div>
+
+                    <div class="app-scan-cards-row">
+                      <div class="app-scan-rect-card">
+                        <div class="scan-card-icon-box" style="background: rgba(37, 99, 235, 0.12); color: #2563EB;">
+                          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
                             <circle cx="12" cy="13" r="4" />
                           </svg>
-                          <span>Start Camera Scan</span>
                         </div>
+                        <span class="scan-card-label">Camera</span>
+                      </div>
+
+                      <div class="app-scan-rect-card">
+                        <div class="scan-card-icon-box" style="background: rgba(99, 102, 241, 0.12); color: #6366F1;">
+                          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect width="18" height="18" x="3" y="3" rx="2" ry="2" />
+                            <circle cx="9" cy="9" r="2" />
+                            <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" />
+                          </svg>
+                        </div>
+                        <span class="scan-card-label">Gallery</span>
+                      </div>
+
+                      <div class="app-scan-rect-card">
+                        <div class="scan-card-icon-box" style="background: rgba(6, 182, 212, 0.12); color: #0891B2;">
+                          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z" />
+                          </svg>
+                        </div>
+                        <span class="scan-card-label">From Files</span>
                       </div>
                     </div>
 
-                    <!-- Quick Actions Grid (4 Primary Mobile Tools) -->
-                    <div class="app-section-title-row">
-                      <span class="app-section-heading">Quick Actions</span>
-                      <span class="app-section-link">28+ Tools</span>
+                    <!-- SECTION 2: QUICK TOOLS -->
+                    <div class="app-section-header-compact">
+                      <span class="app-section-title">Quick Tools</span>
+                      <span class="app-section-link">See all</span>
                     </div>
 
-                    <div class="app-quick-grid">
-                      <div class="app-tool-button">
-                        <div class="app-tool-icon-box" style="background: #EFF6FF; color: #2563EB;">
-                          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
-                            stroke-width="2">
+                    <div class="app-tools-scroll-row">
+                      <div class="app-tool-squircle-item">
+                        <div class="app-tool-squircle-box">
+                          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#0EA5E9" stroke-width="2">
                             <path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" />
                           </svg>
                         </div>
-                        <span class="app-tool-name">Edit PDF</span>
+                        <span class="app-tool-label">Edit PDF</span>
                       </div>
 
-                      <div class="app-tool-button">
-                        <div class="app-tool-icon-box" style="background: #ECFDF5; color: #059669;">
-                          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
-                            stroke-width="2">
-                            <path d="M8 3H5a2 2 0 0 0-2 2v3" />
-                            <path d="M21 8V5a2 2 0 0 0-2-2h-3" />
-                            <path d="m9 10 3-3 3 3" />
-                            <path d="m15 14-3 3-3-3" />
+                      <div class="app-tool-squircle-item">
+                        <div class="app-tool-squircle-box">
+                          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#2563EB" stroke-width="2">
+                            <path d="M3 7V5a2 2 0 0 1 2-2h2" />
+                            <path d="M17 3h2a2 2 0 0 1 2 2v2" />
+                            <path d="M21 17v2a2 2 0 0 1-2 2h-2" />
+                            <path d="M7 21H5a2 2 0 0 1-2-2v-2" />
                           </svg>
                         </div>
-                        <span class="app-tool-name">Convert PDF</span>
+                        <span class="app-tool-label">OCR</span>
                       </div>
 
-                      <div class="app-tool-button">
-                        <div class="app-tool-icon-box" style="background: #FEF3C7; color: #D97706;">
-                          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
-                            stroke-width="2">
+                      <div class="app-tool-squircle-item">
+                        <div class="app-tool-squircle-box">
+                          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#6366F1" stroke-width="2">
+                            <path d="m3 16 4 4 4-4" />
+                            <path d="M7 20V4" />
+                            <path d="m21 8-4-4-4 4" />
+                            <path d="M17 4v16" />
+                          </svg>
+                        </div>
+                        <span class="app-tool-label">Convert</span>
+                      </div>
+
+                      <div class="app-tool-squircle-item">
+                        <div class="app-tool-squircle-box">
+                          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#10B981" stroke-width="2">
                             <path d="M4 14h6v6" />
                             <path d="M20 10h-6V4" />
                             <path d="m14 10 7-7" />
+                            <path d="m3 21 7-7" />
                           </svg>
                         </div>
-                        <span class="app-tool-name">Compress</span>
+                        <span class="app-tool-label">Compress</span>
                       </div>
 
-                      <div class="app-tool-button">
-                        <div class="app-tool-icon-box" style="background: #F3E8FF; color: #9333EA;">
-                          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
-                            stroke-width="2">
-                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                            <path d="M14 2v6h6" />
-                            <line x1="16" y1="13" x2="8" y2="13" />
-                            <line x1="16" y1="17" x2="8" y2="17" />
+                      <div class="app-tool-squircle-item">
+                        <div class="app-tool-squircle-box has-pro">
+                          <span class="tool-mini-pro">PRO</span>
+                          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#F59E0B" stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
                           </svg>
                         </div>
-                        <span class="app-tool-name">AI Resume</span>
+                        <span class="app-tool-label">Protect</span>
                       </div>
                     </div>
 
-                    <!-- AI Intelligence Banner inside App -->
-                    <div class="app-ai-banner">
-                      <div class="app-ai-left">
-                        <span class="app-ai-pill">AI Document Chat</span>
-                        <p class="app-ai-headline">Ask anything about your PDF</p>
-                        <p class="app-ai-sub">Instant answers, summaries & flashcards</p>
-                      </div>
-                      <div class="app-ai-badge-icon">
-                        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor"
-                          stroke-width="2">
-                          <polygon
-                            points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                    <!-- SECTION 3: AI TOOLS & PRO BANNER -->
+                    <div class="app-section-header-compact">
+                      <span class="app-section-title">AI Tools</span>
+                      <span class="app-section-link">See all</span>
+                    </div>
+
+                    <div class="app-ai-pro-card">
+                      <div class="ai-pro-bolt-icon">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                          <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
                         </svg>
                       </div>
+                      <div class="ai-pro-text-col">
+                        <span class="ai-pro-headline">100 / 100 Free Credits Left</span>
+                        <span class="ai-pro-sub">Chat AI, summaries & LaTeX resume</span>
+                      </div>
+                      <span class="ai-pro-badge-btn">PRO</span>
                     </div>
 
-                    <!-- Recent Documents -->
-                    <div class="app-section-title-row">
-                      <span class="app-section-heading">Recent Documents</span>
-                      <span class="app-section-link">View all</span>
+                    <!-- SECTION 4: RECENT FILES -->
+                    <div class="app-section-header-compact">
+                      <span class="app-section-title">Recent Files</span>
+                      <span class="app-section-link">See all</span>
                     </div>
 
-                    <div class="app-recent-list">
-                      <div class="app-file-row">
-                        <div class="app-file-icon">
-                          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#2563EB" stroke-width="2">
-                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                            <polyline points="14 2 14 8 20 8" />
-                            <line x1="9" y1="13" x2="15" y2="13" />
-                            <line x1="9" y1="17" x2="13" y2="17" />
+                    <div class="app-recent-files-list">
+                      <div class="app-file-card-real">
+                        <div class="file-thumb-box pdf">
+                          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" opacity="0.3"/>
+                            <path d="M14 2v6h6M9 13h6M9 17h4"/>
                           </svg>
                         </div>
-                        <div class="app-file-details">
-                          <p class="app-file-name">Product_Strategy_Q3.pdf</p>
-                          <p class="app-file-meta">2.4 MB • Edited 12m ago</p>
+                        <div class="file-info-col">
+                          <p class="file-title-real">Quarterly_Report_2026.pdf</p>
+                          <p class="file-meta-real">Today, 10:45 AM • 2.4 MB</p>
                         </div>
-                        <span class="app-file-tag">Signed</span>
+                        <span class="file-action-pill">PDF</span>
                       </div>
 
-                      <div class="app-file-row">
-                        <div class="app-file-icon">
-                          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#059669" stroke-width="2">
-                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                            <polyline points="14 2 14 8 20 8" />
+                      <div class="app-file-card-real">
+                        <div class="file-thumb-box latex">
+                          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" opacity="0.3"/>
+                            <polygon points="12 11 13.5 14.5 17 15 14.5 17.5 15 21 12 19 9 21 9.5 17.5 7 15 10.5 14.5 12 11" fill="currentColor"/>
                           </svg>
                         </div>
-                        <div class="app-file-details">
-                          <p class="app-file-name">Software_Engineer_Resume.tex</p>
-                          <p class="app-file-meta">LaTeX ATS Ready • 1h ago</p>
+                        <div class="file-info-col">
+                          <p class="file-title-real">Software_Engineer_Resume.tex</p>
+                          <p class="file-meta-real">Yesterday, 4:20 PM • ATS 98%</p>
                         </div>
-                        <span class="app-file-tag" style="background:#ECFDF5; color:#059669;">ATS 98%</span>
+                        <span class="file-action-pill green">LaTeX</span>
                       </div>
                     </div>
                   </div>
 
-                  <!-- Mobile App Tab Bar -->
+                  <!-- Mobile App Tab Bar (5 Tabs: Home, Files, Scan, AI Tools, Profile) -->
                   <div class="mobile-tabbar">
                     <div class="tab-item active">
-                      <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                      <svg viewBox="0 0 24 24" width="19" height="19" fill="currentColor">
                         <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
                       </svg>
                       <span>Home</span>
                     </div>
+
                     <div class="tab-item">
-                      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
-                        <rect width="18" height="18" x="3" y="3" rx="2" />
-                        <path d="M7 7h10" />
-                        <path d="M7 12h10" />
-                        <path d="M7 17h10" />
+                      <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z" />
                       </svg>
                       <span>Files</span>
                     </div>
+
                     <div class="tab-item-scan">
                       <div class="tab-scan-fab">
-                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#fff" stroke-width="2.5">
-                          <path d="M3 7V5a2 2 0 0 1 2-2h2" />
-                          <path d="M17 3h2a2 2 0 0 1 2 2v2" />
-                          <path d="M21 17v2a2 2 0 0 1-2 2h-2" />
-                          <path d="M7 21H5a2 2 0 0 1-2-2v-2" />
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#fff" stroke-width="2.4">
+                          <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
+                          <circle cx="12" cy="13" r="4" />
                         </svg>
                       </div>
                     </div>
+
                     <div class="tab-item">
-                      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
-                        <polygon
-                          points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                      <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>
                       </svg>
-                      <span>AI Studio</span>
+                      <span>AI Tools</span>
                     </div>
+
                     <div class="tab-item">
-                      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="12" cy="12" r="3" />
-                        <path
-                          d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83-2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
+                      <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="8" r="4" />
+                        <path d="M6 20v-2a6 6 0 0 1 12 0v2" />
                       </svg>
-                      <span>Tools</span>
+                      <span>Profile</span>
                     </div>
                   </div>
 
