@@ -802,6 +802,11 @@ max-width: 1000px;
 
 .hero-line {
   display: block;
+  line-height: 1.05;
+}
+
+.hero-title br {
+  display: none;
 }
 
 .hero-line--pill {
@@ -809,13 +814,16 @@ max-width: 1000px;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 0.2em;
+  gap: 0.18em;
+  margin-top: 0.06em;
+  line-height: 1.1;
 }
 
 .hero-in-one {
   flex: 0 0 100%;
   text-align: center;
-  margin-top: 0.08em;
+  margin-top: 0.06em;
+  line-height: 1.05;
 }
 
 html.dark .hero-pill {
