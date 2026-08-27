@@ -4348,7 +4348,7 @@ section,
 
   .hero-title {
     max-width: 100%;
-    font-size: clamp(1.85rem, 9vw, 2.45rem);
+    font-size: clamp(1.65rem, 8.5vw, 2.45rem);
     letter-spacing: -0.035em;
     line-height: 1.18;
     text-wrap: balance;
@@ -4359,24 +4359,28 @@ section,
   }
 
   .hero-line--pill {
-    font-size: clamp(0.95rem, 4.2vw, 1.42rem);
+    font-size: clamp(1.1rem, 4.6vw, 1.55rem);
     white-space: nowrap;
-    letter-spacing: -0.02em;
-    line-height: 1.25;
-    display: block;
-    text-align: center;
+    letter-spacing: -0.025em;
+    line-height: 1.4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.2em;
+    flex-wrap: nowrap;
   }
 
   .hero-pill {
-    gap: 0.32em;
-    padding: 0.11em 0.48em 0.11em 0.40em;
+    gap: 0.36em;
+    padding: 0.13em 0.56em 0.13em 0.48em;
     font-size: 0.82em;
     letter-spacing: -0.02em;
-    vertical-align: baseline;
-    top: -0.02em;
+    vertical-align: middle;
+    top: 0;
     width: auto !important;
     max-width: calc(100vw - 32px);
     justify-content: center;
+    align-self: center;
   }
 
   .hero-pill-dot {
