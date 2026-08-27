@@ -4354,6 +4354,19 @@ section,
     text-wrap: balance;
   }
 
+  .hero-line {
+    display: block;
+  }
+
+  .hero-line--pill {
+    font-size: clamp(0.95rem, 4.2vw, 1.42rem);
+    white-space: nowrap;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+    display: block;
+    text-align: center;
+  }
+
   .hero-pill {
     gap: 0.32em;
     padding: 0.11em 0.48em 0.11em 0.40em;
