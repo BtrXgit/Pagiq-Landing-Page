@@ -1,6 +1,7 @@
 /**
  * PagiQ Landing Page Interactive Script
  * Simple. Powerful. Private. Intelligent.
+ * Optimized for 60fps/120fps lag-free performance across all devices
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -55,7 +56,7 @@ function initTheme() {
     } else if (storedTheme === 'light') {
       html.classList.remove('dark');
     }
-  } catch (e) {}
+  } catch (e) { }
 
   updateIcon();
 
@@ -65,135 +66,187 @@ function initTheme() {
       const isDark = html.classList.contains('dark');
       try {
         localStorage.setItem('pagiq_theme', isDark ? 'dark' : 'light');
-      } catch (e) {}
+      } catch (e) { }
       updateIcon();
     });
   }
 }
 
 /* ================================================================
-   2. HERO PILL DYNAMIC TEXT ROTATION
+   2. HERO PILL DYNAMIC TEXT ROTATION (High Performance GPU-accelerated)
    Rotating between: Convert., Chat AI., Resume., Compress.
    ================================================================ */
 function initHeroPillRotation() {
   const pill = document.getElementById('heroPillContainer');
   const pillText = document.getElementById('heroPillText');
+  const heroSection = document.getElementById('hero');
   if (!pill || !pillText) return;
 
-  // Respect reduced motion
+  // Respect reduced motion preference
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
   const words = ['Convert.', 'Chat AI.', 'Resume.', 'Compress.'];
   let index = 0;
   let isAnimating = false;
+  let timerId = null;
+  let isHeroVisible = true;
 
-  // Accurate pill width for any word - clone in same parent so clamp() em sizes are exact
-  function getPillWidthFor(text) {
+  // Cached width dictionary for instantaneous lookup without DOM reflows
+  const widthCache = new Map();
+
+  function measureAllWords() {
     const parent = pill.parentElement;
-    if (!parent) return pill.offsetWidth;
-    const clone = pill.cloneNode(true);
-    clone.style.position = 'absolute';
-    clone.style.visibility = 'hidden';
-    clone.style.pointerEvents = 'none';
-    clone.style.width = 'auto';
-    clone.style.maxWidth = 'none';
-    clone.style.transition = 'none';
-    clone.style.transform = 'none';
-    clone.style.left = '-9999px';
-    clone.style.top = '0';
-    clone.removeAttribute('id');
-    const inner = clone.querySelector('#heroPillText');
+    if (!parent) return;
+
+    // Single detached/hidden probe to measure all 4 words at once
+    const probe = pill.cloneNode(true);
+    probe.style.position = 'absolute';
+    probe.style.visibility = 'hidden';
+    probe.style.pointerEvents = 'none';
+    probe.style.width = 'auto';
+    probe.style.maxWidth = 'none';
+    probe.style.transition = 'none';
+    probe.style.transform = 'none';
+    probe.style.left = '-9999px';
+    probe.style.top = '-9999px';
+    probe.removeAttribute('id');
+
+    const inner = probe.querySelector('#heroPillText') || probe.querySelector('span:last-child');
     if (inner) {
       inner.removeAttribute('id');
-      inner.textContent = text;
       inner.style.transition = 'none';
       inner.style.transform = 'none';
       inner.style.opacity = '1';
-      inner.style.filter = 'none';
     }
-    parent.appendChild(clone);
-    const w = clone.getBoundingClientRect().width;
-    parent.removeChild(clone);
-    return Math.ceil(w);
+
+    parent.appendChild(probe);
+
+    words.forEach(w => {
+      if (inner) inner.textContent = w;
+      const rect = probe.getBoundingClientRect();
+      widthCache.set(w, Math.ceil(rect.width));
+    });
+
+    parent.removeChild(probe);
   }
 
-  // Lock pill to its current width so width-morph can animate smoothly (no auto→px jump)
-  function lockPillWidth() {
-    const w = getPillWidthFor(pillText.textContent.trim());
+  function getPillWidth(word) {
+    if (!widthCache.has(word)) {
+      measureAllWords();
+    }
+    return widthCache.get(word) || pill.offsetWidth;
+  }
+
+  function lockCurrentWidth() {
+    measureAllWords();
+    const curWord = words[index];
+    const w = getPillWidth(curWord);
     pill.style.width = w + 'px';
   }
 
-  // Initial lock - wait for fonts so clamp() sizes are final
-  const init = () => lockPillWidth();
+  // Initial measurement after fonts load
   if (document.fonts && document.fonts.ready) {
-    document.fonts.ready.then(init);
+    document.fonts.ready.then(() => {
+      lockCurrentWidth();
+    });
   } else {
-    requestAnimationFrame(init);
+    setTimeout(lockCurrentWidth, 80);
   }
-  window.addEventListener('load', () => setTimeout(lockPillWidth, 80));
+  window.addEventListener('load', () => setTimeout(lockCurrentWidth, 60));
 
-  // Keep pill width correct on resize (responsive clamp) - no animation during resize
+  // Recalculate widths on debounced resize
   let resizeTimer;
   window.addEventListener('resize', () => {
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(() => {
-      const curWord = words[index];
-      const w = getPillWidthFor(curWord);
-      pill.style.transition = 'none';
-      pill.style.width = w + 'px';
-      void pill.offsetWidth;
-      pill.style.transition = '';
+      widthCache.clear();
+      lockCurrentWidth();
     }, 120);
-  });
+  }, { passive: true });
 
-  setInterval(() => {
-    if (isAnimating) return;
+  function stepRotation() {
+    if (isAnimating || !isHeroVisible || document.hidden) return;
     isAnimating = true;
 
     const nextIndex = (index + 1) % words.length;
     const nextWord = words[nextIndex];
-    const nextW = getPillWidthFor(nextWord);
+    const nextW = getPillWidth(nextWord);
 
-    // --- OUT: whole pill + word disappear - slower ---
-    pill.style.transition = 'width 0.58s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.46s ease, transform 0.58s cubic-bezier(0.4, 0, 0.2, 1), filter 0.46s ease';
+    // --- OUT: collapse width & slide text up smoothly ---
+    pill.style.transition = 'width 0.44s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.38s ease, transform 0.44s cubic-bezier(0.4, 0, 0.2, 1)';
     pill.style.width = '0px';
     pill.style.opacity = '0';
     pill.style.transform = 'scale(0.96)';
-    pill.style.filter = 'blur(6px)';
-    pillText.style.transition = 'transform 0.52s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.44s ease, filter 0.44s ease';
-    pillText.style.transform = 'translateY(-8px) scale(0.98)';
+
+    pillText.style.transition = 'transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.34s ease';
+    pillText.style.transform = 'translateY(-10px) scale(0.96)';
     pillText.style.opacity = '0';
-    pillText.style.filter = 'blur(5px)';
 
     setTimeout(() => {
-      // swap while collapsed & invisible
+      // Swap word while collapsed & hidden
       pillText.textContent = nextWord;
       pillText.style.transition = 'none';
-      pillText.style.transform = 'translateY(8px) scale(0.98)';
-      pillText.style.filter = 'blur(5px)';
+      pillText.style.transform = 'translateY(10px) scale(0.96)';
       pillText.style.opacity = '0';
-      // keep pill collapsed with no transition for the snap
-      pill.style.transition = 'none';
-      void pill.offsetWidth;
 
-      // --- IN: expand to the right from 0 - slower spring ---
-      pill.style.transition = 'width 0.88s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.62s ease, transform 0.88s cubic-bezier(0.16, 1, 0.3, 1), filter 0.62s ease';
-      pillText.style.transition = 'transform 0.88s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.62s ease, filter 0.62s ease';
+      pill.style.transition = 'none';
+      void pill.offsetWidth; // single snap tick
+
+      // --- IN: expand width & slide text into place with spring easing ---
+      pill.style.transition = 'width 0.62s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.45s ease, transform 0.62s cubic-bezier(0.16, 1, 0.3, 1)';
+      pillText.style.transition = 'transform 0.62s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.45s ease';
+
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
           pill.style.width = nextW + 'px';
           pill.style.opacity = '1';
           pill.style.transform = 'scale(1)';
-          pill.style.filter = 'blur(0px)';
+
           pillText.style.transform = 'translateY(0) scale(1)';
           pillText.style.opacity = '1';
-          pillText.style.filter = 'blur(0px)';
         });
       });
+
       index = nextIndex;
-      setTimeout(() => { isAnimating = false; }, 980);
-    }, 580);
-  }, 3200);
+      setTimeout(() => {
+        isAnimating = false;
+      }, 680);
+    }, 440);
+  }
+
+  function startTimer() {
+    if (!timerId) {
+      timerId = setInterval(stepRotation, 3200);
+    }
+  }
+
+  function stopTimer() {
+    if (timerId) {
+      clearInterval(timerId);
+      timerId = null;
+    }
+  }
+
+  startTimer();
+
+  // Pause when hero is out of view
+  if ('IntersectionObserver' in window && heroSection) {
+    const heroObs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        isHeroVisible = entry.isIntersecting;
+      });
+    }, { threshold: 0.05 });
+    heroObs.observe(heroSection);
+  }
+
+  // Pause when tab is in the background
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      stopTimer();
+    } else {
+      startTimer();
+    }
+  });
 }
 
 /* ================================================================
@@ -240,11 +293,15 @@ function initToolsCatalogFilter() {
     });
   });
 
-  // Search Input Event
+  // Search Input Event (debounced slightly for smoothness)
   if (searchInput) {
+    let searchDebounce;
     searchInput.addEventListener('input', (e) => {
-      searchQuery = e.target.value.trim().toLowerCase();
-      filterCards();
+      clearTimeout(searchDebounce);
+      searchDebounce = setTimeout(() => {
+        searchQuery = e.target.value.trim().toLowerCase();
+        filterCards();
+      }, 50);
     });
   }
 }
@@ -291,22 +348,36 @@ function initFaqAccordion() {
 }
 
 /* ================================================================
-   5. NAVBAR SCROLL EFFECT
+   5. NAVBAR SCROLL EFFECT (RAF Throttled for 60/120fps)
    ================================================================ */
 function initNavbarScroll() {
   const navbar = document.getElementById('navbar');
   if (!navbar) return;
 
-  const handleScroll = () => {
-    if (window.scrollY > 20) {
-      navbar.classList.add('scrolled');
-    } else {
-      navbar.classList.remove('scrolled');
+  let isScrolled = false;
+  let ticking = false;
+
+  const updateNavbar = () => {
+    const shouldBeScrolled = window.scrollY > 20;
+    if (shouldBeScrolled !== isScrolled) {
+      isScrolled = shouldBeScrolled;
+      if (isScrolled) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
     }
+    ticking = false;
   };
 
-  window.addEventListener('scroll', handleScroll, { passive: true });
-  handleScroll();
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(updateNavbar);
+      ticking = true;
+    }
+  }, { passive: true });
+
+  updateNavbar();
 }
 
 /* ================================================================
@@ -363,8 +434,8 @@ function initScrollReveals() {
         }
       });
     }, {
-      threshold: 0.08,
-      rootMargin: '0px 0px -40px 0px'
+      threshold: 0.05,
+      rootMargin: '0px 0px -30px 0px'
     });
 
     faders.forEach(el => observer.observe(el));
@@ -426,4 +497,3 @@ function initAppStoreComingSoon() {
     });
   });
 }
-
