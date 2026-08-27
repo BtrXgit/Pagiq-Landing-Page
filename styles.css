@@ -4361,6 +4361,9 @@ section,
     letter-spacing: -0.02em;
     vertical-align: baseline;
     top: -0.02em;
+    width: auto !important;
+    max-width: calc(100vw - 32px);
+    justify-content: center;
   }
 
   .hero-pill-dot {
