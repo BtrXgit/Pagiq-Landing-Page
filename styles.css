@@ -4448,7 +4448,7 @@ section,
   }
 
   .hero-line--pill {
-    font-size: clamp(1.05rem, 4.6vw, 1.55rem);
+    font-size: clamp(1.25rem, 5.2vw, 1.85rem);
     white-space: normal;
     letter-spacing: -0.02em;
     line-height: 1.35;
@@ -4467,15 +4467,14 @@ section,
   }
 
   .hero-pill {
-    gap: 0.28em;
-    padding: 0.11em 0.36em 0.11em 0.32em;
-    font-size: 0.82em;
+    gap: 0.32em;
+    padding: 0.13em 0.42em 0.13em 0.36em;
+    font-size: 0.88em;
     letter-spacing: -0.02em;
     vertical-align: middle;
     top: 0;
-    width: auto !important;
     max-width: calc(100vw - 32px);
-    justify-content: center;
+    justify-content: flex-start;
     align-self: center;
   }
 
