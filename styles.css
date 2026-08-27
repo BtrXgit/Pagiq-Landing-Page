@@ -800,6 +800,24 @@ max-width: 1000px;
   transition: transform 0.52s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.40s ease, filter 0.40s ease;
 }
 
+.hero-line {
+  display: block;
+}
+
+.hero-line--pill {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2em;
+}
+
+.hero-in-one {
+  flex: 0 0 100%;
+  text-align: center;
+  margin-top: 0.08em;
+}
+
 html.dark .hero-pill {
   background: #F8FAFC;
   color: #0F172A;
