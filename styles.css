@@ -660,8 +660,8 @@ html.dark .hero-grid-pattern {
   vertical-align: middle;
   position: relative;
   top: -0.04em;
-  gap: 0.42em;
-  padding: 0.14em 0.62em 0.14em 0.52em;
+  gap: 0.36em;
+  padding: 0.14em 0.42em 0.14em 0.38em;
   border-radius: 9999px;
   background: #0F172A;
   color: #FFFFFF;
@@ -4371,8 +4371,8 @@ section,
   }
 
   .hero-pill {
-    gap: 0.36em;
-    padding: 0.13em 0.56em 0.13em 0.48em;
+    gap: 0.28em;
+    padding: 0.11em 0.36em 0.11em 0.32em;
     font-size: 0.82em;
     letter-spacing: -0.02em;
     vertical-align: middle;
