@@ -4359,14 +4359,14 @@ section,
   }
 
   .hero-line--pill {
-    font-size: clamp(1.1rem, 4.6vw, 1.55rem);
+    font-size: clamp(0.88rem, 3.9vw, 1.38rem);
     white-space: nowrap;
-    letter-spacing: -0.025em;
-    line-height: 1.4;
+    letter-spacing: -0.02em;
+    line-height: 1.35;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.2em;
+    gap: 0.12em;
     flex-wrap: nowrap;
   }
 
