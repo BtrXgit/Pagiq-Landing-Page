@@ -657,24 +657,31 @@ html.dark .hero-grid-pattern {
 .hero-pill {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 2px 18px;
+  vertical-align: middle;
+  position: relative;
+  top: -0.06em;
+  gap: 0.22em;
+  padding: 0.06em 0.36em;
   border-radius: var(--radius-full);
   background-color: var(--brand-light);
   color: var(--brand-primary);
   border: 1.5px solid rgba(37, 99, 235, 0.25);
   box-shadow: 0 0 25px rgba(37, 99, 235, 0.2);
-  vertical-align: baseline;
+  line-height: 1;
+  font-size: 0.92em;
   transition: all var(--transition-fast);
 }
 
 .hero-pill-dot {
-  width: 8px;
-  height: 8px;
+  width: 0.22em;
+  height: 0.22em;
+  min-width: 8px;
+  min-height: 8px;
   border-radius: 50%;
   background-color: var(--brand-primary);
   box-shadow: 0 0 10px var(--brand-primary);
   animation: pulseDot 2s infinite ease-in-out;
+  flex-shrink: 0;
 }
 
 @keyframes pulseDot {
@@ -684,6 +691,7 @@ html.dark .hero-grid-pattern {
 
 #heroPillText {
   display: inline-block;
+  line-height: 1;
   transition: transform 0.25s ease, opacity 0.25s ease;
 }
 
@@ -3373,13 +3381,21 @@ html.dark .price-credits-callout.pro-callout {
 }
 
 .cta-logo-wrap {
-  margin-bottom: 20px;
-  display: inline-block;
+  margin-bottom: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #FFFFFF;
+  padding: 12px;
+  border-radius: 22px;
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.5);
 }
 
 .cta-app-icon {
-  border-radius: 16px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  width: 58px;
+  height: 58px;
+  border-radius: 12px;
+  display: block;
 }
 
 .final-cta-title {
