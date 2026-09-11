@@ -3,18 +3,39 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>PagiQ - All-in-One Mobile PDF, AI Intelligence & Resume App</title>
   <meta name="description"
     content="Scan, edit, convert, compress, sign, chat with PDFs, and build ATS-ready LaTeX resumes. 28+ professional tools inside one private, powerful mobile app." />
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0A0D14" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
   <link rel="icon" href="favicon.ico" />
   <link rel="apple-touch-icon" href="pagiq_logo.png" />
+  <link rel="preload" href="pagiq_logo-256.webp" as="image" fetchpriority="high" type="image/webp" />
+  <link rel="preload" href="styles.css" as="style" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"
-    rel="stylesheet" />
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet" media="print" onload="this.media='all'" />
+  <noscript>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet" />
+  </noscript>
   <link rel="stylesheet" href="styles.css" />
+  <script>
+    // Apply saved theme synchronously to avoid flash (no layout thrash)
+    (function () {
+      try {
+        var t = localStorage.getItem('pagiq_theme');
+        if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.classList.add('dark');
+        }
+      } catch (e) { }
+    })();
+  </script>
 </head>
 
 <body>
@@ -26,7 +47,7 @@
     <nav class="navbar-inner">
       <!-- Left: Logo -->
       <a href="#" class="logo" aria-label="PagiQ Home">
-        <img src="pagiq_logo.png" alt="PagiQ Logo" class="logo-img" width="36" height="36" />
+        <img src="pagiq_logo-256.webp" onerror="this.onerror=null;this.src='pagiq_logo.png'" alt="PagiQ Logo" class="logo-img" width="36" height="36" fetchpriority="high" decoding="async" />
         <span class="logo-text">PagiQ</span>
       </a>
 
@@ -82,7 +103,7 @@
   <aside class="drawer" id="drawer" aria-label="Mobile navigation">
     <div class="drawer-header">
       <div class="drawer-logo">
-        <img src="pagiq_logo.png" alt="PagiQ Logo" width="30" height="30" />
+        <img src="pagiq_logo-256.webp" onerror="this.onerror=null;this.src='pagiq_logo.png'" alt="PagiQ Logo" width="30" height="30" decoding="async" />
         <span>PagiQ</span>
       </div>
       <button class="drawer-close" id="drawerClose" aria-label="Close menu">
@@ -122,16 +143,13 @@
       <div class="container hero-container">
         <!-- Brand Badge -->
         <div class="hero-badge fade-up">
-          <img src="pagiq_logo.png" alt="PagiQ" class="badge-icon-img" width="18" height="18" />
-          <span class="badge-brand">PagiQ Mobile App</span>
-          <span class="badge-dot"></span>
-          <span class="badge-tag">v1.2 Released</span>
+          <span class="badge-brand">PagiQ Workspace</span>
         </div>
 
         <!-- Main Headline with Rotating Pill -->
         <h1 class="hero-title fade-up fade-up-d1">
           <span class="hero-line">All your PDFs.</span><br />
-          <span class="hero-line hero-line--pill"><span class="hero-pill-row">Scan. Edit. <span class="hero-pill" id="heroPillContainer"><span class="hero-pill-dot"></span><span id="heroPillText">Convert.</span></span></span> <span class="hero-in-one">In One Place.</span></span>
+          <span class="hero-line hero-line--pill"><span class="hero-pill-row">Scan. Edit. <span class="hero-pill" id="heroPillContainer"><span id="heroPillText">Convert.</span></span></span> <span class="hero-in-one">In One Place.</span></span>
         </h1>
 
         <!-- Supporting Text -->
@@ -347,6 +365,7 @@
                         <path d="M7 9a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" fill="currentColor" />
                         <path d="M4 6.5a4.5 4.5 0 0 1 6 0" fill="none" stroke="currentColor" stroke-width="1.2" />
                         <path d="M1.5 4a8 8 0 0 1 11 0" fill="none" stroke="currentColor" stroke-width="1.2" />
+                      </svg>
                       <div class="battery-pill">
                         <div class="battery-level"></div>
                       </div>
@@ -2397,7 +2416,7 @@
 
           <div class="final-cta-content">
             <div class="cta-logo-wrap">
-              <img src="pagiq_logo.png" alt="PagiQ Logo" class="cta-app-icon" width="64" height="64" />
+              <img src="pagiq_logo-256.webp" onerror="this.onerror=null;this.src='pagiq_logo.png'" alt="PagiQ Logo" class="cta-app-icon" width="64" height="64" loading="lazy" decoding="async" />
             </div>
 
             <h2 class="final-cta-title">Ready to Simplify Your Documents?</h2>
@@ -2451,7 +2470,7 @@
       <div class="footer-top-row">
         <div class="footer-brand-col">
           <a href="#" class="footer-brand-link">
-            <img src="pagiq_logo.png" alt="PagiQ Logo" width="32" height="32" />
+            <img src="pagiq_logo-256.webp" onerror="this.onerror=null;this.src='pagiq_logo.png'" alt="PagiQ Logo" width="32" height="32" loading="lazy" decoding="async" />
             <span class="footer-brand-name">PagiQ</span>
           </a>
           <p class="footer-tagline">Your documents. Simplified.</p>
@@ -2493,7 +2512,7 @@
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="script.js" defer></script>
 </body>
 
 </html>

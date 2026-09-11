@@ -4,16 +4,26 @@
  * Optimized for 60fps/120fps lag-free performance across all devices
  */
 
-document.addEventListener('DOMContentLoaded', () => {
-  initTheme();
-  initHeroPillRotation();
-  initToolsCatalogFilter();
-  initFaqAccordion();
-  initNavbarScroll();
-  initMobileDrawer();
-  initScrollReveals();
-  initAppStoreComingSoon();
-});
+(function () {
+  // Run ASAP (script is deferred) — don't wait for full DOMContentLoaded for above-fold
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init, { once: true });
+  } else {
+    init();
+  }
+
+  function init() {
+    initTheme();
+    initHeroPillRotation();
+    initToolsCatalogFilter();
+    initFaqAccordion();
+    initNavbarScroll();
+    initMobileDrawer();
+    initScrollReveals();
+    initAppStoreComingSoon();
+    initPauseOffscreenAnimations();
+  }
+})();
 
 /* ================================================================
    1. THEME TOGGLE & PERSISTENCE
@@ -73,8 +83,11 @@ function initTheme() {
 }
 
 /* ================================================================
-   2. HERO PILL DYNAMIC TEXT ROTATION (High Performance GPU-accelerated)
-   Rotating between: Convert., Chat AI., Resume., Compress.
+   2. HERO PILL TEXT ROTATION — smooth background morph (A→B width)
+   Pill is width:auto so its background hugs each word. On every swap
+   we lock the old width, measure the new word's natural width, then
+   let a CSS width transition morph the background while the text
+   crossfades. Only ~2 forced layouts per ~3s cycle — negligible cost.
    ================================================================ */
 function initHeroPillRotation() {
   const pill = document.getElementById('heroPillContainer');
@@ -87,263 +100,191 @@ function initHeroPillRotation() {
 
   const words = ['Convert.', 'Chat AI.', 'Resume.', 'Compress.'];
   let index = 0;
-  let isAnimating = false;
-  let timerId = null;
-  let isHeroVisible = true;
+  let visible = true;
+  let timeoutId = null;
+  let releaseTimer = null;
 
-  // Cached width dictionary for instantaneous lookup without DOM reflows
-  const widthCache = new Map();
+  const OUT_MS = 300;
+  const IN_DELAY_MS = 30;
+  const HOLD_MS = 2800;
+  const MORPH_MS = 420;
 
-  function measureAllWords() {
-    const parent = pill.parentElement;
-    if (!parent) return;
+  function scheduleNext(delay) {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(tick, delay);
+  }
 
-    // Single detached/hidden probe to measure all 4 words at once
-    const probe = pill.cloneNode(true);
-    probe.style.position = 'absolute';
-    probe.style.visibility = 'hidden';
-    probe.style.pointerEvents = 'none';
-    probe.style.width = 'auto';
-    probe.style.maxWidth = 'none';
-    probe.style.transition = 'none';
-    probe.style.transform = 'none';
-    probe.style.left = '-9999px';
-    probe.style.top = '-9999px';
-    probe.removeAttribute('id');
+  function releaseWidth() {
+    clearTimeout(releaseTimer);
+    releaseTimer = setTimeout(() => {
+      pill.style.width = '';
+    }, MORPH_MS + 60);
+  }
 
-    const inner = probe.querySelector('#heroPillText') || probe.querySelector('span:last-child');
-    if (inner) {
-      inner.removeAttribute('id');
-      inner.style.transition = 'none';
-      inner.style.transform = 'none';
-      inner.style.opacity = '1';
+  function tick() {
+    if (!visible || document.hidden) {
+      scheduleNext(800);
+      return;
     }
+    // Lock current width so the background can't snap during the swap
+    pill.style.width = pill.offsetWidth + 'px';
 
-    parent.appendChild(probe);
-
-    words.forEach(w => {
-      if (inner) inner.textContent = w;
-      const rect = probe.getBoundingClientRect();
-      widthCache.set(w, Math.ceil(rect.width));
-    });
-
-    parent.removeChild(probe);
-  }
-
-  function getPillWidth(word) {
-    if (!widthCache.has(word)) {
-      measureAllWords();
-    }
-    return widthCache.get(word) || pill.offsetWidth;
-  }
-
-  function lockCurrentWidth() {
-    measureAllWords();
-    const curWord = words[index];
-    const w = getPillWidth(curWord);
-    pill.style.width = w + 'px';
-  }
-
-  // Initial measurement after fonts load
-  if (document.fonts && document.fonts.ready) {
-    document.fonts.ready.then(() => {
-      lockCurrentWidth();
-    });
-  } else {
-    setTimeout(lockCurrentWidth, 80);
-  }
-  window.addEventListener('load', () => setTimeout(lockCurrentWidth, 60));
-
-  // Recalculate widths on debounced resize
-  let resizeTimer;
-  window.addEventListener('resize', () => {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(() => {
-      widthCache.clear();
-      lockCurrentWidth();
-    }, 120);
-  }, { passive: true });
-
-  function stepRotation() {
-    if (isAnimating || !isHeroVisible || document.hidden) return;
-    isAnimating = true;
-
-    const nextIndex = (index + 1) % words.length;
-    const nextWord = words[nextIndex];
-    const nextW = getPillWidth(nextWord);
-
-    // --- OUT: collapse width & slide text up smoothly ---
-    pill.style.transition = 'width 0.44s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.38s ease, transform 0.44s cubic-bezier(0.4, 0, 0.2, 1)';
-    pill.style.width = '0px';
-    pill.style.opacity = '0';
-    pill.style.transform = 'scale(0.96)';
-
-    pillText.style.transition = 'transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.34s ease';
-    pillText.style.transform = 'translateY(-10px) scale(0.96)';
-    pillText.style.opacity = '0';
+    // OUT: slide up + fade (compositor only)
+    pillText.classList.remove('is-in', 'is-pre');
+    pillText.classList.add('is-out');
 
     setTimeout(() => {
-      // Swap word while collapsed & hidden
-      pillText.textContent = nextWord;
-      pillText.style.transition = 'none';
-      pillText.style.transform = 'translateY(10px) scale(0.96)';
-      pillText.style.opacity = '0';
+      if (!visible || document.hidden) {
+        // Revert so text never gets stuck invisible
+        pillText.classList.remove('is-out', 'is-pre');
+        pillText.classList.add('is-in');
+        pill.style.width = '';
+        scheduleNext(800);
+        return;
+      }
+      index = (index + 1) % words.length;
+      pillText.textContent = words[index];
 
-      pill.style.transition = 'none';
-      void pill.offsetWidth; // single snap tick
+      // Measure the new word's natural width, then morph A → B.
+      // All reads/writes batched here; browser paints only after,
+      // so the invert step never flashes on screen.
+      const fromW = pill.offsetWidth;
+      pill.style.width = 'auto';
+      const toW = pill.offsetWidth;
+      pill.style.width = fromW + 'px';
+      void pill.offsetWidth; // commit inverted state
+      pill.style.width = toW + 'px'; // CSS transition morphs background
+      releaseWidth();
 
-      // --- IN: expand width & slide text into place with spring easing ---
-      pill.style.transition = 'width 0.62s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.45s ease, transform 0.62s cubic-bezier(0.16, 1, 0.3, 1)';
-      pillText.style.transition = 'transform 0.62s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.45s ease';
+      // Snap text below (no transition), then animate in on next frame
+      pillText.classList.remove('is-out', 'is-in');
+      pillText.classList.add('is-pre');
 
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
-          pill.style.width = nextW + 'px';
-          pill.style.opacity = '1';
-          pill.style.transform = 'scale(1)';
-
-          pillText.style.transform = 'translateY(0) scale(1)';
-          pillText.style.opacity = '1';
+          pillText.classList.remove('is-pre');
+          pillText.classList.add('is-in');
         });
       });
 
-      index = nextIndex;
-      setTimeout(() => {
-        isAnimating = false;
-      }, 680);
-    }, 440);
+      scheduleNext(HOLD_MS);
+    }, OUT_MS + IN_DELAY_MS);
   }
 
-  function startTimer() {
-    if (!timerId) {
-      timerId = setInterval(stepRotation, 3200);
-    }
-  }
+  scheduleNext(HOLD_MS);
 
-  function stopTimer() {
-    if (timerId) {
-      clearInterval(timerId);
-      timerId = null;
-    }
-  }
-
-  startTimer();
-
-  // Pause when hero is out of view
+  // Pause when hero is out of view (also pauses CSS shine via .hero-paused)
   if ('IntersectionObserver' in window && heroSection) {
     const heroObs = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        isHeroVisible = entry.isIntersecting;
-      });
-    }, { threshold: 0.05 });
+      const entry = entries[0];
+      visible = entry.isIntersecting;
+      heroSection.classList.toggle('hero-paused', !visible);
+      if (visible) scheduleNext(400);
+    }, { threshold: 0.02 });
     heroObs.observe(heroSection);
   }
 
   // Pause when tab is in the background
   document.addEventListener('visibilitychange', () => {
-    if (document.hidden) {
-      stopTimer();
-    } else {
-      startTimer();
-    }
+    if (!document.hidden && visible) scheduleNext(400);
   });
 }
 
 /* ================================================================
    3. 28+ TOOLS CATALOG CATEGORY FILTER & LIVE SEARCH
+   Cached text + rAF batching to avoid layout thrash on every keystroke
    ================================================================ */
 function initToolsCatalogFilter() {
   const tabs = document.querySelectorAll('.tool-tab');
   const searchInput = document.getElementById('toolSearchInput');
-  const cards = document.querySelectorAll('.tool-catalog-card');
+  const cards = Array.from(document.querySelectorAll('.tool-catalog-card'));
 
   if (!cards.length) return;
 
+  // Pre-cache lowercase searchable text once (no per-filter DOM reads)
+  const cache = cards.map((card) => ({
+    el: card,
+    category: card.getAttribute('data-category') || '',
+    text: (
+      (card.querySelector('.tool-card-title')?.textContent || '') +
+      ' ' +
+      (card.querySelector('.tool-card-desc')?.textContent || '')
+    ).toLowerCase(),
+  }));
+
   let currentCategory = 'all';
   let searchQuery = '';
+  let rafId = 0;
 
-  function filterCards() {
-    cards.forEach(card => {
-      const category = card.getAttribute('data-category');
-      const title = card.querySelector('.tool-card-title')?.textContent.toLowerCase() || '';
-      const desc = card.querySelector('.tool-card-desc')?.textContent.toLowerCase() || '';
+  function applyFilter() {
+    rafId = 0;
+    for (let i = 0; i < cache.length; i++) {
+      const c = cache[i];
+      const matchesCategory = currentCategory === 'all' || c.category === currentCategory;
+      const matchesSearch = !searchQuery || c.text.includes(searchQuery);
+      c.el.classList.toggle('hidden', !(matchesCategory && matchesSearch));
+    }
+  }
 
-      const matchesCategory = (currentCategory === 'all' || category === currentCategory);
-      const matchesSearch = (!searchQuery || title.includes(searchQuery) || desc.includes(searchQuery));
-
-      if (matchesCategory && matchesSearch) {
-        card.classList.remove('hidden');
-      } else {
-        card.classList.add('hidden');
-      }
-    });
+  function requestFilter() {
+    if (rafId) return;
+    rafId = requestAnimationFrame(applyFilter);
   }
 
   // Category Tab Click
-  tabs.forEach(tab => {
+  tabs.forEach((tab) => {
     tab.addEventListener('click', () => {
-      tabs.forEach(t => {
+      tabs.forEach((t) => {
         t.classList.remove('active');
         t.setAttribute('aria-selected', 'false');
       });
       tab.classList.add('active');
       tab.setAttribute('aria-selected', 'true');
       currentCategory = tab.getAttribute('data-category') || 'all';
-      filterCards();
+      requestFilter();
     });
   });
 
-  // Search Input Event (debounced slightly for smoothness)
+  // Search Input Event (debounced + rAF)
   if (searchInput) {
     let searchDebounce;
     searchInput.addEventListener('input', (e) => {
       clearTimeout(searchDebounce);
       searchDebounce = setTimeout(() => {
         searchQuery = e.target.value.trim().toLowerCase();
-        filterCards();
-      }, 50);
+        requestFilter();
+      }, 90);
     });
   }
 }
 
 /* ================================================================
-   4. FAQ ACCORDION
+   4. FAQ ACCORDION — class-only, no scrollHeight layout reads
+   (animation handled by CSS grid-template-rows)
    ================================================================ */
 function initFaqAccordion() {
   const items = document.querySelectorAll('.faq-item');
   if (!items.length) return;
 
-  items.forEach(item => {
+  items.forEach((item) => {
     const trigger = item.querySelector('.faq-trigger');
-    const content = item.querySelector('.faq-content');
+    if (!trigger) return;
 
-    if (trigger && content) {
-      trigger.addEventListener('click', () => {
-        const isActive = item.classList.contains('active');
+    trigger.addEventListener('click', () => {
+      const isActive = item.classList.contains('active');
 
-        // Close other FAQ items
-        items.forEach(otherItem => {
-          if (otherItem !== item && otherItem.classList.contains('active')) {
-            otherItem.classList.remove('active');
-            const otherTrigger = otherItem.querySelector('.faq-trigger');
-            const otherContent = otherItem.querySelector('.faq-content');
-            if (otherTrigger) otherTrigger.setAttribute('aria-expanded', 'false');
-            if (otherContent) otherContent.style.maxHeight = '0px';
-          }
-        });
-
-        // Toggle current item
-        if (isActive) {
-          item.classList.remove('active');
-          trigger.setAttribute('aria-expanded', 'false');
-          content.style.maxHeight = '0px';
-        } else {
-          item.classList.add('active');
-          trigger.setAttribute('aria-expanded', 'true');
-          content.style.maxHeight = content.scrollHeight + 'px';
+      // Close others (class toggle only — no forced reflow)
+      document.querySelectorAll('.faq-item.active').forEach((other) => {
+        if (other !== item) {
+          other.classList.remove('active');
+          other.querySelector('.faq-trigger')?.setAttribute('aria-expanded', 'false');
         }
       });
-    }
+
+      // Toggle current
+      item.classList.toggle('active', !isActive);
+      trigger.setAttribute('aria-expanded', String(!isActive));
+    });
   });
 }
 
@@ -381,27 +322,37 @@ function initNavbarScroll() {
 }
 
 /* ================================================================
-   6. MOBILE NAVIGATION DRAWER
+   6. MOBILE NAVIGATION DRAWER — no scroll jump
    ================================================================ */
 function initMobileDrawer() {
   const hamburger = document.getElementById('hamburger');
   const drawer = document.getElementById('drawer');
   const overlay = document.getElementById('drawerOverlay');
   const drawerClose = document.getElementById('drawerClose');
+  let scrollY = 0;
 
   function openDrawer() {
+    scrollY = window.scrollY || 0;
     if (drawer) drawer.classList.add('open');
     if (overlay) overlay.classList.add('open');
-    document.body.style.overflow = 'hidden';
+    // Lock scroll without jumping to top
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.left = '0';
+    document.body.style.right = '0';
   }
 
   function closeDrawer() {
     if (drawer) drawer.classList.remove('open');
     if (overlay) overlay.classList.remove('open');
-    document.body.style.overflow = '';
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.left = '';
+    document.body.style.right = '';
+    window.scrollTo(0, scrollY);
   }
 
-  if (hamburger) hamburger.addEventListener('click', openDrawer);
+  if (hamburger) hamburger.addEventListener('click', openDrawer, { passive: true });
   if (drawerClose) drawerClose.addEventListener('click', closeDrawer);
   if (overlay) overlay.addEventListener('click', closeDrawer);
 
@@ -412,37 +363,65 @@ function initMobileDrawer() {
   });
 
   if (drawer) {
-    drawer.querySelectorAll('a').forEach(link => {
+    drawer.querySelectorAll('a').forEach((link) => {
       link.addEventListener('click', closeDrawer);
     });
   }
 }
 
 /* ================================================================
-   7. SCROLL REVEAL (IntersectionObserver)
+   7. SCROLL REVEAL — hero shows instantly, rest batched via rAF
    ================================================================ */
 function initScrollReveals() {
-  const faders = document.querySelectorAll('.fade-up');
+  const faders = Array.from(document.querySelectorAll('.fade-up'));
   if (!faders.length) return;
 
-  if ('IntersectionObserver' in window) {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
+  // Above-fold hero content: reveal on next frame, don't wait for IO
+  const heroFaders = faders.filter((el) => el.closest('#hero'));
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      heroFaders.forEach((el) => el.classList.add('visible'));
+    });
+  });
+
+  const rest = faders.filter((el) => !el.closest('#hero'));
+  if (!rest.length) return;
+
+  if (!('IntersectionObserver' in window)) {
+    rest.forEach((el) => el.classList.add('visible'));
+    return;
+  }
+
+  let pending = [];
+  let rafQueued = false;
+
+  const flush = () => {
+    rafQueued = false;
+    const toShow = pending;
+    pending = [];
+    toShow.forEach((el) => el.classList.add('visible'));
+  };
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
+          pending.push(entry.target);
           observer.unobserve(entry.target);
         }
       });
-    }, {
-      threshold: 0.05,
-      rootMargin: '0px 0px -30px 0px'
-    });
+      if (pending.length && !rafQueued) {
+        rafQueued = true;
+        requestAnimationFrame(flush);
+      }
+    },
+    {
+      threshold: 0.08,
+      rootMargin: '0px 0px -40px 0px',
+    }
+  );
 
-    faders.forEach(el => observer.observe(el));
-  } else {
-    // Fallback if IntersectionObserver is unsupported
-    faders.forEach(el => el.classList.add('visible'));
-  }
+  rest.forEach((el) => observer.observe(el));
 }
 
 /* ================================================================
@@ -458,6 +437,8 @@ function initAppStoreComingSoon() {
     toast = document.createElement('div');
     toast.id = 'comingSoonToast';
     toast.className = 'toast-notification';
+    toast.setAttribute('role', 'status');
+    toast.setAttribute('aria-live', 'polite');
     toast.innerHTML = `
       <div class="toast-icon">
         <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
@@ -484,7 +465,7 @@ function initAppStoreComingSoon() {
   }
 
   let toastTimeout;
-  appStoreBtns.forEach(btn => {
+  appStoreBtns.forEach((btn) => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
       clearTimeout(toastTimeout);
@@ -496,4 +477,36 @@ function initAppStoreComingSoon() {
       }, 3500);
     });
   });
+}
+
+/* ================================================================
+   9. PAUSE OFFSCREEN INFINITE ANIMATIONS (laser, floats)
+   Saves GPU/battery while scrolling past heavy mockups
+   ================================================================ */
+function initPauseOffscreenAnimations() {
+  if (!('IntersectionObserver' in window)) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  const targets = document.querySelectorAll(
+    '.mobile-showcase-frame, .scanner-viewfinder-target, .hero-mockup-wrapper'
+  );
+  if (!targets.length) return;
+
+  const obs = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        // `contain: paint` on child + paused animation = zero repaint cost
+        entry.target.classList.toggle('is-offscreen', !entry.isIntersecting);
+        const animated = entry.target.querySelectorAll(
+          '.scan-laser-bar, .floating-card'
+        );
+        animated.forEach((el) => {
+          el.style.animationPlayState = entry.isIntersecting ? '' : 'paused';
+        });
+      });
+    },
+    { threshold: 0.02, rootMargin: '80px 0px 80px 0px' }
+  );
+
+  targets.forEach((t) => obs.observe(t));
 }
