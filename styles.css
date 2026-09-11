@@ -5078,3 +5078,31 @@ section,
     transition-duration: 0.01ms !important;
   }
 }
+
+@media (max-width: 768px) {
+  .navbar-inner,
+  .navbar.scrolled .navbar-inner {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: var(--bg-card);
+  }
+  .glow-orb {
+    filter: none;
+  }
+  .hero-pill::before {
+    animation: none;
+    opacity: 0;
+  }
+  .drawer-overlay {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+  .toast-notification {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: #0F172A;
+  }
+  html.dark .toast-notification {
+    background: #182030;
+  }
+}
