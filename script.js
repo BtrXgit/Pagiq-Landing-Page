@@ -22,6 +22,7 @@
     initScrollReveals();
     initAppStoreComingSoon();
     initPauseOffscreenAnimations();
+    initAnalytics();
   }
 })();
 
@@ -475,6 +476,76 @@ function initAppStoreComingSoon() {
       toastTimeout = setTimeout(() => {
         toast.classList.remove('show');
       }, 3500);
+    });
+  });
+}
+
+/* ================================================================
+   10. ANALYTICS — Cloudflare visits + download-click events
+   Cloudflare Web Analytics (beacon.min.js) tracks PAGE VIEWS
+   automatically — no code needed for "kitne users ne visit kiya".
+
+   It does NOT support custom button-click events (confirmed in
+   Cloudflare docs: "Not yet"). So download taps are fired below via:
+     - window.zaraz.track("download_click")  → shows in Cloudflare Zaraz
+       dashboard (free, same Cloudflare account, enable Zaraz once).
+     - window.plausible / umami / gtag       → auto-used if you ever add
+       one of those snippets later. No extra code needed.
+   Verify in DevTools Console: "[Analytics] download_click ..."
+   ================================================================ */
+function initAnalytics() {
+  function sendEvent(eventName, data) {
+    data = data || {};
+    try {
+      // 1) Cloudflare Zaraz (recommended companion to Web Analytics)
+      if (window.zaraz && typeof window.zaraz.track === 'function') {
+        window.zaraz.track(eventName, data);
+      }
+      // 2) Future-proof: Plausible / Umami / GA4 (only if snippet present)
+      if (typeof window.plausible === 'function') {
+        window.plausible(eventName, { props: data });
+      }
+      if (window.umami && typeof window.umami.track === 'function') {
+        window.umami.track(eventName, data);
+      }
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', eventName, data);
+      }
+    } catch (e) { /* analytics must never break the page */ }
+    if (window.console && console.debug) {
+      console.debug('[Analytics]', eventName, data);
+    }
+  }
+
+  // Track every Google Play / download tap (navbar, hero, drawer, footer...)
+  var playLinks = document.querySelectorAll('a[href*="play.google.com"]');
+  playLinks.forEach(function (link) {
+    // Avoid double-binding if init runs twice
+    if (link.hasAttribute('data-track-bound')) return;
+    link.setAttribute('data-track-bound', 'true');
+    link.addEventListener('click', function () {
+      var label = (
+        link.textContent || link.getAttribute('aria-label') || 'Google Play'
+      ).trim().replace(/\s+/g, ' ').slice(0, 80);
+      sendEvent('download_click', {
+        location: label || 'unknown',
+        destination: 'google_play',
+        page: location.pathname,
+      });
+    });
+  });
+
+  // Track App Store (iOS coming-soon) taps separately
+  var iosBtns = document.querySelectorAll('.app-store-btn');
+  iosBtns.forEach(function (btn) {
+    if (btn.hasAttribute('data-track-bound')) return;
+    btn.setAttribute('data-track-bound', 'true');
+    btn.addEventListener('click', function () {
+      sendEvent('appstore_click', {
+        location: 'app_store_badge',
+        destination: 'ios_coming_soon',
+        page: location.pathname,
+      });
     });
   });
 }
