@@ -1,15 +1,11 @@
-/* ================================================================
-   PAGIQ - DESIGN SYSTEM & TOKENS
-   Inspired by Notion, Linear, Arc & Apple
-   Simple. Powerful. Private. Intelligent.
-   ================================================================ */
+
 
 :root {
-  /* Typography */
+  
   --font-display: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
-  /* Light Theme Palette (Default) */
+  
   --bg: #FFFFFF;
   --bg-subtle: #F8FAFC;
   --bg-card: #FFFFFF;
@@ -26,14 +22,14 @@
   --border-strong: rgba(15, 23, 42, 0.14);
   --border-focus: #2563EB;
 
-  /* Brand Accents */
+  
   --primary: #2563EB;
   --brand-primary: #2563EB;
   --brand-secondary: #3B82F6;
   --brand-light: #EFF6FF;
   --brand-glow: rgba(37, 99, 235, 0.16);
 
-  /* Status / Accents */
+  
   --accent-green: #059669;
   --accent-green-bg: #ECFDF5;
   --accent-amber: #D97706;
@@ -65,7 +61,6 @@
   --transition-normal: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Dark Theme Support */
 html.dark {
   --bg: #0A0D14;
   --bg-subtle: #0F131C;
@@ -102,9 +97,6 @@ html.dark {
   --shadow-mockup: 0 35px 70px -15px rgba(0, 0, 0, 0.8), 0 0 40px rgba(59, 130, 246, 0.15);
 }
 
-/* ================================================================
-   RESET & BASE
-   ================================================================ */
 *,
 *::before,
 *::after {
@@ -152,7 +144,6 @@ body {
   -webkit-tap-highlight-color: transparent;
 }
 
-/* Accessible keyboard focus — mouse users see no ring */
 a:focus-visible,
 button:focus-visible,
 input:focus-visible {
@@ -161,7 +152,6 @@ input:focus-visible {
   border-radius: 6px;
 }
 
-/* Press feedback uses transform only (no layout) */
 .btn-primary:active,
 .btn-secondary:active,
 .store-badge-pill:active,
@@ -210,9 +200,6 @@ ul {
   list-style: none;
 }
 
-/* ================================================================
-   CONTAINER & SECTION COMMONS
-   ================================================================ */
 .container {
   width: 100%;
   max-width: 1200px;
@@ -247,7 +234,6 @@ ul {
   }
 }
 
-/* Section Header */
 .section-header {
   max-width: 720px;
   margin: 0 auto 56px auto;
@@ -325,9 +311,6 @@ ul {
   }
 }
 
-/* ================================================================
-   BUTTONS
-   ================================================================ */
 .btn-primary {
   display: inline-flex;
   align-items: center;
@@ -394,9 +377,6 @@ ul {
   height: 18px;
 }
 
-/* ================================================================
-   NAVBAR (MODERN FLOATING & ROUNDED CAPSULE)
-   ================================================================ */
 .navbar {
   position: fixed;
   top: 0;
@@ -584,7 +564,6 @@ html.dark .navbar.scrolled .navbar-inner {
   height: 18px;
 }
 
-/* Mobile Navigation Drawer (Side Panel above Header) */
 .drawer-overlay {
   position: fixed;
   inset: 0;
@@ -677,9 +656,6 @@ html.dark .navbar.scrolled .navbar-inner {
   padding-top: 16px;
 }
 
-/* ================================================================
-   1 & 2. HERO SECTION
-   ================================================================ */
 .hero {
   padding-top: 130px;
   padding-bottom: 80px;
@@ -762,7 +738,6 @@ html.dark .hero-grid-pattern {
   align-items: center;
 }
 
-/* Hero Badge */
 .hero-badge {
   display: inline-flex;
   align-items: center;
@@ -799,7 +774,6 @@ html.dark .hero-grid-pattern {
   color: var(--brand-primary);
 }
 
-/* Hero Title & Pill */
 .hero-title {
   font-family: var(--font-display);
   font-size: 2.75rem;
@@ -861,10 +835,10 @@ html.dark .hero-grid-pattern {
 
   gap: 0.3em;
 
-  /* Symmetric padding so the dot+text group stays optically centered */
+  
   padding: 0.08em 0.5em 0.14em 0.5em;
 
-  /* Auto width — background hugs the active word's size */
+  
   width: auto;
   min-width: 0;
   box-sizing: border-box;
@@ -895,7 +869,7 @@ html.dark .hero-grid-pattern {
   transform: translateZ(0);
   contain: layout paint style;
 
-  /* Width morphs smoothly on word change (driven by JS inline width) */
+  
   transition:
     width 0.42s cubic-bezier(0.16, 1, 0.3, 1),
     transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
@@ -924,7 +898,6 @@ html.dark .hero-grid-pattern {
   will-change: transform;
 }
 
-/* Pause decorative infinite animations when hero is off-screen (toggled by JS) */
 .hero-paused .hero-pill::before,
 .hero-paused .floating-card,
 .hero-paused .glow-orb {
@@ -963,8 +936,7 @@ html.dark .hero-grid-pattern {
   display: inline-block;
   line-height: 1;
   white-space: nowrap;
-  /* No forced width — dot + text shrink-wrap as one group and the
-     pill's justify-content:center keeps that group centered */
+  
   min-width: 0;
   text-align: center;
   transform: translate3d(0, 0, 0);
@@ -974,7 +946,6 @@ html.dark .hero-grid-pattern {
   transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.28s ease;
 }
 
-/* JS-driven swap states — transform + opacity only (compositor, no layout) */
 #heroPillText.is-out {
   transform: translate3d(0, -12px, 0);
   opacity: 0;
@@ -1006,7 +977,7 @@ html.dark .hero-grid-pattern {
   align-items: center;
   justify-content: center;
   column-gap: 0.18em;
-  /* Single source of truth for line 2 → line 3 gap (no extra margin on .hero-in-one) */
+  
   row-gap: 0.12em;
   margin-top: 0.12em;
   line-height: 1.08;
@@ -1052,7 +1023,6 @@ html.dark .hero-pill::before {
   }
 }
 
-/* Feature Badge Row (7 circular badges) */
 .hero-badges-row {
   display: flex;
   align-items: center;
@@ -1112,7 +1082,6 @@ html.dark .hero-pill::before {
   color: var(--text-secondary);
 }
 
-/* Hero Actions & Store Badges */
 .hero-actions {
   display: flex;
   flex-direction: column;
@@ -1192,9 +1161,6 @@ html.dark .hero-pill::before {
   font-weight: 700;
 }
 
-/* ================================================================
-   CENTERPIECE: MOBILE PHONE UI MOCKUP
-   ================================================================ */
 .hero-mockup-wrapper {
   position: relative;
   width: 100%;
@@ -1204,7 +1170,6 @@ html.dark .hero-pill::before {
   margin-top: 10px;
 }
 
-/* Floating Badges Around Phone */
 .floating-card {
   position: absolute;
   display: none;
@@ -1276,7 +1241,6 @@ html.dark .floating-card {
   color: var(--text-secondary);
 }
 
-/* Authentic iPhone 15 Pro Frame - Natural Titanium */
 .phone-stage {
   position: relative;
   z-index: 5;
@@ -1289,7 +1253,6 @@ html.dark .floating-card {
   padding-bottom: 34px;
 }
 
-/* Soft floor shadow grounding the device (static = zero repaint cost) */
 .phone-stage::after {
   content: "";
   position: absolute;
@@ -1308,7 +1271,7 @@ html.dark .floating-card {
   width: min(330px, 100%);
   max-width: 100%;
   height: 680px;
-  /* Layered: antenna breaks → brushed natural-titanium cylinder shading */
+  
   background:
     linear-gradient(to bottom, transparent 0 11.5%, rgba(215, 221, 231, 0.55) 11.5% calc(11.5% + 2px), transparent calc(11.5% + 2px)) left top / 2px 100% no-repeat,
     linear-gradient(to bottom, transparent 0 77%, rgba(215, 221, 231, 0.55) 77% calc(77% + 2px), transparent calc(77% + 2px)) left top / 2px 100% no-repeat,
@@ -1334,7 +1297,6 @@ html.dark .floating-card {
   overflow: visible;
 }
 
-/* subtle brushed highlight */
 .iphone-shell::before {
   content: "";
   position: absolute;
@@ -1345,7 +1307,6 @@ html.dark .floating-card {
   z-index: 1;
 }
 
-/* bottom edge: USB-C port flanked by speaker / mic holes - iPhone 15 Pro */
 .iphone-shell::after {
   content: "";
   position: absolute;
@@ -1371,8 +1332,6 @@ html.dark .floating-card {
   }
 }
 
-/* Hardware Buttons - iPhone 15 Pro: Action + Volume + Side.
-   Milled-slot look: dark groove outline + bright outer catch-light. */
 .iphone-button {
   position: absolute;
   background: linear-gradient(90deg, #22262f 0%, #4a5060 18%, #5a6172 50%, #4a5060 82%, #22262f 100%);
@@ -1449,7 +1408,7 @@ html.dark .floating-card {
   position: absolute;
   inset: 0;
   border-radius: 44px;
-  /* Real cover-glass: soft diagonal reflection streak over edge lighting */
+  
   background:
     linear-gradient(115deg, transparent 42%, rgba(255, 255, 255, 0.075) 47%, rgba(255, 255, 255, 0.028) 53%, transparent 58%),
     linear-gradient(105deg, rgba(255, 255, 255, 0.08) 0%, transparent 22%, transparent 78%, rgba(255, 255, 255, 0.05) 100%);
@@ -1462,7 +1421,6 @@ html.dark .iphone-screen-surface {
   color: #F8FAFC;
 }
 
-/* iOS Status Bar - iPhone 15 Pro original */
 .mobile-statusbar {
   height: 44px;
   padding: 11px 28px 0 28px;
@@ -1584,9 +1542,6 @@ html.dark .iphone-screen-surface .mobile-statusbar {
   border-radius: 1.8px;
 }
 
-/* ================================================================
-   MOBILE PHONE APP INTERIOR (Matches Flutter HomeScreen)
-   ================================================================ */
 .app-header-home {
   padding: 8px 16px 8px;
   display: flex;
@@ -1666,7 +1621,6 @@ html.dark .app-user-avatar-initials {
   border-color: #182030;
 }
 
-/* App Scroll Body */
 .app-scroll-body {
   flex: 1;
   padding: 0 14px;
@@ -1678,7 +1632,6 @@ html.dark .app-user-avatar-initials {
   display: none;
 }
 
-/* Section Header Compact */
 .app-section-header-compact {
   display: flex;
   align-items: center;
@@ -1708,7 +1661,6 @@ html.dark .app-section-link {
   color: #00E5FF;
 }
 
-/* SECTION 1: SCAN CARDS ROW (3 Rectangles) */
 .app-scan-cards-row {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1753,7 +1705,6 @@ html.dark .scan-card-label {
   color: #F8FAFC;
 }
 
-/* SECTION 2: QUICK TOOLS SCROLL ROW */
 .app-tools-scroll-row {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -1816,7 +1767,6 @@ html.dark .app-tool-label {
   color: #F8FAFC;
 }
 
-/* SECTION 3: AI PRO BANNER */
 .app-ai-pro-card {
   background: #182030;
   border: 1px solid rgba(0, 229, 255, 0.22);
@@ -1874,7 +1824,6 @@ html.dark .app-tool-label {
   flex-shrink: 0;
 }
 
-/* SECTION 4: RECENT FILES LIST */
 .app-recent-files-list {
   display: flex;
   flex-direction: column;
@@ -1956,7 +1905,6 @@ html.dark .file-title-real {
   color: #059669;
 }
 
-/* Mobile Tab Bar */
 .mobile-tabbar {
   height: 52px;
   background: #FFFFFF;
@@ -2025,9 +1973,6 @@ html.dark .mobile-home-indicator {
   background: #FFFFFF;
 }
 
-/* ================================================================
-   3. TRUST & PRODUCT HIGHLIGHTS
-   ================================================================ */
 .trust-section {
   padding: 40px 0;
   border-top: 1px solid var(--border);
@@ -2092,9 +2037,6 @@ html.dark .mobile-home-indicator {
   line-height: 1.4;
 }
 
-/* ================================================================
-   4. 4 PILLARS GRID
-   ================================================================ */
 .pillars-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -2199,9 +2141,6 @@ html.dark .mobile-home-indicator {
   flex-shrink: 0;
 }
 
-/* ================================================================
-   5, 6, 8, 10. SPLIT FEATURE SHOWCASE SECTIONS
-   ================================================================ */
 .feature-split-layout {
   display: grid;
   grid-template-columns: 1fr;
@@ -2306,7 +2245,6 @@ html.dark .mobile-home-indicator {
   font-weight: 500;
 }
 
-/* Mobile Feature Showcase Frame - iPhone 15 Pro - true replica */
 .mobile-showcase-frame {
   width: min(330px, 100%);
   max-width: 100%;
@@ -2386,7 +2324,6 @@ html.dark .mobile-home-indicator {
   min-height: 680px;
 }
 
-/* Cover-glass reflection streak over the whole screen (static, cheap) */
 .mobile-app-window::before {
   content: "";
   position: absolute;
@@ -2404,7 +2341,6 @@ html.dark .mobile-home-indicator {
   }
 }
 
-/* inner screen - clips to rounded OLED */
 .mobile-app-window>.mobile-statusbar-mini,
 .mobile-app-window>.chat-mockup-header,
 .mobile-app-window>.chat-stream,
@@ -2420,7 +2356,6 @@ html.dark .mobile-home-indicator {
   z-index: 1;
 }
 
-/* screen surface - first and last child rounded via parent overflow */
 .mobile-app-window> :first-child {
   border-top-left-radius: 41px;
   border-top-right-radius: 41px;
@@ -2539,7 +2474,6 @@ html.dark .mobile-statusbar-mini {
   border-radius: 1.6px;
 }
 
-/* AI Chat Screen Mockup */
 .chat-mockup-header {
   padding: 12px 18px;
   display: flex;
@@ -2718,7 +2652,6 @@ html.dark .mobile-statusbar-mini {
   justify-content: center;
 }
 
-/* LaTeX Resume Section Styles */
 .resume-workflow-steps {
   display: flex;
   flex-direction: column;
@@ -2926,9 +2859,6 @@ html.dark .ai-bullet-comparison {
   line-height: 1.4;
 }
 
-/* ================================================================
-   7. COMPRESSION SECTION
-   ================================================================ */
 .compression-showcase-box {
   background: var(--bg-card);
   border: 1px solid var(--border);
@@ -3179,9 +3109,6 @@ html.dark .mock-line {
   line-height: 1.4;
 }
 
-/* ================================================================
-   8. SIGNATURES & SECURITY VISUALS
-   ================================================================ */
 .sign-mockup-header {
   padding: 14px 18px;
   display: flex;
@@ -3299,9 +3226,6 @@ html.dark .sign-doc-sheet {
   border-color: var(--brand-primary);
 }
 
-/* ================================================================
-   9. COMPLETE 28+ TOOL CATALOG
-   ================================================================ */
 .tools-filter-wrapper {
   display: flex;
   flex-direction: column;
@@ -3473,9 +3397,6 @@ html.dark .sign-doc-sheet {
   line-height: 1.4;
 }
 
-/* ================================================================
-   10. DOCUMENT SCANNER VIEWPORT
-   ================================================================ */
 .scanner-workflow-strip {
   display: flex;
   align-items: center;
@@ -3714,9 +3635,6 @@ html.dark .sign-doc-sheet {
   color: #3B82F6;
 }
 
-/* ================================================================
-   11. PRIVACY-FIRST GRID
-   ================================================================ */
 .privacy-cards-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -3783,9 +3701,6 @@ html.dark .sign-doc-sheet {
   line-height: 1.5;
 }
 
-/* ================================================================
-   12. FREE VS PRO PRICING
-   ================================================================ */
 .pricing-cards-container {
   display: grid;
   grid-template-columns: 1fr;
@@ -3947,9 +3862,6 @@ html.dark .price-credits-callout.pro-callout {
   color: #059669;
 }
 
-/* ================================================================
-   13. HOW PAGIQ WORKS (3 Steps)
-   ================================================================ */
 .steps-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -4020,9 +3932,6 @@ html.dark .price-credits-callout.pro-callout {
   line-height: 1.5;
 }
 
-/* ================================================================
-   14. USE CASES
-   ================================================================ */
 .use-cases-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -4100,9 +4009,6 @@ html.dark .price-credits-callout.pro-callout {
   font-weight: 800;
 }
 
-/* ================================================================
-   15. FAQ ACCORDION
-   ================================================================ */
 .faq-accordion {
   display: flex;
   flex-direction: column;
@@ -4174,7 +4080,6 @@ html.dark .price-credits-callout.pro-callout {
   line-height: 1.6;
 }
 
-/* inner spacing without affecting grid animation */
 .faq-content > p {
   padding: 0 24px;
 }
@@ -4183,9 +4088,6 @@ html.dark .price-credits-callout.pro-callout {
   padding-bottom: 24px;
 }
 
-/* ================================================================
-   16. FINAL CTA
-   ================================================================ */
 .final-cta-section {
   padding: 80px 0 100px;
 }
@@ -4287,9 +4189,6 @@ html.dark .price-credits-callout.pro-callout {
   color: #BFDBFE;
 }
 
-/* ================================================================
-   17. FOOTER & LEGAL PAGES COMPATIBILITY
-   ================================================================ */
 .footer {
   padding: 64px 0 32px;
   background-color: var(--bg);
@@ -4391,7 +4290,6 @@ html.dark .price-credits-callout.pro-callout {
   }
 }
 
-/* Legal Pages Footer Layout Compatibility */
 .footer-inner {
   display: flex;
   align-items: center;
@@ -4426,7 +4324,6 @@ html.dark .price-credits-callout.pro-callout {
   color: var(--brand-primary);
 }
 
-/* Legal Page Content Containers */
 .legal-container {
   max-width: 840px;
   margin: 120px auto 80px;
@@ -4491,9 +4388,6 @@ html.dark .price-credits-callout.pro-callout {
   text-decoration: underline;
 }
 
-/* ================================================================
-   18. SMOOTH SCROLL REVEALS & ANIMATIONS
-   ================================================================ */
 .fade-up {
   opacity: 0;
   transform: translate3d(0, 20px, 0);
@@ -4505,14 +4399,12 @@ html.dark .price-credits-callout.pro-callout {
   transform: translate3d(0, 0, 0);
 }
 
-/* Above-fold hero content must never feel slow — shorter delays */
 .hero .fade-up-d1 { transition-delay: 0.04s; }
 .hero .fade-up-d2 { transition-delay: 0.08s; }
 .hero .fade-up-d3 { transition-delay: 0.12s; }
 .hero .fade-up-d4 { transition-delay: 0.16s; }
 .hero .fade-up-d5 { transition-delay: 0.20s; }
 
-/* Only hint the compositor while animating */
 @media (prefers-reduced-motion: no-preference) {
   .fade-up:not(.visible) {
     will-change: opacity, transform;
@@ -4543,7 +4435,6 @@ html.dark .price-credits-callout.pro-callout {
   transition-delay: 0.36s;
 }
 
-/* Offscreen Section Rendering Performance */
 #features,
 #ai-intelligence,
 #resume-builder,
@@ -4561,9 +4452,6 @@ html.dark .price-credits-callout.pro-callout {
   contain-intrinsic-size: auto 600px;
 }
 
-/* ================================================================
-   19. TOAST NOTIFICATION (App Store Coming Soon)
-   ================================================================ */
 .toast-notification {
   position: fixed;
   bottom: 30px;
@@ -4660,12 +4548,6 @@ html.dark .toast-notification {
   color: #FFFFFF;
 }
 
-/* ================================================================
-   20. RESPONSIVE LAYOUT SAFEGUARDS
-   ================================================================ */
-
-/* Flexible defaults keep nested flex and grid children from forcing
-   their parent wider than the viewport. */
 main,
 section,
 .container,
@@ -4765,7 +4647,6 @@ section,
   }
 }
 
-/* Extra Small Phones: <= 360px */
 @media (max-width: 360px) {
   .container {
     padding-left: 12px;
@@ -4803,7 +4684,6 @@ section,
   }
 }
 
-/* Mobile phones: 320px through 479px */
 @media (max-width: 479px) {
   .container {
     padding-left: 16px;
@@ -5111,7 +4991,6 @@ section,
   }
 }
 
-/* Tablets & Phablets: 480px through 767px */
 @media (min-width: 480px) and (max-width: 767px) {
   .nav-right>.btn-primary {
     display: none;
@@ -5137,7 +5016,6 @@ section,
   }
 }
 
-/* Medium Tablets: 768px through 959px */
 @media (min-width: 768px) and (max-width: 959px) {
   .nav-links {
     display: none;
@@ -5160,7 +5038,6 @@ section,
   }
 }
 
-/* Laptops & Standard Desktops: 960px through 1199px */
 @media (min-width: 960px) and (max-width: 1199px) {
   .hero-mockup-wrapper {
     max-width: 820px;
@@ -5173,7 +5050,6 @@ section,
   }
 }
 
-/* Large screens: keep reading width and visual scale intentional. */
 @media (min-width: 1920px) {
   .container {
     max-width: 1440px;
