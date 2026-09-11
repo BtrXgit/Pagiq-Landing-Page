@@ -16,6 +16,7 @@
         initScrollReveals();
         initAppStoreComingSoon();
         initPauseOffscreenAnimations();
+        initAnalytics();
     }
 })();
 
@@ -340,6 +341,56 @@ function initAppStoreComingSoon() {
             toastTimeout = setTimeout(() => {
                 toast.classList.remove("show");
             }, 3500);
+        });
+    });
+}
+
+function initAnalytics() {
+    function sendEvent(eventName, data) {
+        data = data || {};
+        try {
+            if (window.zaraz && typeof window.zaraz.track === "function") {
+                window.zaraz.track(eventName, data);
+            }
+            if (typeof window.plausible === "function") {
+                window.plausible(eventName, {
+                    props: data
+                });
+            }
+            if (window.umami && typeof window.umami.track === "function") {
+                window.umami.track(eventName, data);
+            }
+            if (typeof window.gtag === "function") {
+                window.gtag("event", eventName, data);
+            }
+        } catch (e) {}
+        if (window.console && console.debug) {
+            console.debug("[Analytics]", eventName, data);
+        }
+    }
+    var playLinks = document.querySelectorAll('a[href*="play.google.com"]');
+    playLinks.forEach(function(link) {
+        if (link.hasAttribute("data-track-bound")) return;
+        link.setAttribute("data-track-bound", "true");
+        link.addEventListener("click", function() {
+            var label = (link.textContent || link.getAttribute("aria-label") || "Google Play").trim().replace(/\s+/g, " ").slice(0, 80);
+            sendEvent("download_click", {
+                location: label || "unknown",
+                destination: "google_play",
+                page: location.pathname
+            });
+        });
+    });
+    var iosBtns = document.querySelectorAll(".app-store-btn");
+    iosBtns.forEach(function(btn) {
+        if (btn.hasAttribute("data-track-bound")) return;
+        btn.setAttribute("data-track-bound", "true");
+        btn.addEventListener("click", function() {
+            sendEvent("appstore_click", {
+                location: "app_store_badge",
+                destination: "ios_coming_soon",
+                page: location.pathname
+            });
         });
     });
 }
