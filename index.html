@@ -57,28 +57,30 @@
       rel="stylesheet" />
   </noscript>
   <link rel="stylesheet" href="styles.css" />
-  <script>(function() {
-    try {
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>(function () {
+      try {
         var t = localStorage.getItem("pagiq_theme");
         if (t === "dark" || !t && window.matchMedia("(prefers-color-scheme: dark)").matches) {
-            document.documentElement.classList.add("dark");
+          document.documentElement.classList.add("dark");
         }
-    } catch (e) {}
-})();</script>
+      } catch (e) { }
+    })();</script>
 </head>
 
 <body>
 
-  
+
   <header class="navbar" id="navbar">
     <nav class="navbar-inner">
-      
+
       <a href="#" class="logo" aria-label="PagiQ Home">
-        <img src="pagiq_logo-256.webp" onerror="this.onerror=null;this.src='pagiq_logo.png'" alt="PagiQ Logo" class="logo-img" width="36" height="36" fetchpriority="high" decoding="async" />
+        <img src="pagiq_logo-256.webp" onerror="this.onerror=null;this.src='pagiq_logo.png'" alt="PagiQ Logo"
+          class="logo-img" width="36" height="36" fetchpriority="high" decoding="async" />
         <span class="logo-text">PagiQ</span>
       </a>
 
-      
+
       <ul class="nav-links">
         <li><a href="#features">Features</a></li>
         <li><a href="#ai-intelligence">AI Intelligence</a></li>
@@ -88,56 +90,59 @@
         <li><a href="#faq">FAQ</a></li>
       </ul>
 
-      
+
       <div class="nav-right">
         <button class="theme-toggle" id="themeToggle" aria-label="Toggle visual theme">
-          <svg id="themeIcon" viewBox="0 0 24 24" class="icon" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="5" />
-            <line x1="12" y1="1" x2="12" y2="3" />
-            <line x1="12" y1="21" x2="12" y2="23" />
-            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
-            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
-            <line x1="1" y1="12" x2="3" y2="12" />
-            <line x1="21" y1="12" x2="23" y2="12" />
-            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
-            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+          <svg id="themeIcon" data-lucide="sun" viewBox="0 0 24 24" class="icon lucide lucide-sun" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4" />
+            <path d="M12 2v2" />
+            <path d="M12 20v2" />
+            <path d="m4.93 4.93 1.41 1.41" />
+            <path d="m17.66 17.66 1.41 1.41" />
+            <path d="M2 12h2" />
+            <path d="M20 12h2" />
+            <path d="m6.34 17.66-1.41 1.41" />
+            <path d="m19.07 4.93-1.41 1.41" />
           </svg>
         </button>
 
-        <a href="https://play.google.com/store/apps/details?id=com.pagiq.workspace" target="_blank" rel="noopener noreferrer" class="btn-primary btn-sm">
+        <a href="https://play.google.com/store/apps/details?id=com.pagiq.workspace" target="_blank"
+          rel="noopener noreferrer" class="btn-primary btn-sm">
           <span>Get PagiQ</span>
-          <svg viewBox="0 0 24 24" class="btn-icon" fill="none" stroke="currentColor" stroke-width="2.2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <path d="M7 17l9.2-9.2M17 17V8H8" />
+          <svg data-lucide="arrow-up-right" viewBox="0 0 24 24" class="btn-icon lucide lucide-arrow-up-right"
+            fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M7 7h10v10" />
+            <path d="M7 17 17 7" />
           </svg>
         </a>
 
         <button class="hamburger" id="hamburger" aria-label="Open mobile menu">
-          <svg viewBox="0 0 24 24" class="icon" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <line x1="4" y1="7" x2="20" y2="7" />
-            <line x1="4" y1="12" x2="20" y2="12" />
-            <line x1="4" y1="17" x2="20" y2="17" />
+          <svg data-lucide="menu" viewBox="0 0 24 24" class="icon lucide lucide-menu" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="4" x2="20" y1="12" y2="12" />
+            <line x1="4" x2="20" y1="6" y2="6" />
+            <line x1="4" x2="20" y1="18" y2="18" />
           </svg>
         </button>
       </div>
     </nav>
   </header>
 
-  
+
   <div class="drawer-overlay" id="drawerOverlay"></div>
   <aside class="drawer" id="drawer" aria-label="Mobile navigation">
     <div class="drawer-header">
       <div class="drawer-logo">
-        <img src="pagiq_logo-256.webp" onerror="this.onerror=null;this.src='pagiq_logo.png'" alt="PagiQ Logo" width="30" height="30" decoding="async" />
+        <img src="pagiq_logo-256.webp" onerror="this.onerror=null;this.src='pagiq_logo.png'" alt="PagiQ Logo" width="30"
+          height="30" decoding="async" />
         <span>PagiQ</span>
       </div>
       <button class="drawer-close" id="drawerClose" aria-label="Close menu">
-        <svg viewBox="0 0 24 24" class="icon" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-          stroke-linejoin="round">
-          <line x1="18" y1="6" x2="6" y2="18" />
-          <line x1="6" y1="6" x2="18" y2="18" />
+        <svg data-lucide="x" viewBox="0 0 24 24" class="icon lucide lucide-x" fill="none" stroke="currentColor"
+          stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 6 6 18" />
+          <path d="m6 6 12 12" />
         </svg>
       </button>
     </div>
@@ -152,12 +157,13 @@
       <a href="#faq">FAQ</a>
     </div>
     <div class="drawer-footer">
-      <a href="https://play.google.com/store/apps/details?id=com.pagiq.workspace" target="_blank" rel="noopener noreferrer" class="btn-primary btn-block">Get PagiQ App</a>
+      <a href="https://play.google.com/store/apps/details?id=com.pagiq.workspace" target="_blank"
+        rel="noopener noreferrer" class="btn-primary btn-block">Get PagiQ App</a>
     </div>
   </aside>
 
   <main>
-    
+
     <section class="hero" id="hero">
       <div class="hero-atmosphere">
         <div class="glow-orb glow-orb-1"></div>
@@ -166,34 +172,36 @@
       </div>
 
       <div class="container hero-container">
-        
+
         <div class="hero-badge fade-up">
           <span class="badge-brand">PagiQ Workspace</span>
         </div>
 
-        
+
         <h1 class="hero-title fade-up fade-up-d1">
           <span class="hero-line">All your PDFs.</span><br />
-          <span class="hero-line hero-line--pill"><span class="hero-pill-row">Scan. Edit. <span class="hero-pill" id="heroPillContainer"><span id="heroPillText">Convert.</span></span></span> <span class="hero-in-one">In One Place.</span></span>
+          <span class="hero-line hero-line--pill"><span class="hero-pill-row">Scan. Edit. <span class="hero-pill"
+                id="heroPillContainer"><span id="heroPillText">Convert.</span></span></span> <span
+              class="hero-in-one">In One Place.</span></span>
         </h1>
 
-        
+
         <p class="hero-subtitle fade-up fade-up-d2">
           28+ professional document tools, AI-powered document intelligence, and an ATS-ready LaTeX resume
           builder - all inside one powerful, privacy-first mobile app.
         </p>
 
-        
+
         <div class="hero-badges-row fade-up fade-up-d3" aria-label="Core Capabilities">
           <a href="#tools" class="hero-feature-item" title="Scan Document">
             <div class="hero-feature-circle">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round">
+              <svg data-lucide="scan-line" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-scan-line">
                 <path d="M3 7V5a2 2 0 0 1 2-2h2" />
                 <path d="M17 3h2a2 2 0 0 1 2 2v2" />
                 <path d="M21 17v2a2 2 0 0 1-2 2h-2" />
                 <path d="M7 21H5a2 2 0 0 1-2-2v-2" />
-                <rect x="7" y="7" width="10" height="10" rx="1" />
+                <line x1="7" x2="17" y1="12" y2="12" />
               </svg>
             </div>
             <span class="hero-feature-label">Scan</span>
@@ -201,10 +209,11 @@
 
           <a href="#tools" class="hero-feature-item" title="Edit PDF">
             <div class="hero-feature-circle">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round">
-                <path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" />
-                <path d="m15 5 4 4" />
+              <svg data-lucide="file-pen-line" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-pen-line">
+                <path d="m18 2 4 4-14 14H4v-4L18 2z" />
+                <path d="m14.5 5.5 4 4" />
+                <line x1="12" x2="20" y1="20" y2="20" />
               </svg>
             </div>
             <span class="hero-feature-label">Edit PDF</span>
@@ -212,14 +221,15 @@
 
           <a href="#tools" class="hero-feature-item" title="OCR Text Recognition">
             <div class="hero-feature-circle">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round">
-                <path d="M4 7V4h3" />
-                <path d="M20 7V4h-3" />
-                <path d="M4 17v3h3" />
-                <path d="M20 17v3h-3" />
-                <path d="M9 15V9h6v6" />
-                <path d="M9 12h6" />
+              <svg data-lucide="scan-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-scan-text">
+                <path d="M3 7V5a2 2 0 0 1 2-2h2" />
+                <path d="M17 3h2a2 2 0 0 1 2 2v2" />
+                <path d="M21 17v2a2 2 0 0 1-2 2h-2" />
+                <path d="M7 21H5a2 2 0 0 1-2-2v-2" />
+                <path d="M7 8h10" />
+                <path d="M7 12h10" />
+                <path d="M7 16h6" />
               </svg>
             </div>
             <span class="hero-feature-label">OCR</span>
@@ -227,14 +237,12 @@
 
           <a href="#tools" class="hero-feature-item" title="Convert Formats">
             <div class="hero-feature-circle">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round">
-                <path d="M8 3H5a2 2 0 0 0-2 2v3" />
-                <path d="M21 8V5a2 2 0 0 0-2-2h-3" />
-                <path d="M3 16v3a2 2 0 0 0 2 2h3" />
-                <path d="M16 21h3a2 2 0 0 0 2-2v-3" />
-                <path d="m9 10 3-3 3 3" />
-                <path d="m15 14-3 3-3-3" />
+              <svg data-lucide="arrow-left-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left-right">
+                <path d="M8 3 4 7l4 4" />
+                <path d="M4 7h16" />
+                <path d="m16 21 4-4-4-4" />
+                <path d="M20 17H4" />
               </svg>
             </div>
             <span class="hero-feature-label">Convert</span>
@@ -242,12 +250,12 @@
 
           <a href="#compression" class="hero-feature-item" title="Compress PDF">
             <div class="hero-feature-circle">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round">
-                <path d="M4 14h6v6" />
-                <path d="M20 10h-6V4" />
-                <path d="m14 10 7-7" />
-                <path d="m3 21 7-7" />
+              <svg data-lucide="minimize-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-minimize-2">
+                <polyline points="4 14 10 14 10 20" />
+                <polyline points="20 10 14 10 14 4" />
+                <line x1="14" x2="21" y1="10" y2="3" />
+                <line x1="3" x2="10" y1="21" y2="14" />
               </svg>
             </div>
             <span class="hero-feature-label">Compress</span>
@@ -255,10 +263,12 @@
 
           <a href="#tools" class="hero-feature-item" title="Merge PDF">
             <div class="hero-feature-circle">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round">
-                <rect width="13" height="13" x="8" y="8" rx="2" />
-                <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
+              <svg data-lucide="combine" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-combine">
+                <rect width="8" height="8" x="2" y="2" rx="2" />
+                <path d="M14 2c1.1 0 2 .9 2 2v4c0 1.1-.9 2-2 2" />
+                <rect width="8" height="8" x="14" y="14" rx="2" />
+                <path d="M2 14c0-1.1.9-2 2-2h4c1.1 0 2 .9 2 2" />
               </svg>
             </div>
             <span class="hero-feature-label">Merge</span>
@@ -266,9 +276,10 @@
 
           <a href="#security" class="hero-feature-item" title="Secure & Sign">
             <div class="hero-feature-circle">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              <svg data-lucide="shield-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield-check">
+                <path
+                  d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" />
                 <path d="m9 12 2 2 4-4" />
               </svg>
             </div>
@@ -276,12 +287,13 @@
           </a>
         </div>
 
-        
+
         <div class="hero-actions fade-up fade-up-d4">
           <div class="cta-button-group">
-            <a href="https://play.google.com/store/apps/details?id=com.pagiq.workspace" target="_blank" rel="noopener noreferrer" class="btn-primary btn-lg">
-              <svg viewBox="0 0 24 24" class="btn-icon" fill="none" stroke="currentColor" stroke-width="2.2"
-                stroke-linecap="round" stroke-linejoin="round">
+            <a href="https://play.google.com/store/apps/details?id=com.pagiq.workspace" target="_blank"
+              rel="noopener noreferrer" class="btn-primary btn-lg">
+              <svg data-lucide="download" viewBox="0 0 24 24" class="btn-icon lucide lucide-download" fill="none"
+                stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
                 <polyline points="7 10 12 15 17 10" />
                 <line x1="12" y1="15" x2="12" y2="3" />
@@ -290,15 +302,15 @@
             </a>
             <a href="#tools" class="btn-secondary btn-lg">
               <span>Explore All 28+ Tools</span>
-              <svg viewBox="0 0 24 24" class="btn-icon" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round">
+              <svg data-lucide="arrow-right" viewBox="0 0 24 24" class="btn-icon lucide lucide-arrow-right" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <line x1="5" y1="12" x2="19" y2="12" />
                 <polyline points="12 5 19 12 12 19" />
               </svg>
             </a>
           </div>
 
-          
+
           <div class="store-badge-strip">
             <a href="#" class="store-badge-pill app-store-btn" aria-label="Download on Apple App Store">
               <svg viewBox="0 0 24 24" class="store-svg" fill="currentColor">
@@ -311,7 +323,8 @@
               </div>
             </a>
 
-            <a href="https://play.google.com/store/apps/details?id=com.pagiq.workspace" target="_blank" rel="noopener noreferrer" class="store-badge-pill" aria-label="Get it on Google Play">
+            <a href="https://play.google.com/store/apps/details?id=com.pagiq.workspace" target="_blank"
+              rel="noopener noreferrer" class="store-badge-pill" aria-label="Get it on Google Play">
               <svg viewBox="0 0 24 24" class="store-svg" fill="currentColor">
                 <path
                   d="M3.6 1.8A1.2 1.2 0 0 0 3 2.9v18.2c0 .5.2.9.6 1.1l10.2-10.2L3.6 1.8zm11.7 11.6l2.9 2.9-12.7 7.3c-.5.3-1.1.2-1.4-.2l11.2-10zm2.9-3l-2.9 2.9-11.2-10c.3-.4.9-.5 1.4-.2l12.7 7.3zm1.5 1.5c.7.4.7 1.1 0 1.5l-2.6 1.5-2.6-2.6 2.6-2.6 2.6 1.5z"
@@ -325,13 +338,15 @@
           </div>
         </div>
 
-        
+
         <div class="hero-mockup-wrapper fade-up fade-up-d5">
-          
+
           <div class="floating-card floating-card-left">
             <div class="floating-card-icon" style="background: rgba(37,99,235,0.1); color: #2563EB;">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+              <svg data-lucide="sparkles" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+                stroke-width="2" class="lucide lucide-sparkles">
+                <path
+                  d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z" />
               </svg>
             </div>
             <div>
@@ -340,54 +355,60 @@
             </div>
           </div>
 
-          
+
           <div class="floating-card floating-card-right">
             <div class="floating-card-icon" style="background: rgba(16,185,129,0.1); color: #10B981;">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M4 14h6v6" />
-                <path d="M20 10h-6V4" />
-                <path d="m14 10 7-7" />
-                <path d="m3 21 7-7" />
+              <svg data-lucide="minimize-2" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+                stroke-width="2" class="lucide lucide-minimize-2">
+                <polyline points="4 14 10 14 10 20" />
+                <polyline points="20 10 14 10 14 4" />
+                <line x1="14" x2="21" y1="10" y2="3" />
+                <line x1="3" x2="10" y1="21" y2="14" />
               </svg>
             </div>
             <div>
               <p class="floating-title">Smart Compress</p>
-              <p class="floating-desc">12.4 MB → <strong>2.1 MB (-83%)</strong></p>
+              <p class="floating-desc">12.4 MB <span class="stat-arrow-inline">&rarr;</span> <strong>2.1 MB
+                  (-83%)</strong></p>
             </div>
           </div>
 
-          
+
           <div class="phone-stage">
             <div class="iphone-shell">
-              
+              <div class="iphone-speaker" aria-hidden="true"></div>
               <div class="iphone-button action" aria-hidden="true"></div>
-              <div class="iphone-button vol-up"></div>
-              <div class="iphone-button vol-down"></div>
-              <div class="iphone-button power"></div>
+              <div class="iphone-button vol-up" aria-hidden="true"></div>
+              <div class="iphone-button vol-down" aria-hidden="true"></div>
+              <div class="iphone-button power" aria-hidden="true"></div>
+              <div class="iphone-button camera-control" aria-hidden="true"></div>
 
-              
+
               <div class="iphone-bezel-inner">
-                
+
                 <div class="iphone-screen-surface">
-                  
+
                   <div class="mobile-statusbar">
                     <span class="mobile-time">9:41</span>
-                    
+
                     <div class="dynamic-island">
-                      <div class="island-camera"></div>
+                      <div class="island-camera">
+                        <div class="lens-reflection"></div>
+                      </div>
                       <div class="island-indicator"></div>
                     </div>
                     <div class="mobile-status-icons">
-                      <svg class="icon-stat" viewBox="0 0 16 10">
-                        <rect x="0" y="5" width="2.5" height="5" rx="0.5" fill="currentColor" />
-                        <rect x="4" y="3.5" width="2.5" height="6.5" rx="0.5" fill="currentColor" />
-                        <rect x="8" y="2" width="2.5" height="8" rx="0.5" fill="currentColor" />
-                        <rect x="12" y="0" width="2.5" height="10" rx="0.5" fill="currentColor" />
+                      <svg class="icon-stat" viewBox="0 0 16 10" fill="currentColor">
+                        <rect x="0" y="5.5" width="2.6" height="4.5" rx="0.6" />
+                        <rect x="4.2" y="3.8" width="2.6" height="6.2" rx="0.6" />
+                        <rect x="8.4" y="2" width="2.6" height="8" rx="0.6" />
+                        <rect x="12.6" y="0" width="2.6" height="10" rx="0.6" />
                       </svg>
-                      <svg class="icon-stat" viewBox="0 0 14 10">
-                        <path d="M7 9a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" fill="currentColor" />
-                        <path d="M4 6.5a4.5 4.5 0 0 1 6 0" fill="none" stroke="currentColor" stroke-width="1.2" />
-                        <path d="M1.5 4a8 8 0 0 1 11 0" fill="none" stroke="currentColor" stroke-width="1.2" />
+                      <svg class="icon-stat" viewBox="0 0 16 11" fill="none" stroke="currentColor" stroke-width="1.3"
+                        stroke-linecap="round">
+                        <path d="M8 9.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z" fill="currentColor" />
+                        <path d="M4.5 6.8a4.8 4.8 0 0 1 7 0" />
+                        <path d="M2 4.2a8.4 8.4 0 0 1 12 0" />
                       </svg>
                       <div class="battery-pill">
                         <div class="battery-level"></div>
@@ -395,7 +416,7 @@
                     </div>
                   </div>
 
-                  
+
                   <div class="app-header-home">
                     <div class="app-greeting-col">
                       <span class="app-greeting-time">Good Morning,</span>
@@ -403,7 +424,8 @@
                     </div>
                     <div class="app-header-actions">
                       <div class="app-badge-credits">
-                        <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor">
+                        <svg data-lucide="zap" viewBox="0 0 24 24" width="12" height="12" fill="currentColor"
+                          class="lucide lucide-zap">
                           <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
                         </svg>
                         <span>100 Credits</span>
@@ -414,9 +436,9 @@
                     </div>
                   </div>
 
-                  
+
                   <div class="app-scroll-body">
-                    
+
                     <div class="app-section-header-compact">
                       <span class="app-section-title">Scan</span>
                     </div>
@@ -424,9 +446,12 @@
                     <div class="app-scan-cards-row">
                       <div class="app-scan-rect-card">
                         <div class="scan-card-icon-box" style="background: rgba(37, 99, 235, 0.12); color: #2563EB;">
-                          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
-                            <circle cx="12" cy="13" r="4" />
+                          <svg data-lucide="camera" viewBox="0 0 24 24" width="22" height="22" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-camera">
+                            <path
+                              d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z" />
+                            <circle cx="12" cy="13" r="3" />
                           </svg>
                         </div>
                         <span class="scan-card-label">Camera</span>
@@ -434,7 +459,9 @@
 
                       <div class="app-scan-rect-card">
                         <div class="scan-card-icon-box" style="background: rgba(99, 102, 241, 0.12); color: #6366F1;">
-                          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+                          <svg data-lucide="image" viewBox="0 0 24 24" width="22" height="22" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-image">
                             <rect width="18" height="18" x="3" y="3" rx="2" ry="2" />
                             <circle cx="9" cy="9" r="2" />
                             <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" />
@@ -445,15 +472,18 @@
 
                       <div class="app-scan-rect-card">
                         <div class="scan-card-icon-box" style="background: rgba(6, 182, 212, 0.12); color: #0891B2;">
-                          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z" />
+                          <svg data-lucide="folder" viewBox="0 0 24 24" width="22" height="22" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-folder">
+                            <path
+                              d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z" />
                           </svg>
                         </div>
                         <span class="scan-card-label">From Files</span>
                       </div>
                     </div>
 
-                    
+
                     <div class="app-section-header-compact">
                       <span class="app-section-title">Quick Tools</span>
                       <span class="app-section-link">See all</span>
@@ -462,8 +492,12 @@
                     <div class="app-tools-scroll-row">
                       <div class="app-tool-squircle-item">
                         <div class="app-tool-squircle-box">
-                          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#0EA5E9" stroke-width="2">
-                            <path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" />
+                          <svg data-lucide="file-pen-line" viewBox="0 0 24 24" width="20" height="20" fill="none"
+                            stroke="#0EA5E9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-file-pen-line">
+                            <path d="m18 2 4 4-14 14H4v-4L18 2z" />
+                            <path d="m14.5 5.5 4 4" />
+                            <line x1="12" x2="20" y1="20" y2="20" />
                           </svg>
                         </div>
                         <span class="app-tool-label">Edit PDF</span>
@@ -471,11 +505,16 @@
 
                       <div class="app-tool-squircle-item">
                         <div class="app-tool-squircle-box">
-                          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#2563EB" stroke-width="2">
+                          <svg data-lucide="scan-text" viewBox="0 0 24 24" width="20" height="20" fill="none"
+                            stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-scan-text">
                             <path d="M3 7V5a2 2 0 0 1 2-2h2" />
                             <path d="M17 3h2a2 2 0 0 1 2 2v2" />
                             <path d="M21 17v2a2 2 0 0 1-2 2h-2" />
                             <path d="M7 21H5a2 2 0 0 1-2-2v-2" />
+                            <path d="M7 8h10" />
+                            <path d="M7 12h10" />
+                            <path d="M7 16h6" />
                           </svg>
                         </div>
                         <span class="app-tool-label">OCR</span>
@@ -483,11 +522,13 @@
 
                       <div class="app-tool-squircle-item">
                         <div class="app-tool-squircle-box">
-                          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#6366F1" stroke-width="2">
-                            <path d="m3 16 4 4 4-4" />
-                            <path d="M7 20V4" />
-                            <path d="m21 8-4-4-4 4" />
-                            <path d="M17 4v16" />
+                          <svg data-lucide="arrow-left-right" viewBox="0 0 24 24" width="20" height="20" fill="none"
+                            stroke="#6366F1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-arrow-left-right">
+                            <path d="M8 3 4 7l4 4" />
+                            <path d="M4 7h16" />
+                            <path d="m16 21 4-4-4-4" />
+                            <path d="M20 17H4" />
                           </svg>
                         </div>
                         <span class="app-tool-label">Convert</span>
@@ -495,11 +536,13 @@
 
                       <div class="app-tool-squircle-item">
                         <div class="app-tool-squircle-box">
-                          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#10B981" stroke-width="2">
-                            <path d="M4 14h6v6" />
-                            <path d="M20 10h-6V4" />
-                            <path d="m14 10 7-7" />
-                            <path d="m3 21 7-7" />
+                          <svg data-lucide="minimize-2" viewBox="0 0 24 24" width="20" height="20" fill="none"
+                            stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-minimize-2">
+                            <polyline points="4 14 10 14 10 20" />
+                            <polyline points="20 10 14 10 14 4" />
+                            <line x1="14" x2="21" y1="10" y2="3" />
+                            <line x1="3" x2="10" y1="21" y2="14" />
                           </svg>
                         </div>
                         <span class="app-tool-label">Compress</span>
@@ -508,15 +551,18 @@
                       <div class="app-tool-squircle-item">
                         <div class="app-tool-squircle-box has-pro">
                           <span class="tool-mini-pro">PRO</span>
-                          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#F59E0B" stroke-width="2">
-                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                          <svg data-lucide="lock" viewBox="0 0 24 24" width="20" height="20" fill="none"
+                            stroke="#F59E0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-lock">
+                            <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4" />
                           </svg>
                         </div>
                         <span class="app-tool-label">Protect</span>
                       </div>
                     </div>
 
-                    
+
                     <div class="app-section-header-compact">
                       <span class="app-section-title">AI Tools</span>
                       <span class="app-section-link">See all</span>
@@ -524,63 +570,82 @@
 
                     <div class="app-tools-scroll-row">
                       <div class="app-tool-squircle-item">
-                        <div class="app-tool-squircle-box" style="background: rgba(0, 229, 255, 0.08); border-color: rgba(0, 229, 255, 0.2);">
-                          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#00E5FF" stroke-width="2">
-                            <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>
+                        <div class="app-tool-squircle-box"
+                          style="background: rgba(0, 229, 255, 0.08); border-color: rgba(0, 229, 255, 0.2);">
+                          <svg data-lucide="sparkles" viewBox="0 0 24 24" width="20" height="20" fill="none"
+                            stroke="#00E5FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-sparkles">
+                            <path
+                              d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z" />
                           </svg>
                         </div>
                         <span class="app-tool-label">AI Assistant</span>
                       </div>
 
                       <div class="app-tool-squircle-item">
-                        <div class="app-tool-squircle-box" style="background: rgba(0, 229, 255, 0.08); border-color: rgba(0, 229, 255, 0.2);">
-                          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#00E5FF" stroke-width="2">
-                            <circle cx="12" cy="12" r="10"/>
-                            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
-                            <line x1="12" y1="17" x2="12.01" y2="17"/>
+                        <div class="app-tool-squircle-box"
+                          style="background: rgba(0, 229, 255, 0.08); border-color: rgba(0, 229, 255, 0.2);">
+                          <svg data-lucide="help-circle" viewBox="0 0 24 24" width="20" height="20" fill="none"
+                            stroke="#00E5FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-help-circle">
+                            <circle cx="12" cy="12" r="10" />
+                            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+                            <line x1="12" y1="17" x2="12.01" y2="17" />
                           </svg>
                         </div>
                         <span class="app-tool-label">Question Gen</span>
                       </div>
 
                       <div class="app-tool-squircle-item">
-                        <div class="app-tool-squircle-box" style="background: rgba(59, 130, 246, 0.08); border-color: rgba(59, 130, 246, 0.2);">
-                          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#3B82F6" stroke-width="2">
-                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                            <polyline points="14 2 14 8 20 8"/>
-                            <line x1="16" y1="13" x2="8" y2="13"/>
-                            <line x1="16" y1="17" x2="8" y2="17"/>
+                        <div class="app-tool-squircle-box"
+                          style="background: rgba(59, 130, 246, 0.08); border-color: rgba(59, 130, 246, 0.2);">
+                          <svg data-lucide="file-text" viewBox="0 0 24 24" width="20" height="20" fill="none"
+                            stroke="#3B82F6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-file-text">
+                            <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
+                            <polyline points="14 2 14 8 20 8" />
+                            <line x1="16" y1="13" x2="8" y2="13" />
+                            <line x1="16" y1="17" x2="8" y2="17" />
                           </svg>
                         </div>
                         <span class="app-tool-label">Summarize</span>
                       </div>
 
                       <div class="app-tool-squircle-item">
-                        <div class="app-tool-squircle-box" style="background: rgba(99, 102, 241, 0.08); border-color: rgba(99, 102, 241, 0.2);">
-                          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#6366F1" stroke-width="2">
-                            <circle cx="12" cy="12" r="10"/>
-                            <line x1="2" y1="12" x2="22" y2="12"/>
-                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                        <div class="app-tool-squircle-box"
+                          style="background: rgba(99, 102, 241, 0.08); border-color: rgba(99, 102, 241, 0.2);">
+                          <svg data-lucide="languages" viewBox="0 0 24 24" width="20" height="20" fill="none"
+                            stroke="#6366F1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-languages">
+                            <path d="m5 8 6 6" />
+                            <path d="m4 14 6-6 2-3" />
+                            <path d="M2 5h12" />
+                            <path d="M7 2h1" />
+                            <path d="m22 22-5-10-5 10" />
+                            <path d="M14 18h6" />
                           </svg>
                         </div>
                         <span class="app-tool-label">Translate</span>
                       </div>
 
                       <div class="app-tool-squircle-item">
-                        <div class="app-tool-squircle-box has-pro" style="background: rgba(16, 185, 129, 0.08); border-color: rgba(16, 185, 129, 0.2);">
+                        <div class="app-tool-squircle-box has-pro"
+                          style="background: rgba(16, 185, 129, 0.08); border-color: rgba(16, 185, 129, 0.2);">
                           <span class="tool-mini-pro">PRO</span>
-                          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#10B981" stroke-width="2">
-                            <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
-                            <rect x="8" y="2" width="8" height="4" rx="1" ry="1"/>
-                            <path d="M12 11h4"/>
-                            <path d="M12 16h4"/>
+                          <svg data-lucide="file-code-2" viewBox="0 0 24 24" width="20" height="20" fill="none"
+                            stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-file-code-2">
+                            <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
+                            <polyline points="14 2 14 8 20 8" />
+                            <path d="m10 13-2 2 2 2" />
+                            <path d="m14 17 2-2-2-2" />
                           </svg>
                         </div>
                         <span class="app-tool-label">AI Resume</span>
                       </div>
                     </div>
 
-                    
+
                     <div class="app-section-header-compact">
                       <span class="app-section-title">Recent Files</span>
                       <span class="app-section-link">See all</span>
@@ -589,9 +654,13 @@
                     <div class="app-recent-files-list">
                       <div class="app-file-card-real">
                         <div class="file-thumb-box pdf">
-                          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
-                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" opacity="0.3"/>
-                            <path d="M14 2v6h6M9 13h6M9 17h4"/>
+                          <svg data-lucide="file-text" viewBox="0 0 24 24" width="20" height="20" fill="currentColor"
+                            stroke="currentColor" stroke-width="1.5" class="lucide lucide-file-text">
+                            <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"
+                              opacity="0.3" />
+                            <polyline points="14 2 14 8 20 8" />
+                            <line x1="16" y1="13" x2="8" y2="13" />
+                            <line x1="16" y1="17" x2="8" y2="17" />
                           </svg>
                         </div>
                         <div class="file-info-col">
@@ -603,9 +672,13 @@
 
                       <div class="app-file-card-real">
                         <div class="file-thumb-box latex">
-                          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
-                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" opacity="0.3"/>
-                            <polygon points="12 11 13.5 14.5 17 15 14.5 17.5 15 21 12 19 9 21 9.5 17.5 7 15 10.5 14.5 12 11" fill="currentColor"/>
+                          <svg data-lucide="file-code-2" viewBox="0 0 24 24" width="20" height="20" fill="currentColor"
+                            stroke="currentColor" stroke-width="1.5" class="lucide lucide-file-code-2">
+                            <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"
+                              opacity="0.3" />
+                            <polyline points="14 2 14 8 20 8" />
+                            <path d="m10 13-2 2 2 2" />
+                            <path d="m14 17 2-2-2-2" />
                           </svg>
                         </div>
                         <div class="file-info-col">
@@ -617,48 +690,60 @@
                     </div>
                   </div>
 
-                  
+
                   <div class="mobile-tabbar">
                     <div class="tab-item active">
-                      <svg viewBox="0 0 24 24" width="19" height="19" fill="currentColor">
+                      <svg data-lucide="home" viewBox="0 0 24 24" width="19" height="19" fill="currentColor"
+                        stroke="none" class="lucide lucide-home">
                         <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
                       </svg>
                       <span>Home</span>
                     </div>
 
                     <div class="tab-item">
-                      <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z" />
+                      <svg data-lucide="folder" viewBox="0 0 24 24" width="19" height="19" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-folder">
+                        <path
+                          d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z" />
                       </svg>
                       <span>Files</span>
                     </div>
 
                     <div class="tab-item-scan">
                       <div class="tab-scan-fab">
-                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#fff" stroke-width="2.4">
-                          <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
-                          <circle cx="12" cy="13" r="4" />
+                        <svg data-lucide="camera" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#fff"
+                          stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"
+                          class="lucide lucide-camera">
+                          <path
+                            d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z" />
+                          <circle cx="12" cy="13" r="3" />
                         </svg>
                       </div>
                     </div>
 
                     <div class="tab-item">
-                      <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>
+                      <svg data-lucide="sparkles" viewBox="0 0 24 24" width="19" height="19" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-sparkles">
+                        <path
+                          d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z" />
                       </svg>
                       <span>AI Tools</span>
                     </div>
 
                     <div class="tab-item">
-                      <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2">
+                      <svg data-lucide="user" viewBox="0 0 24 24" width="19" height="19" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-user">
                         <circle cx="12" cy="8" r="4" />
-                        <path d="M6 20v-2a6 6 0 0 1 12 0v2" />
+                        <path d="M20 21a8 8 0 1 0-16 0" />
                       </svg>
                       <span>Profile</span>
                     </div>
                   </div>
 
-                  
+
                   <div class="mobile-home-indicator"></div>
                 </div>
               </div>
@@ -668,15 +753,18 @@
       </div>
     </section>
 
-    
+
     <section class="trust-section" id="highlights">
       <div class="container">
         <div class="trust-grid">
           <div class="trust-item fade-up">
             <div class="trust-icon-box">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect width="18" height="18" x="3" y="3" rx="2" />
-                <path d="m9 12 2 2 4-4" />
+              <svg data-lucide="layout-grid" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-layout-grid">
+                <rect width="7" height="7" x="3" y="3" rx="1" />
+                <rect width="7" height="7" x="14" y="3" rx="1" />
+                <rect width="7" height="7" x="14" y="14" rx="1" />
+                <rect width="7" height="7" x="3" y="14" rx="1" />
               </svg>
             </div>
             <div class="trust-content">
@@ -687,9 +775,14 @@
 
           <div class="trust-item fade-up fade-up-d1">
             <div class="trust-icon-box">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polygon
-                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+              <svg data-lucide="sparkles" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sparkles">
+                <path
+                  d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z" />
+                <path d="M5 3v4" />
+                <path d="M19 17v4" />
+                <path d="M3 5h4" />
+                <path d="M17 19h4" />
               </svg>
             </div>
             <div class="trust-content">
@@ -700,8 +793,11 @@
 
           <div class="trust-item fade-up fade-up-d2">
             <div class="trust-icon-box">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              <svg data-lucide="shield-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield-check">
+                <path
+                  d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" />
+                <path d="m9 12 2 2 4-4" />
               </svg>
             </div>
             <div class="trust-content">
@@ -712,10 +808,14 @@
 
           <div class="trust-item fade-up fade-up-d3">
             <div class="trust-icon-box">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="10" />
-                <line x1="2" y1="12" x2="22" y2="12" />
-                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+              <svg data-lucide="languages" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-languages">
+                <path d="m5 8 6 6" />
+                <path d="m4 14 6-6 2-3" />
+                <path d="M2 5h12" />
+                <path d="M7 2h1" />
+                <path d="m22 22-5-10-5 10" />
+                <path d="M14 18h6" />
               </svg>
             </div>
             <div class="trust-content">
@@ -726,11 +826,18 @@
 
           <div class="trust-item fade-up fade-up-d4">
             <div class="trust-icon-box">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M5 12.55a11 11 0 0 1 14.08 0" />
-                <path d="M1.42 9a16 16 0 0 1 21.16 0" />
-                <path d="M8.53 16.11a6 6 0 0 1 6.95 0" />
-                <line x1="12" y1="20" x2="12.01" y2="20" />
+              <svg data-lucide="cpu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-cpu">
+                <rect width="16" height="16" x="4" y="4" rx="2" />
+                <rect width="6" height="6" x="9" y="9" rx="1" />
+                <path d="M15 2v2" />
+                <path d="M15 20v2" />
+                <path d="M2 15h2" />
+                <path d="M2 9h2" />
+                <path d="M20 15h2" />
+                <path d="M20 9h2" />
+                <path d="M9 2v2" />
+                <path d="M9 20v2" />
               </svg>
             </div>
             <div class="trust-content">
@@ -742,7 +849,7 @@
       </div>
     </section>
 
-    
+
     <section class="section" id="features">
       <div class="container">
         <div class="section-header text-center">
@@ -755,13 +862,17 @@
         </div>
 
         <div class="pillars-grid">
-          
+
           <div class="pillar-card fade-up">
             <div class="pillar-top">
-              <div class="pillar-icon-box" style="background: rgba(37,99,235,0.08); color: #2563EB;">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
-                  <circle cx="12" cy="13" r="4" />
+              <div class="pillar-icon-box" style="background: rgba(37,99,235,0.1); color: #2563EB;">
+                <svg data-lucide="scan-line" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-scan-line">
+                  <path d="M3 7V5a2 2 0 0 1 2-2h2" />
+                  <path d="M17 3h2a2 2 0 0 1 2 2v2" />
+                  <path d="M21 17v2a2 2 0 0 1-2 2h-2" />
+                  <path d="M7 21H5a2 2 0 0 1-2-2v-2" />
+                  <line x1="7" x2="17" y1="12" y2="12" />
                 </svg>
               </div>
               <span class="pillar-tag">01 • Scan & Capture</span>
@@ -772,19 +883,33 @@
               from your mobile camera.
             </p>
             <ul class="pillar-bullets">
-              <li><span class="bullet-check">✓</span> Auto edge-detection & tilt alignment</li>
-              <li><span class="bullet-check">✓</span> Multi-page batch scanning mode</li>
-              <li><span class="bullet-check">✓</span> Instant text extraction via on-device OCR</li>
+              <li><span class="bullet-check"><svg data-lucide="check" viewBox="0 0 24 24"
+                    class="check-svg lucide lucide-check" fill="none" stroke="currentColor" stroke-width="3"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg></span> Auto edge-detection & tilt alignment</li>
+              <li><span class="bullet-check"><svg data-lucide="check" viewBox="0 0 24 24"
+                    class="check-svg lucide lucide-check" fill="none" stroke="currentColor" stroke-width="3"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg></span> Multi-page batch scanning mode</li>
+              <li><span class="bullet-check"><svg data-lucide="check" viewBox="0 0 24 24"
+                    class="check-svg lucide lucide-check" fill="none" stroke="currentColor" stroke-width="3"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg></span> Instant text extraction via on-device OCR</li>
             </ul>
           </div>
 
-          
+
           <div class="pillar-card fade-up fade-up-d1">
             <div class="pillar-top">
-              <div class="pillar-icon-box" style="background: rgba(16,185,129,0.08); color: #059669;">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" />
-                  <path d="m15 5 4 4" />
+              <div class="pillar-icon-box" style="background: rgba(16,185,129,0.1); color: #059669;">
+                <svg data-lucide="file-signature" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-signature">
+                  <path d="M20 19.5v.5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8.5L20 7.5V11" />
+                  <polyline points="14 2 14 8 20 8" />
+                  <path d="M18.42 15.61a2.1 2.1 0 0 0-2.97 0L12 19.03V22h2.97l3.45-3.42a2.1 2.1 0 0 0 0-2.97Z" />
                 </svg>
               </div>
               <span class="pillar-tag">02 • Organize & Edit</span>
@@ -795,21 +920,35 @@
               the go.
             </p>
             <ul class="pillar-bullets">
-              <li><span class="bullet-check">✓</span> Draw, reposition & save signatures</li>
-              <li><span class="bullet-check">✓</span> Drag-and-drop page reordering & merging</li>
-              <li><span class="bullet-check">✓</span> Redact confidential information permanently</li>
+              <li><span class="bullet-check"><svg data-lucide="check" viewBox="0 0 24 24"
+                    class="check-svg lucide lucide-check" fill="none" stroke="currentColor" stroke-width="3"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg></span> Draw, reposition & save signatures</li>
+              <li><span class="bullet-check"><svg data-lucide="check" viewBox="0 0 24 24"
+                    class="check-svg lucide lucide-check" fill="none" stroke="currentColor" stroke-width="3"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg></span> Drag-and-drop page reordering & merging</li>
+              <li><span class="bullet-check"><svg data-lucide="check" viewBox="0 0 24 24"
+                    class="check-svg lucide lucide-check" fill="none" stroke="currentColor" stroke-width="3"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg></span> Redact confidential information permanently</li>
             </ul>
           </div>
 
-          
+
           <div class="pillar-card fade-up fade-up-d2">
             <div class="pillar-top">
-              <div class="pillar-icon-box" style="background: rgba(245,158,11,0.08); color: #D97706;">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M8 3H5a2 2 0 0 0-2 2v3" />
-                  <path d="M21 8V5a2 2 0 0 0-2-2h-3" />
-                  <path d="m9 10 3-3 3 3" />
-                  <path d="m15 14-3 3-3-3" />
+              <div class="pillar-icon-box" style="background: rgba(245,158,11,0.1); color: #D97706;">
+                <svg data-lucide="arrow-left-right" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="lucide lucide-arrow-left-right">
+                  <path d="M8 3 4 7l4 4" />
+                  <path d="M4 7h16" />
+                  <path d="m16 21 4-4-4-4" />
+                  <path d="M20 17H4" />
                 </svg>
               </div>
               <span class="pillar-tag">03 • Convert & Size</span>
@@ -820,19 +959,36 @@
               90% with zero blur.
             </p>
             <ul class="pillar-bullets">
-              <li><span class="bullet-check">✓</span> Word, Excel, Images & HTML conversions</li>
-              <li><span class="bullet-check">✓</span> Up to 90% smaller PDFs with crystal clarity</li>
-              <li><span class="bullet-check">✓</span> Instant sharing via AirDrop, Email & WhatsApp</li>
+              <li><span class="bullet-check"><svg data-lucide="check" viewBox="0 0 24 24"
+                    class="check-svg lucide lucide-check" fill="none" stroke="currentColor" stroke-width="3"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg></span> Word, Excel, Images & HTML conversions</li>
+              <li><span class="bullet-check"><svg data-lucide="check" viewBox="0 0 24 24"
+                    class="check-svg lucide lucide-check" fill="none" stroke="currentColor" stroke-width="3"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg></span> Up to 90% smaller PDFs with crystal clarity</li>
+              <li><span class="bullet-check"><svg data-lucide="check" viewBox="0 0 24 24"
+                    class="check-svg lucide lucide-check" fill="none" stroke="currentColor" stroke-width="3"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg></span> Instant sharing via AirDrop, Email & WhatsApp</li>
             </ul>
           </div>
 
-          
+
           <div class="pillar-card fade-up fade-up-d3">
             <div class="pillar-top">
-              <div class="pillar-icon-box" style="background: rgba(147,51,234,0.08); color: #9333EA;">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <polygon
-                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+              <div class="pillar-icon-box" style="background: rgba(147,51,234,0.1); color: #9333EA;">
+                <svg data-lucide="sparkles" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sparkles">
+                  <path
+                    d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z" />
+                  <path d="M5 3v4" />
+                  <path d="M19 17v4" />
+                  <path d="M3 5h4" />
+                  <path d="M17 19h4" />
                 </svg>
               </div>
               <span class="pillar-tag">04 • AI & Career</span>
@@ -843,25 +999,38 @@
               ATS-beating LaTeX resumes.
             </p>
             <ul class="pillar-bullets">
-              <li><span class="bullet-check">✓</span> Interactive PDF conversational AI assistant</li>
-              <li><span class="bullet-check">✓</span> Guided step-by-step career profile builder</li>
-              <li><span class="bullet-check">✓</span> Automated LaTeX generation & bullet enhancement</li>
+              <li><span class="bullet-check"><svg data-lucide="check" viewBox="0 0 24 24"
+                    class="check-svg lucide lucide-check" fill="none" stroke="currentColor" stroke-width="3"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg></span> Interactive PDF conversational AI assistant</li>
+              <li><span class="bullet-check"><svg data-lucide="check" viewBox="0 0 24 24"
+                    class="check-svg lucide lucide-check" fill="none" stroke="currentColor" stroke-width="3"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg></span> Guided step-by-step career profile builder</li>
+              <li><span class="bullet-check"><svg data-lucide="check" viewBox="0 0 24 24"
+                    class="check-svg lucide lucide-check" fill="none" stroke="currentColor" stroke-width="3"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg></span> Automated LaTeX generation & bullet enhancement</li>
             </ul>
           </div>
         </div>
       </div>
     </section>
 
-    
+
     <section class="section section-tint" id="ai-intelligence">
       <div class="container">
         <div class="feature-split-layout">
-          
+
           <div class="feature-split-text fade-up">
             <div class="section-badge badge-ai">
-              <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
-                <polygon
-                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+              <svg data-lucide="sparkles" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor"
+                stroke-width="2" class="lucide lucide-sparkles">
+                <path
+                  d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z" />
               </svg>
               <span>AI Document Intelligence</span>
             </div>
@@ -873,7 +1042,11 @@
 
             <div class="feature-check-list">
               <div class="feature-check-item">
-                <div class="feature-check-icon">✓</div>
+                <div class="feature-check-icon"><svg data-lucide="check-circle-2" viewBox="0 0 24 24" width="16"
+                    height="16" fill="none" stroke="currentColor" stroke-width="2" class="lucide lucide-check-circle-2">
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="m9 12 2 2 4-4" />
+                  </svg></div>
                 <div>
                   <h4>Chat with PDF Documents</h4>
                   <p>Ask anything about research papers, legal contracts, textbooks, or financial reports.</p>
@@ -881,7 +1054,11 @@
               </div>
 
               <div class="feature-check-item">
-                <div class="feature-check-icon">✓</div>
+                <div class="feature-check-icon"><svg data-lucide="check-circle-2" viewBox="0 0 24 24" width="16"
+                    height="16" fill="none" stroke="currentColor" stroke-width="2" class="lucide lucide-check-circle-2">
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="m9 12 2 2 4-4" />
+                  </svg></div>
                 <div>
                   <h4>Intelligent Executive Summaries</h4>
                   <p>Extract core conclusions and bulleted action items without reading hundreds of pages.</p>
@@ -889,7 +1066,11 @@
               </div>
 
               <div class="feature-check-item">
-                <div class="feature-check-icon">✓</div>
+                <div class="feature-check-icon"><svg data-lucide="check-circle-2" viewBox="0 0 24 24" width="16"
+                    height="16" fill="none" stroke="currentColor" stroke-width="2" class="lucide lucide-check-circle-2">
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="m9 12 2 2 4-4" />
+                  </svg></div>
                 <div>
                   <h4>Generate Quizzes & Study Flashcards</h4>
                   <p>Transform lecture slides and course PDFs into instant revision questions with answers.</p>
@@ -897,7 +1078,11 @@
               </div>
 
               <div class="feature-check-item">
-                <div class="feature-check-icon">✓</div>
+                <div class="feature-check-icon"><svg data-lucide="check-circle-2" viewBox="0 0 24 24" width="16"
+                    height="16" fill="none" stroke="currentColor" stroke-width="2" class="lucide lucide-check-circle-2">
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="m9 12 2 2 4-4" />
+                  </svg></div>
                 <div>
                   <h4>Cross-Language Translation</h4>
                   <p>Understand international documents instantly in English, Hindi, German, Spanish, French &
@@ -907,36 +1092,54 @@
             </div>
 
             <div class="feature-split-cta">
-              <a href="https://play.google.com/store/apps/details?id=com.pagiq.workspace" target="_blank" rel="noopener noreferrer" class="btn-primary">Try AI Document Chat</a>
+              <a href="https://play.google.com/store/apps/details?id=com.pagiq.workspace" target="_blank"
+                rel="noopener noreferrer" class="btn-primary">Try AI Document Chat</a>
               <span class="cta-note">100 Free Welcome AI Credits Included</span>
             </div>
           </div>
 
-          
+
           <div class="feature-split-visual fade-up fade-up-d2">
             <div class="mobile-showcase-frame">
+              <div class="iphone-speaker" aria-hidden="true"></div>
               <div class="iphone-button action" aria-hidden="true"></div>
-              <div class="iphone-button vol-up"></div>
-              <div class="iphone-button vol-down"></div>
-              <div class="iphone-button power"></div>
+              <div class="iphone-button vol-up" aria-hidden="true"></div>
+              <div class="iphone-button vol-down" aria-hidden="true"></div>
+              <div class="iphone-button power" aria-hidden="true"></div>
+              <div class="iphone-button camera-control" aria-hidden="true"></div>
               <div class="mobile-app-window">
-                
+
                 <div class="mobile-statusbar-mini">
                   <span class="mobile-time-mini">9:41</span>
-                  <div class="dynamic-island-mini"></div>
+                  <div class="dynamic-island-mini">
+                    <div class="island-camera-mini"></div>
+                  </div>
                   <div class="mobile-status-icons-mini">
-                    <svg class="icon-stat-mini" viewBox="0 0 17 11" fill="none" aria-hidden="true"><rect x="0" y="6" width="2.8" height="5" rx="0.7" fill="currentColor"/><rect x="4.3" y="4.5" width="2.8" height="6.5" rx="0.7" fill="currentColor"/><rect x="8.6" y="2.5" width="2.8" height="8.5" rx="0.7" fill="currentColor"/><rect x="12.9" y="0.5" width="2.8" height="10.5" rx="0.7" fill="currentColor"/></svg>
-                    <svg class="icon-stat-mini" viewBox="0 0 16 11" fill="none" aria-hidden="true"><path d="M8 9.2a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z" fill="currentColor"/><path d="M4.8 6.8a4.5 4.5 0 0 1 6.4 0" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><path d="M2.2 4.4a7.8 7.8 0 0 1 11.6 0" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
-                    <div class="battery-pill-mini"><div class="battery-level-mini"></div></div>
+                    <svg class="icon-stat-mini" viewBox="0 0 17 11" fill="currentColor" aria-hidden="true">
+                      <rect x="0" y="6" width="2.8" height="5" rx="0.7" />
+                      <rect x="4.3" y="4.5" width="2.8" height="6.5" rx="0.7" />
+                      <rect x="8.6" y="2.5" width="2.8" height="8.5" rx="0.7" />
+                      <rect x="12.9" y="0.5" width="2.8" height="10.5" rx="0.7" />
+                    </svg>
+                    <svg class="icon-stat-mini" viewBox="0 0 16 11" fill="none" stroke="currentColor" stroke-width="1.3"
+                      stroke-linecap="round" aria-hidden="true">
+                      <path d="M8 9.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z" fill="currentColor" />
+                      <path d="M4.5 6.8a4.8 4.8 0 0 1 7 0" />
+                      <path d="M2 4.2a8.4 8.4 0 0 1 12 0" />
+                    </svg>
+                    <div class="battery-pill-mini">
+                      <div class="battery-level-mini"></div>
+                    </div>
                   </div>
                 </div>
 
-                
+
                 <div class="chat-mockup-header">
                   <div class="chat-doc-info">
                     <div class="chat-doc-icon">
-                      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#2563EB" stroke-width="2">
-                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                      <svg data-lucide="file-text" viewBox="0 0 24 24" width="16" height="16" fill="none"
+                        stroke="#2563EB" stroke-width="2" class="lucide lucide-file-text">
+                        <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
                         <polyline points="14 2 14 8 20 8" />
                       </svg>
                     </div>
@@ -948,20 +1151,21 @@
                   <span class="chat-mode-pill">AI Mode</span>
                 </div>
 
-                
+
                 <div class="chat-stream">
-                  
+
                   <div class="chat-bubble chat-bubble-user">
                     <p>What were the top 3 revenue drivers and EBITDA growth this quarter?</p>
                     <span class="chat-timestamp">9:41 AM</span>
                   </div>
 
-                  
+
                   <div class="chat-bubble chat-bubble-ai">
                     <div class="ai-bubble-badge">
-                      <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor">
-                        <polygon
-                          points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                      <svg data-lucide="sparkles" viewBox="0 0 24 24" width="12" height="12" fill="none"
+                        stroke="currentColor" stroke-width="2" class="lucide lucide-sparkles">
+                        <path
+                          d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z" />
                       </svg>
                       <span>PagiQ Document Intelligence</span>
                     </div>
@@ -975,8 +1179,8 @@
                       <strong>EBITDA Growth:</strong> +18.4% margin expansion reaching $28.6M.
                     </div>
                     <div class="chat-citation-tag">
-                      <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor"
-                        stroke-width="2">
+                      <svg data-lucide="info" viewBox="0 0 24 24" width="12" height="12" fill="none"
+                        stroke="currentColor" stroke-width="2" class="lucide lucide-info">
                         <circle cx="12" cy="12" r="10" />
                         <line x1="12" y1="16" x2="12" y2="12" />
                         <line x1="12" y1="8" x2="12.01" y2="8" />
@@ -985,7 +1189,7 @@
                     </div>
                   </div>
 
-                  
+
                   <div class="quick-prompts-row">
                     <button class="quick-prompt-pill">Generate 5 Key Takeaways</button>
                     <button class="quick-prompt-pill">Create 3 Study Questions</button>
@@ -993,11 +1197,12 @@
                   </div>
                 </div>
 
-                
+
                 <div class="chat-input-bar">
                   <span class="chat-input-placeholder">Ask any question about this document...</span>
                   <div class="chat-send-btn">
-                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#fff" stroke-width="2.5">
+                    <svg data-lucide="arrow-up" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#fff"
+                      stroke-width="2.5" class="lucide lucide-arrow-up">
                       <line x1="12" y1="19" x2="12" y2="5" />
                       <polyline points="5 12 12 5 19 12" />
                     </svg>
@@ -1010,18 +1215,19 @@
       </div>
     </section>
 
-    
+
     <section class="section" id="resume-builder">
       <div class="container">
         <div class="feature-split-layout reverse">
-          
+
           <div class="feature-split-text fade-up">
             <div class="section-badge badge-resume">
-              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                <path d="M14 2v6h6" />
-                <line x1="16" y1="13" x2="8" y2="13" />
-                <line x1="16" y1="17" x2="8" y2="17" />
+              <svg data-lucide="file-code-2" viewBox="0 0 24 24" width="14" height="14" fill="none"
+                stroke="currentColor" stroke-width="2" class="lucide lucide-file-code-2">
+                <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
+                <polyline points="14 2 14 8 20 8" />
+                <path d="m10 13-2 2 2 2" />
+                <path d="m14 17 2-2-2-2" />
               </svg>
               <span>Career & LaTeX Engine</span>
             </div>
@@ -1058,37 +1264,55 @@
             </div>
 
             <div class="feature-split-cta">
-              <a href="https://play.google.com/store/apps/details?id=com.pagiq.workspace" target="_blank" rel="noopener noreferrer" class="btn-primary">Create Your LaTeX Resume</a>
+              <a href="https://play.google.com/store/apps/details?id=com.pagiq.workspace" target="_blank"
+                rel="noopener noreferrer" class="btn-primary">Create Your LaTeX Resume</a>
               <span class="cta-note">Tested against top ATS algorithms</span>
             </div>
           </div>
 
-          
+
           <div class="feature-split-visual fade-up fade-up-d2">
             <div class="mobile-showcase-frame">
+              <div class="iphone-speaker" aria-hidden="true"></div>
               <div class="iphone-button action" aria-hidden="true"></div>
-              <div class="iphone-button vol-up"></div>
-              <div class="iphone-button vol-down"></div>
-              <div class="iphone-button power"></div>
+              <div class="iphone-button vol-up" aria-hidden="true"></div>
+              <div class="iphone-button vol-down" aria-hidden="true"></div>
+              <div class="iphone-button power" aria-hidden="true"></div>
+              <div class="iphone-button camera-control" aria-hidden="true"></div>
               <div class="mobile-app-window">
                 <div class="mobile-statusbar-mini">
                   <span class="mobile-time-mini">9:41</span>
-                  <div class="dynamic-island-mini"></div>
+                  <div class="dynamic-island-mini">
+                    <div class="island-camera-mini"></div>
+                  </div>
                   <div class="mobile-status-icons-mini">
-                    <svg class="icon-stat-mini" viewBox="0 0 17 11" fill="none" aria-hidden="true"><rect x="0" y="6" width="2.8" height="5" rx="0.7" fill="currentColor"/><rect x="4.3" y="4.5" width="2.8" height="6.5" rx="0.7" fill="currentColor"/><rect x="8.6" y="2.5" width="2.8" height="8.5" rx="0.7" fill="currentColor"/><rect x="12.9" y="0.5" width="2.8" height="10.5" rx="0.7" fill="currentColor"/></svg>
-                    <svg class="icon-stat-mini" viewBox="0 0 16 11" fill="none" aria-hidden="true"><path d="M8 9.2a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z" fill="currentColor"/><path d="M4.8 6.8a4.5 4.5 0 0 1 6.4 0" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><path d="M2.2 4.4a7.8 7.8 0 0 1 11.6 0" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
-                    <div class="battery-pill-mini"><div class="battery-level-mini"></div></div>
+                    <svg class="icon-stat-mini" viewBox="0 0 17 11" fill="currentColor" aria-hidden="true">
+                      <rect x="0" y="6" width="2.8" height="5" rx="0.7" />
+                      <rect x="4.3" y="4.5" width="2.8" height="6.5" rx="0.7" />
+                      <rect x="8.6" y="2.5" width="2.8" height="8.5" rx="0.7" />
+                      <rect x="12.9" y="0.5" width="2.8" height="10.5" rx="0.7" />
+                    </svg>
+                    <svg class="icon-stat-mini" viewBox="0 0 16 11" fill="none" stroke="currentColor" stroke-width="1.3"
+                      stroke-linecap="round" aria-hidden="true">
+                      <path d="M8 9.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z" fill="currentColor" />
+                      <path d="M4.5 6.8a4.8 4.8 0 0 1 7 0" />
+                      <path d="M2 4.2a8.4 8.4 0 0 1 12 0" />
+                    </svg>
+                    <div class="battery-pill-mini">
+                      <div class="battery-level-mini"></div>
+                    </div>
                   </div>
                 </div>
 
-                
+
                 <div class="resume-mockup-header">
                   <div>
                     <span class="resume-score-pill">ATS Score: 98/100</span>
                     <h4 class="resume-mockup-title">LaTeX Resume Creator</h4>
                   </div>
                   <button class="resume-export-pill">
-                    <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2">
+                    <svg data-lucide="download" viewBox="0 0 24 24" width="12" height="12" fill="none"
+                      stroke="currentColor" stroke-width="2" class="lucide lucide-download">
                       <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
                       <polyline points="7 10 12 15 17 10" />
                       <line x1="12" y1="15" x2="12" y2="3" />
@@ -1097,18 +1321,30 @@
                   </button>
                 </div>
 
-                
+
                 <div class="resume-step-indicator">
                   <span class="step-pill done">Profile</span>
-                  <span class="step-arrow">→</span>
+                  <span class="step-arrow"><svg viewBox="0 0 24 24" class="fluid-arrow-svg" fill="none"
+                      stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="5" y1="12" x2="19" y2="12" />
+                      <polyline points="12 5 19 12 12 19" />
+                    </svg></span>
                   <span class="step-pill done">Experience</span>
-                  <span class="step-arrow">→</span>
+                  <span class="step-arrow"><svg viewBox="0 0 24 24" class="fluid-arrow-svg" fill="none"
+                      stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="5" y1="12" x2="19" y2="12" />
+                      <polyline points="12 5 19 12 12 19" />
+                    </svg></span>
                   <span class="step-pill active">AI Enhance</span>
-                  <span class="step-arrow">→</span>
+                  <span class="step-arrow"><svg viewBox="0 0 24 24" class="fluid-arrow-svg" fill="none"
+                      stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="5" y1="12" x2="19" y2="12" />
+                      <polyline points="12 5 19 12 12 19" />
+                    </svg></span>
                   <span class="step-pill">Preview</span>
                 </div>
 
-                
+
                 <div class="resume-sheet-preview">
                   <div class="resume-preview-header">
                     <h3 class="resume-name">ALEXANDER MORGAN</h3>
@@ -1131,13 +1367,15 @@
                       </div>
                       <div class="bullet-after">
                         <span class="bullet-tag-pro">
-                          <svg viewBox="0 0 24 24" width="10" height="10" fill="currentColor">
-                            <polygon
-                              points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                          <svg data-lucide="sparkles" viewBox="0 0 24 24" width="10" height="10" fill="none"
+                            stroke="currentColor" stroke-width="2" class="lucide lucide-sparkles">
+                            <path
+                              d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z" />
                           </svg>
                           AI Optimized for ATS:
                         </span>
-                        <p>"Architected 18 high-throughput REST APIs, reducing query latency by 35% across 2.5M daily active users."</p>
+                        <p>"Architected 18 high-throughput REST APIs, reducing query latency by 35% across 2.5M daily
+                          active users."</p>
                       </div>
                     </div>
                   </div>
@@ -1157,7 +1395,7 @@
       </div>
     </section>
 
-    
+
     <section class="section section-tint" id="compression">
       <div class="container">
         <div class="section-header text-center">
@@ -1175,11 +1413,16 @@
               <span class="stat-val">12.4 MB</span>
             </div>
             <div class="stat-arrow-indicator">
-              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#2563EB" stroke-width="2.5">
-                <line x1="5" y1="12" x2="19" y2="12" />
-                <polyline points="12 5 19 12 12 19" />
-              </svg>
-              <span class="reduction-pill">-83% Smaller</span>
+              <div class="compression-flow-pill">
+                <span class="reduction-pill">-83% Smaller</span>
+                <div class="fluid-arrow-stream">
+                  <svg viewBox="0 0 24 24" width="20" height="20" class="fluid-arrow-svg" fill="none" stroke="#2563EB"
+                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="4" y1="12" x2="20" y2="12" />
+                    <polyline points="13 5 20 12 13 19" />
+                  </svg>
+                </div>
+              </div>
             </div>
             <div class="stat-badge-compressed">
               <span class="stat-label">Compressed File Size</span>
@@ -1187,7 +1430,7 @@
             </div>
           </div>
 
-          
+
           <div class="compression-visual-grid">
             <div class="compression-card">
               <div class="compression-card-badge">Before Compression (12.4 MB)</div>
@@ -1232,24 +1475,46 @@
             </div>
           </div>
 
-          
+
           <div class="compression-benefits-grid">
             <div class="benefit-item">
-              <div class="benefit-icon">✨</div>
+              <div class="benefit-icon" style="background: rgba(37,99,235,0.1); color: #2563EB;">
+                <svg data-lucide="image" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor"
+                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-image">
+                  <rect width="18" height="18" x="3" y="3" rx="2" ry="2" />
+                  <circle cx="9" cy="9" r="2" />
+                  <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" />
+                </svg>
+              </div>
               <div>
                 <h4>Image-Aware Sampling</h4>
                 <p>Preserves graphs and photos while stripping redundant bloat.</p>
               </div>
             </div>
             <div class="benefit-item">
-              <div class="benefit-icon">⚡</div>
+              <div class="benefit-icon" style="background: rgba(16,185,129,0.1); color: #10B981;">
+                <svg data-lucide="type" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor"
+                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-type">
+                  <polyline points="4 7 4 4 20 4 20 7" />
+                  <line x1="9" x2="15" y1="20" y2="20" />
+                  <line x1="12" x2="12" y1="4" y2="20" />
+                </svg>
+              </div>
               <div>
                 <h4>Text-Aware Optimization</h4>
                 <p>Vector glyphs and embedded fonts stay 100% crisp at any zoom level.</p>
               </div>
             </div>
             <div class="benefit-item">
-              <div class="benefit-icon">🛡️</div>
+              <div class="benefit-icon" style="background: rgba(245,158,11,0.1); color: #D97706;">
+                <svg data-lucide="shield-check" viewBox="0 0 24 24" width="20" height="20" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="lucide lucide-shield-check">
+                  <path
+                    d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" />
+                  <path d="m9 12 2 2 4-4" />
+                </svg>
+              </div>
               <div>
                 <h4>Zero Over-Compression</h4>
                 <p>Smart safeguards prevent documents from becoming blurry or distorted.</p>
@@ -1260,15 +1525,18 @@
       </div>
     </section>
 
-    
+
     <section class="section" id="security">
       <div class="container">
         <div class="feature-split-layout">
-          
+
           <div class="feature-split-text fade-up">
             <div class="section-badge badge-security">
-              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              <svg data-lucide="shield-check" viewBox="0 0 24 24" width="14" height="14" fill="none"
+                stroke="currentColor" stroke-width="2" class="lucide lucide-shield-check">
+                <path
+                  d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" />
+                <path d="m9 12 2 2 4-4" />
               </svg>
               <span>Security & Signatures</span>
             </div>
@@ -1280,7 +1548,11 @@
 
             <div class="feature-check-list">
               <div class="feature-check-item">
-                <div class="feature-check-icon">✓</div>
+                <div class="feature-check-icon"><svg data-lucide="check-circle-2" viewBox="0 0 24 24" width="16"
+                    height="16" fill="none" stroke="currentColor" stroke-width="2" class="lucide lucide-check-circle-2">
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="m9 12 2 2 4-4" />
+                  </svg></div>
                 <div>
                   <h4>Draw & Reposition Signatures Anywhere</h4>
                   <p>Sign with your finger or stylus, scale smoothly, and stamp across multiple pages.</p>
@@ -1288,7 +1560,11 @@
               </div>
 
               <div class="feature-check-item">
-                <div class="feature-check-icon">✓</div>
+                <div class="feature-check-icon"><svg data-lucide="check-circle-2" viewBox="0 0 24 24" width="16"
+                    height="16" fill="none" stroke="currentColor" stroke-width="2" class="lucide lucide-check-circle-2">
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="m9 12 2 2 4-4" />
+                  </svg></div>
                 <div>
                   <h4>Password Encryption & Unlocking</h4>
                   <p>Lock confidential files with AES password encryption and restrict printing or copying.</p>
@@ -1296,7 +1572,11 @@
               </div>
 
               <div class="feature-check-item">
-                <div class="feature-check-icon">✓</div>
+                <div class="feature-check-icon"><svg data-lucide="check-circle-2" viewBox="0 0 24 24" width="16"
+                    height="16" fill="none" stroke="currentColor" stroke-width="2" class="lucide lucide-check-circle-2">
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="m9 12 2 2 4-4" />
+                  </svg></div>
                 <div>
                   <h4>Permanent Redaction & Metadata Removal</h4>
                   <p>Permanently black out private identifiers, bank numbers, and sanitize hidden author metadata.</p>
@@ -1305,34 +1585,54 @@
             </div>
 
             <div class="feature-split-cta">
-              <a href="https://play.google.com/store/apps/details?id=com.pagiq.workspace" target="_blank" rel="noopener noreferrer" class="btn-primary">Sign Your Document</a>
+              <a href="https://play.google.com/store/apps/details?id=com.pagiq.workspace" target="_blank"
+                rel="noopener noreferrer" class="btn-primary">Sign Your Document</a>
               <span class="cta-note">100% Offline & Private Processing</span>
             </div>
           </div>
 
-          
+
           <div class="feature-split-visual fade-up fade-up-d2">
             <div class="mobile-showcase-frame">
+              <div class="iphone-speaker" aria-hidden="true"></div>
               <div class="iphone-button action" aria-hidden="true"></div>
-              <div class="iphone-button vol-up"></div>
-              <div class="iphone-button vol-down"></div>
-              <div class="iphone-button power"></div>
+              <div class="iphone-button vol-up" aria-hidden="true"></div>
+              <div class="iphone-button vol-down" aria-hidden="true"></div>
+              <div class="iphone-button power" aria-hidden="true"></div>
+              <div class="iphone-button camera-control" aria-hidden="true"></div>
               <div class="mobile-app-window">
                 <div class="mobile-statusbar-mini">
                   <span class="mobile-time-mini">9:41</span>
-                  <div class="dynamic-island-mini"></div>
+                  <div class="dynamic-island-mini">
+                    <div class="island-camera-mini"></div>
+                  </div>
                   <div class="mobile-status-icons-mini">
-                    <svg class="icon-stat-mini" viewBox="0 0 17 11" fill="none" aria-hidden="true"><rect x="0" y="6" width="2.8" height="5" rx="0.7" fill="currentColor"/><rect x="4.3" y="4.5" width="2.8" height="6.5" rx="0.7" fill="currentColor"/><rect x="8.6" y="2.5" width="2.8" height="8.5" rx="0.7" fill="currentColor"/><rect x="12.9" y="0.5" width="2.8" height="10.5" rx="0.7" fill="currentColor"/></svg>
-                    <svg class="icon-stat-mini" viewBox="0 0 16 11" fill="none" aria-hidden="true"><path d="M8 9.2a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z" fill="currentColor"/><path d="M4.8 6.8a4.5 4.5 0 0 1 6.4 0" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><path d="M2.2 4.4a7.8 7.8 0 0 1 11.6 0" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
-                    <div class="battery-pill-mini"><div class="battery-level-mini"></div></div>
+                    <svg class="icon-stat-mini" viewBox="0 0 17 11" fill="currentColor" aria-hidden="true">
+                      <rect x="0" y="6" width="2.8" height="5" rx="0.7" />
+                      <rect x="4.3" y="4.5" width="2.8" height="6.5" rx="0.7" />
+                      <rect x="8.6" y="2.5" width="2.8" height="8.5" rx="0.7" />
+                      <rect x="12.9" y="0.5" width="2.8" height="10.5" rx="0.7" />
+                    </svg>
+                    <svg class="icon-stat-mini" viewBox="0 0 16 11" fill="none" stroke="currentColor" stroke-width="1.3"
+                      stroke-linecap="round" aria-hidden="true">
+                      <path d="M8 9.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z" fill="currentColor" />
+                      <path d="M4.5 6.8a4.8 4.8 0 0 1 7 0" />
+                      <path d="M2 4.2a8.4 8.4 0 0 1 12 0" />
+                    </svg>
+                    <div class="battery-pill-mini">
+                      <div class="battery-level-mini"></div>
+                    </div>
                   </div>
                 </div>
 
-                
+
                 <div class="sign-mockup-header">
                   <div class="sign-shield-badge">
-                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#2563EB" stroke-width="2">
-                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                    <svg data-lucide="shield-check" viewBox="0 0 24 24" width="16" height="16" fill="none"
+                      stroke="#2563EB" stroke-width="2" class="lucide lucide-shield-check">
+                      <path
+                        d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" />
+                      <path d="m9 12 2 2 4-4" />
                     </svg>
                     <span>Secure Sign Mode</span>
                   </div>
@@ -1373,7 +1673,7 @@
       </div>
     </section>
 
-    
+
     <section class="section" id="tools">
       <div class="container">
         <div class="section-header text-center">
@@ -1384,7 +1684,7 @@
           </p>
         </div>
 
-        
+
         <div class="tools-filter-wrapper fade-up">
           <div class="tools-tabs" role="tablist" aria-label="Tool Categories">
             <button class="tool-tab active" data-category="all" role="tab" aria-selected="true">All Tools (29)</button>
@@ -1396,7 +1696,8 @@
           </div>
 
           <div class="tools-search-box">
-            <svg viewBox="0 0 24 24" class="search-icon" fill="none" stroke="currentColor" stroke-width="2">
+            <svg data-lucide="search" viewBox="0 0 24 24" class="search-icon lucide lucide-search" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <circle cx="11" cy="11" r="8" />
               <line x1="21" y1="21" x2="16.65" y2="16.65" />
             </svg>
@@ -1405,14 +1706,18 @@
           </div>
         </div>
 
-        
+
         <div class="tools-grid-container" id="toolsGrid">
-          
           <div class="tool-catalog-card" data-category="ai">
             <div class="tool-card-icon-wrap" style="background:#EFF6FF; color:#2563EB;">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polygon
-                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+              <svg data-lucide="sparkles" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sparkles">
+                <path
+                  d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z" />
+                <path d="M5 3v4" />
+                <path d="M19 17v4" />
+                <path d="M3 5h4" />
+                <path d="M17 19h4" />
               </svg>
             </div>
             <div class="tool-card-content">
@@ -1420,18 +1725,21 @@
                 <h3 class="tool-card-title">AI PDF Assistant</h3>
                 <span class="tool-cat-pill">AI</span>
               </div>
-              <p class="tool-card-desc">Ask questions, explain complex clauses, and interact with document content in real
+              <p class="tool-card-desc">Ask questions, explain complex clauses, and interact with document content in
+                real
                 time.</p>
             </div>
           </div>
 
           <div class="tool-catalog-card" data-category="ai">
             <div class="tool-card-icon-wrap" style="background:#EFF6FF; color:#2563EB;">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+              <svg data-lucide="file-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-text">
+                <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
                 <polyline points="14 2 14 8 20 8" />
-                <line x1="9" y1="12" x2="15" y2="12" />
-                <line x1="9" y1="16" x2="13" y2="16" />
+                <line x1="16" x2="8" y1="13" y2="13" />
+                <line x1="16" x2="8" y1="17" y2="17" />
+                <line x1="10" x2="8" y1="9" y2="9" />
               </svg>
             </div>
             <div class="tool-card-content">
@@ -1445,10 +1753,14 @@
 
           <div class="tool-catalog-card" data-category="ai">
             <div class="tool-card-icon-wrap" style="background:#EFF6FF; color:#2563EB;">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="10" />
-                <line x1="2" y1="12" x2="22" y2="12" />
-                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+              <svg data-lucide="languages" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-languages">
+                <path d="m5 8 6 6" />
+                <path d="m4 14 6-6 2-3" />
+                <path d="M2 5h12" />
+                <path d="M7 2h1" />
+                <path d="m22 22-5-10-5 10" />
+                <path d="M14 18h6" />
               </svg>
             </div>
             <div class="tool-card-content">
@@ -1463,7 +1775,8 @@
 
           <div class="tool-catalog-card" data-category="ai">
             <div class="tool-card-icon-wrap" style="background:#EFF6FF; color:#2563EB;">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <svg data-lucide="help-circle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-help-circle">
                 <circle cx="12" cy="12" r="10" />
                 <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
                 <line x1="12" y1="17" x2="12.01" y2="17" />
@@ -1481,11 +1794,12 @@
 
           <div class="tool-catalog-card" data-category="ai">
             <div class="tool-card-icon-wrap" style="background:#F3E8FF; color:#9333EA;">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                <path d="M14 2v6h6" />
-                <line x1="16" y1="13" x2="8" y2="13" />
-                <line x1="16" y1="17" x2="8" y2="17" />
+              <svg data-lucide="file-code-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-code-2">
+                <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
+                <polyline points="14 2 14 8 20 8" />
+                <path d="m10 13-2 2 2 2" />
+                <path d="m14 17 2-2-2-2" />
               </svg>
             </div>
             <div class="tool-card-content">
@@ -1493,17 +1807,21 @@
                 <h3 class="tool-card-title">LaTeX Resume Creator</h3>
                 <span class="tool-cat-pill" style="background:#F3E8FF; color:#9333EA;">Career AI</span>
               </div>
-              <p class="tool-card-desc">Compile ATS-compliant LaTeX resumes with AI bullet enhancement & live PDF export.
+              <p class="tool-card-desc">Compile ATS-compliant LaTeX resumes with AI bullet enhancement & live PDF
+                export.
               </p>
             </div>
           </div>
 
-          
+
           <div class="tool-catalog-card" data-category="organize">
             <div class="tool-card-icon-wrap" style="background:#F0FDF4; color:#16A34A;">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect width="13" height="13" x="8" y="8" rx="2" />
-                <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
+              <svg data-lucide="combine" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-combine">
+                <rect width="8" height="8" x="2" y="2" rx="2" />
+                <path d="M14 2c1.1 0 2 .9 2 2v4c0 1.1-.9 2-2 2" />
+                <rect width="8" height="8" x="14" y="14" rx="2" />
+                <path d="M2 14c0-1.1.9-2 2-2h4c1.1 0 2 .9 2 2" />
               </svg>
             </div>
             <div class="tool-card-content">
@@ -1518,12 +1836,13 @@
 
           <div class="tool-catalog-card" data-category="organize">
             <div class="tool-card-icon-wrap" style="background:#F0FDF4; color:#16A34A;">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <svg data-lucide="scissors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-scissors">
                 <circle cx="6" cy="6" r="3" />
+                <path d="M8.12 8.12 12 12" />
+                <path d="M20 4 8.12 15.88" />
                 <circle cx="6" cy="18" r="3" />
-                <line x1="20" y1="4" x2="8.12" y2="15.88" />
-                <line x1="14.47" y1="14.48" x2="20" y2="20" />
-                <line x1="8.12" y1="8.12" x2="12" y2="12" />
+                <path d="M14.8 14.8 20 20" />
               </svg>
             </div>
             <div class="tool-card-content">
@@ -1531,16 +1850,18 @@
                 <h3 class="tool-card-title">Split PDF</h3>
                 <span class="tool-cat-pill">Organize</span>
               </div>
-              <p class="tool-card-desc">Separate pages by specific ranges or split large documents into individual chapters.
+              <p class="tool-card-desc">Separate pages by specific ranges or split large documents into individual
+                chapters.
               </p>
             </div>
           </div>
 
           <div class="tool-catalog-card" data-category="organize">
             <div class="tool-card-icon-wrap" style="background:#F0FDF4; color:#16A34A;">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M21.5 2v6h-6" />
-                <path d="M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67" />
+              <svg data-lucide="rotate-cw" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-rotate-cw">
+                <path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8" />
+                <path d="M21 3v5h-5" />
               </svg>
             </div>
             <div class="tool-card-content">
@@ -1548,14 +1869,16 @@
                 <h3 class="tool-card-title">Rotate PDF</h3>
                 <span class="tool-cat-pill">Organize</span>
               </div>
-              <p class="tool-card-desc">Rotate individual orientation mistakes or entire documents by 90°, 180°, or 270°.
+              <p class="tool-card-desc">Rotate individual orientation mistakes or entire documents by 90°, 180°, or
+                270°.
               </p>
             </div>
           </div>
 
           <div class="tool-catalog-card" data-category="organize">
             <div class="tool-card-icon-wrap" style="background:#F0FDF4; color:#16A34A;">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <svg data-lucide="layout-grid" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-layout-grid">
                 <rect width="7" height="7" x="3" y="3" rx="1" />
                 <rect width="7" height="7" x="14" y="3" rx="1" />
                 <rect width="7" height="7" x="14" y="14" rx="1" />
@@ -1567,17 +1890,21 @@
                 <h3 class="tool-card-title">Organize Pages</h3>
                 <span class="tool-cat-pill">Organize</span>
               </div>
-              <p class="tool-card-desc">Drag and drop pages, reorder visually, and sort pages effortlessly on your phone.
+              <p class="tool-card-desc">Drag and drop pages, reorder visually, and sort pages effortlessly on your
+                phone.
               </p>
             </div>
           </div>
 
           <div class="tool-catalog-card" data-category="organize">
             <div class="tool-card-icon-wrap" style="background:#F0FDF4; color:#16A34A;">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <svg data-lucide="trash-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trash-2">
                 <path d="M3 6h18" />
                 <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
                 <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
+                <line x1="10" x2="10" y1="11" y2="17" />
+                <line x1="14" x2="14" y1="11" y2="17" />
               </svg>
             </div>
             <div class="tool-card-content">
@@ -1591,11 +1918,13 @@
 
           <div class="tool-catalog-card" data-category="organize">
             <div class="tool-card-icon-wrap" style="background:#F0FDF4; color:#16A34A;">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+              <svg data-lucide="file-output" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-output">
+                <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
                 <polyline points="14 2 14 8 20 8" />
-                <line x1="12" y1="18" x2="12" y2="12" />
-                <line x1="9" y1="15" x2="15" y2="15" />
+                <path d="M4 12H2" />
+                <path d="m10 15 3-3-3-3" />
+                <path d="M13 12H2" />
               </svg>
             </div>
             <div class="tool-card-content">
@@ -1603,15 +1932,19 @@
                 <h3 class="tool-card-title">Extract Pages</h3>
                 <span class="tool-cat-pill">Organize</span>
               </div>
-              <p class="tool-card-desc">Extract selected page ranges into a brand new, lightweight standalone document.</p>
+              <p class="tool-card-desc">Extract selected page ranges into a brand new, lightweight standalone document.
+              </p>
             </div>
           </div>
 
-          
+
           <div class="tool-catalog-card" data-category="edit">
             <div class="tool-card-icon-wrap" style="background:#FEF3C7; color:#D97706;">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" />
+              <svg data-lucide="file-pen-line" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-pen-line">
+                <path d="m18 2 4 4-14 14H4v-4L18 2z" />
+                <path d="m14.5 5.5 4 4" />
+                <line x1="12" x2="20" y1="20" y2="20" />
               </svg>
             </div>
             <div class="tool-card-content">
@@ -1619,14 +1952,16 @@
                 <h3 class="tool-card-title">PDF Editor</h3>
                 <span class="tool-cat-pill">View & Edit</span>
               </div>
-              <p class="tool-card-desc">Add text, annotations, callout arrows, shapes, and markup directly onto PDF pages.
+              <p class="tool-card-desc">Add text, annotations, callout arrows, shapes, and markup directly onto PDF
+                pages.
               </p>
             </div>
           </div>
 
           <div class="tool-catalog-card" data-category="edit">
             <div class="tool-card-icon-wrap" style="background:#FEF3C7; color:#D97706;">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <svg data-lucide="book-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-open">
                 <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
                 <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
               </svg>
@@ -1643,7 +1978,8 @@
 
           <div class="tool-catalog-card" data-category="edit">
             <div class="tool-card-icon-wrap" style="background:#FEF3C7; color:#D97706;">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <svg data-lucide="crop" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-crop">
                 <path d="M6 2v14a2 2 0 0 0 2 2h14" />
                 <path d="M18 22V8a2 2 0 0 0-2-2H2" />
               </svg>
@@ -1653,16 +1989,20 @@
                 <h3 class="tool-card-title">Crop PDF</h3>
                 <span class="tool-cat-pill">View & Edit</span>
               </div>
-              <p class="tool-card-desc">Trim messy margins, adjust document boundaries, and fit pages perfectly to standard
+              <p class="tool-card-desc">Trim messy margins, adjust document boundaries, and fit pages perfectly to
+                standard
                 sizes.</p>
             </div>
           </div>
 
           <div class="tool-catalog-card" data-category="edit">
             <div class="tool-card-icon-wrap" style="background:#FEF3C7; color:#D97706;">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect width="18" height="12" x="3" y="6" rx="2" />
-                <line x1="3" y1="12" x2="21" y2="12" />
+              <svg data-lucide="eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye-off">
+                <path d="M9.88 9.88a3 3 0 1 0 4.24 4.24" />
+                <path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68" />
+                <path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61" />
+                <line x1="2" x2="22" y1="2" y2="22" />
               </svg>
             </div>
             <div class="tool-card-content">
@@ -1676,8 +2016,11 @@
 
           <div class="tool-catalog-card" data-category="edit">
             <div class="tool-card-icon-wrap" style="background:#FEF3C7; color:#D97706;">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z" />
+              <svg data-lucide="stamp" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-stamp">
+                <path d="M5 22h14" />
+                <path d="M19.27 13.73A2.5 2.5 0 0 0 17.5 13h-11A2.5 2.5 0 0 0 4.73 13.73L2 19h20z" />
+                <path d="M14 13V8a2 2 0 0 0-2-2h0a2 2 0 0 0-2 2v5" />
               </svg>
             </div>
             <div class="tool-card-content">
@@ -1685,18 +2028,22 @@
                 <h3 class="tool-card-title">Watermark PDF</h3>
                 <span class="tool-cat-pill">View & Edit</span>
               </div>
-              <p class="tool-card-desc">Add custom text or image copyright watermarks with adjustable opacity and position.
+              <p class="tool-card-desc">Add custom text or image copyright watermarks with adjustable opacity and
+                position.
               </p>
             </div>
           </div>
 
           <div class="tool-catalog-card" data-category="edit">
             <div class="tool-card-icon-wrap" style="background:#FEF3C7; color:#D97706;">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <line x1="4" y1="9" x2="20" y2="9" />
-                <line x1="4" y1="15" x2="20" y2="15" />
-                <line x1="10" y1="3" x2="8" y2="21" />
-                <line x1="16" y1="3" x2="14" y2="21" />
+              <svg data-lucide="list-ordered" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-list-ordered">
+                <line x1="10" x2="21" y1="6" y2="6" />
+                <line x1="10" x2="21" y1="12" y2="12" />
+                <line x1="10" x2="21" y1="18" y2="18" />
+                <path d="M4 6h1v4" />
+                <path d="M4 10h2" />
+                <path d="M6 18H4c0-1 2-2 2-3s-1-1.5-2-1" />
               </svg>
             </div>
             <div class="tool-card-content">
@@ -1704,17 +2051,19 @@
                 <h3 class="tool-card-title">Number Pages</h3>
                 <span class="tool-cat-pill">View & Edit</span>
               </div>
-              <p class="tool-card-desc">Add automatic header or footer page numbers with custom Roman, numeric, or letter
+              <p class="tool-card-desc">Add automatic header or footer page numbers with custom Roman, numeric, or
+                letter
                 styles.</p>
             </div>
           </div>
 
           <div class="tool-catalog-card" data-category="edit">
             <div class="tool-card-icon-wrap" style="background:#FEF3C7; color:#D97706;">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="m18 15-6-6-6 6" />
-                <path d="M12 3v12" />
-                <path d="M5 21h14" />
+              <svg data-lucide="signature" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-signature">
+                <path d="m18 2 4 4-14 14H4v-4L18 2z" />
+                <path d="m14.5 5.5 4 4" />
+                <path d="M4 22h16" />
               </svg>
             </div>
             <div class="tool-card-content">
@@ -1722,19 +2071,21 @@
                 <h3 class="tool-card-title">Sign PDF</h3>
                 <span class="tool-cat-pill">View & Edit</span>
               </div>
-              <p class="tool-card-desc">Draw, place, resize, and save reusable personal signatures and official initials.</p>
+              <p class="tool-card-desc">Draw, place, resize, and save reusable personal signatures and official
+                initials.</p>
             </div>
           </div>
 
-          
+
           <div class="tool-catalog-card" data-category="convert">
             <div class="tool-card-icon-wrap" style="background:#EFF6FF; color:#2563EB;">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                <path d="M14 2v6h6" />
-                <path d="M16 13H8" />
-                <path d="M16 17H8" />
-                <path d="M10 9H8" />
+              <svg data-lucide="file-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-text">
+                <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
+                <polyline points="14 2 14 8 20 8" />
+                <line x1="16" x2="8" y1="13" y2="13" />
+                <line x1="16" x2="8" y1="17" y2="17" />
+                <line x1="10" x2="8" y1="9" y2="9" />
               </svg>
             </div>
             <div class="tool-card-content">
@@ -1742,17 +2093,18 @@
                 <h3 class="tool-card-title">Word to PDF</h3>
                 <span class="tool-cat-pill">Convert</span>
               </div>
-              <p class="tool-card-desc">Transform DOC and DOCX Word files into clean, perfectly formatted PDF documents.</p>
+              <p class="tool-card-desc">Transform DOC and DOCX Word files into clean, perfectly formatted PDF documents.
+              </p>
             </div>
           </div>
 
           <div class="tool-catalog-card" data-category="convert">
             <div class="tool-card-icon-wrap" style="background:#EFF6FF; color:#2563EB;">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M4 22h14a2 2 0 0 0 2-2V7.5L14.5 2H6a2 2 0 0 0-2 2v4" />
+              <svg data-lucide="file-edit" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-edit">
+                <path d="M4 13.5V4a2 2 0 0 1 2-2h8.5L20 7.5V20a2 2 0 0 1-2 2h-5.5" />
                 <polyline points="14 2 14 8 20 8" />
-                <path d="M2 15h10" />
-                <path d="m9 18 3-3-3-3" />
+                <path d="M10.42 12.61a2.1 2.1 0 1 1 2.97 2.97L7.95 21 4 22l1-3.95 5.42-5.44Z" />
               </svg>
             </div>
             <div class="tool-card-content">
@@ -1760,17 +2112,19 @@
                 <h3 class="tool-card-title">PDF to Word</h3>
                 <span class="tool-cat-pill">Convert</span>
               </div>
-              <p class="tool-card-desc">Convert PDF files into fully editable Microsoft Word documents with intact typography.
+              <p class="tool-card-desc">Convert PDF files into fully editable Microsoft Word documents with intact
+                typography.
               </p>
             </div>
           </div>
 
           <div class="tool-catalog-card" data-category="convert">
             <div class="tool-card-icon-wrap" style="background:#EFF6FF; color:#2563EB;">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect width="18" height="18" x="3" y="3" rx="2" />
-                <circle cx="8.5" cy="8.5" r="1.5" />
-                <polyline points="21 15 16 10 5 21" />
+              <svg data-lucide="image" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-image">
+                <rect width="18" height="18" x="3" y="3" rx="2" ry="2" />
+                <circle cx="9" cy="9" r="2" />
+                <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" />
               </svg>
             </div>
             <div class="tool-card-content">
@@ -1784,10 +2138,13 @@
 
           <div class="tool-catalog-card" data-category="convert">
             <div class="tool-card-icon-wrap" style="background:#EFF6FF; color:#2563EB;">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect width="18" height="18" x="3" y="3" rx="2" />
-                <path d="m9 10 3-3 3 3" />
-                <path d="m15 14-3 3-3-3" />
+              <svg data-lucide="image-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-image-plus">
+                <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7" />
+                <line x1="16" x2="22" y1="5" y2="5" />
+                <line x1="19" x2="19" y1="2" y2="8" />
+                <circle cx="9" cy="9" r="2" />
+                <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" />
               </svg>
             </div>
             <div class="tool-card-content">
@@ -1795,15 +2152,18 @@
                 <h3 class="tool-card-title">JPG to PDF</h3>
                 <span class="tool-cat-pill">Convert</span>
               </div>
-              <p class="tool-card-desc">Turn camera photos, receipts, and gallery images into standardized PDF files.</p>
+              <p class="tool-card-desc">Turn camera photos, receipts, and gallery images into standardized PDF files.
+              </p>
             </div>
           </div>
 
           <div class="tool-catalog-card" data-category="convert">
             <div class="tool-card-icon-wrap" style="background:#EFF6FF; color:#2563EB;">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polyline points="16 18 22 12 16 6" />
-                <polyline points="8 6 2 12 8 18" />
+              <svg data-lucide="code-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-code-2">
+                <path d="m18 16 4-4-4-4" />
+                <path d="m6 8-4 4 4 4" />
+                <path d="m14.5 4-5 16" />
               </svg>
             </div>
             <div class="tool-card-content">
@@ -1811,17 +2171,19 @@
                 <h3 class="tool-card-title">HTML to PDF</h3>
                 <span class="tool-cat-pill">Convert</span>
               </div>
-              <p class="tool-card-desc">Convert articles, web pages, and raw HTML files into readable offline PDF sheets.</p>
+              <p class="tool-card-desc">Convert articles, web pages, and raw HTML files into readable offline PDF
+                sheets.</p>
             </div>
           </div>
 
           <div class="tool-catalog-card" data-category="convert">
             <div class="tool-card-icon-wrap" style="background:#EFF6FF; color:#2563EB;">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+              <svg data-lucide="file-type-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-type-2">
+                <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
                 <polyline points="14 2 14 8 20 8" />
-                <line x1="16" y1="13" x2="8" y2="13" />
-                <line x1="16" y1="17" x2="8" y2="17" />
+                <line x1="8" x2="16" y1="13" y2="13" />
+                <line x1="8" x2="14" y1="17" y2="17" />
               </svg>
             </div>
             <div class="tool-card-content">
@@ -1829,19 +2191,22 @@
                 <h3 class="tool-card-title">TXT to PDF</h3>
                 <span class="tool-cat-pill">Convert</span>
               </div>
-              <p class="tool-card-desc">Convert plain text logs, transcripts, and notes into beautifully formatted PDFs.</p>
+              <p class="tool-card-desc">Convert plain text logs, transcripts, and notes into beautifully formatted PDFs.
+              </p>
             </div>
           </div>
 
           <div class="tool-catalog-card" data-category="convert">
             <div class="tool-card-icon-wrap" style="background:#EFF6FF; color:#2563EB;">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M4 7V4h3" />
-                <path d="M20 7V4h-3" />
-                <path d="M4 17v3h3" />
-                <path d="M20 17v3h-3" />
-                <path d="M9 15V9h6v6" />
-                <path d="M9 12h6" />
+              <svg data-lucide="scan-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-scan-text">
+                <path d="M3 7V5a2 2 0 0 1 2-2h2" />
+                <path d="M17 3h2a2 2 0 0 1 2 2v2" />
+                <path d="M21 17v2a2 2 0 0 1-2 2h-2" />
+                <path d="M7 21H5a2 2 0 0 1-2-2v-2" />
+                <path d="M7 8h10" />
+                <path d="M7 12h10" />
+                <path d="M7 16h6" />
               </svg>
             </div>
             <div class="tool-card-content">
@@ -1849,14 +2214,16 @@
                 <h3 class="tool-card-title">PDF OCR</h3>
                 <span class="tool-cat-pill">Convert</span>
               </div>
-              <p class="tool-card-desc">Recognize and extract editable, searchable text from scanned PDFs and photos.</p>
+              <p class="tool-card-desc">Recognize and extract editable, searchable text from scanned PDFs and photos.
+              </p>
             </div>
           </div>
 
-          
+
           <div class="tool-catalog-card" data-category="security">
             <div class="tool-card-icon-wrap" style="background:#FEE2E2; color:#DC2626;">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <svg data-lucide="lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-lock">
                 <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
                 <path d="M7 11V7a5 5 0 0 1 10 0v4" />
               </svg>
@@ -1866,13 +2233,15 @@
                 <h3 class="tool-card-title">Protect PDF</h3>
                 <span class="tool-cat-pill">Security</span>
               </div>
-              <p class="tool-card-desc">Encrypt PDFs with strong AES passwords and restrict editing or printing access.</p>
+              <p class="tool-card-desc">Encrypt PDFs with strong AES passwords and restrict editing or printing access.
+              </p>
             </div>
           </div>
 
           <div class="tool-catalog-card" data-category="security">
             <div class="tool-card-icon-wrap" style="background:#FEE2E2; color:#DC2626;">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <svg data-lucide="unlock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-unlock">
                 <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
                 <path d="M7 11V7a5 5 0 0 1 9.9-1" />
               </svg>
@@ -1888,10 +2257,12 @@
 
           <div class="tool-catalog-card" data-category="security">
             <div class="tool-card-icon-wrap" style="background:#FEE2E2; color:#DC2626;">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
-                <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
-                <line x1="12" y1="22.08" x2="12" y2="12" />
+              <svg data-lucide="layers" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-layers">
+                <path
+                  d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z" />
+                <path d="m22 12.5-8.58 3.91a2 2 0 0 1-1.66 0L2 12.5" />
+                <path d="m22 17.5-8.58 3.91a2 2 0 0 1-1.66 0L2 17.5" />
               </svg>
             </div>
             <div class="tool-card-content">
@@ -1899,14 +2270,17 @@
                 <h3 class="tool-card-title">Flatten PDF</h3>
                 <span class="tool-cat-pill">Security</span>
               </div>
-              <p class="tool-card-desc">Merge form fields, layers, and annotations into a static, non-editable document.</p>
+              <p class="tool-card-desc">Merge form fields, layers, and annotations into a static, non-editable document.
+              </p>
             </div>
           </div>
 
           <div class="tool-catalog-card" data-category="security">
             <div class="tool-card-icon-wrap" style="background:#FEE2E2; color:#DC2626;">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              <svg data-lucide="shield-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield-check">
+                <path
+                  d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" />
                 <path d="m9 12 2 2 4-4" />
               </svg>
             </div>
@@ -1923,18 +2297,17 @@
       </div>
     </section>
 
-    
+
     <section class="section section-tint" id="scanner">
       <div class="container">
         <div class="feature-split-layout">
-          
+
           <div class="feature-split-text fade-up">
             <div class="section-badge badge-scanner">
-              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M3 7V5a2 2 0 0 1 2-2h2" />
-                <path d="M17 3h2a2 2 0 0 1 2 2v2" />
-                <path d="M21 17v2a2 2 0 0 1-2 2h-2" />
-                <path d="M7 21H5a2 2 0 0 1-2-2v-2" />
+              <svg data-lucide="camera" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-camera">
+                <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z" />
+                <circle cx="12" cy="13" r="3" />
               </svg>
               <span>Mobile Document Scanner</span>
             </div>
@@ -1949,17 +2322,29 @@
                 <span class="scanner-step-pill">01</span>
                 <span>Camera Viewfinder</span>
               </div>
-              <span class="scanner-arrow">→</span>
+              <span class="scanner-arrow"><svg viewBox="0 0 24 24" class="fluid-arrow-svg" fill="none"
+                  stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                  <polyline points="12 5 19 12 12 19" />
+                </svg></span>
               <div class="scanner-step">
                 <span class="scanner-step-pill">02</span>
                 <span>Auto Detection</span>
               </div>
-              <span class="scanner-arrow">→</span>
+              <span class="scanner-arrow"><svg viewBox="0 0 24 24" class="fluid-arrow-svg" fill="none"
+                  stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                  <polyline points="12 5 19 12 12 19" />
+                </svg></span>
               <div class="scanner-step">
                 <span class="scanner-step-pill">03</span>
                 <span>Enhanced Filter</span>
               </div>
-              <span class="scanner-arrow">→</span>
+              <span class="scanner-arrow"><svg viewBox="0 0 24 24" class="fluid-arrow-svg" fill="none"
+                  stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                  <polyline points="12 5 19 12 12 19" />
+                </svg></span>
               <div class="scanner-step">
                 <span class="scanner-step-pill">04</span>
                 <span>PDF / OCR</span>
@@ -1968,7 +2353,11 @@
 
             <div class="feature-check-list">
               <div class="feature-check-item">
-                <div class="feature-check-icon">✓</div>
+                <div class="feature-check-icon"><svg data-lucide="check-circle-2" viewBox="0 0 24 24" width="16"
+                    height="16" fill="none" stroke="currentColor" stroke-width="2" class="lucide lucide-check-circle-2">
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="m9 12 2 2 4-4" />
+                  </svg></div>
                 <div>
                   <h4>Automatic Document Edge Detection</h4>
                   <p>Smart real-time boundaries automatically snap around your papers with zero manual cropping.</p>
@@ -1976,7 +2365,11 @@
               </div>
 
               <div class="feature-check-item">
-                <div class="feature-check-icon">✓</div>
+                <div class="feature-check-icon"><svg data-lucide="check-circle-2" viewBox="0 0 24 24" width="16"
+                    height="16" fill="none" stroke="currentColor" stroke-width="2" class="lucide lucide-check-circle-2">
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="m9 12 2 2 4-4" />
+                  </svg></div>
                 <div>
                   <h4>Perspective & Lighting Correction</h4>
                   <p>Removes shadows, flattens curved book pages, and boosts contrast for studio-grade clarity.</p>
@@ -1984,7 +2377,11 @@
               </div>
 
               <div class="feature-check-item">
-                <div class="feature-check-icon">✓</div>
+                <div class="feature-check-icon"><svg data-lucide="check-circle-2" viewBox="0 0 24 24" width="16"
+                    height="16" fill="none" stroke="currentColor" stroke-width="2" class="lucide lucide-check-circle-2">
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="m9 12 2 2 4-4" />
+                  </svg></div>
                 <div>
                   <h4>Multi-Page Batch Scanning</h4>
                   <p>Rapidly capture up to 50 pages continuously and compile into a single organized PDF file.</p>
@@ -1993,34 +2390,57 @@
             </div>
 
             <div class="feature-split-cta">
-              <a href="https://play.google.com/store/apps/details?id=com.pagiq.workspace" target="_blank" rel="noopener noreferrer" class="btn-primary">Scan with PagiQ Free</a>
+              <a href="https://play.google.com/store/apps/details?id=com.pagiq.workspace" target="_blank"
+                rel="noopener noreferrer" class="btn-primary">Scan with PagiQ Free</a>
             </div>
           </div>
 
-          
+
           <div class="feature-split-visual fade-up fade-up-d2">
             <div class="mobile-showcase-frame">
+              <div class="iphone-speaker" aria-hidden="true"></div>
+              <div class="iphone-button action" aria-hidden="true"></div>
+              <div class="iphone-button vol-up" aria-hidden="true"></div>
+              <div class="iphone-button vol-down" aria-hidden="true"></div>
+              <div class="iphone-button power" aria-hidden="true"></div>
+              <div class="iphone-button camera-control" aria-hidden="true"></div>
               <div class="mobile-app-window camera-viewfinder-screen">
                 <div class="mobile-statusbar-mini">
                   <span class="mobile-time-mini">9:41</span>
-                  <div class="dynamic-island-mini"></div>
+                  <div class="dynamic-island-mini">
+                    <div class="island-camera-mini"></div>
+                  </div>
                   <div class="mobile-status-icons-mini">
-                    <svg class="icon-stat-mini" viewBox="0 0 17 11" fill="none" aria-hidden="true"><rect x="0" y="6" width="2.8" height="5" rx="0.7" fill="currentColor"/><rect x="4.3" y="4.5" width="2.8" height="6.5" rx="0.7" fill="currentColor"/><rect x="8.6" y="2.5" width="2.8" height="8.5" rx="0.7" fill="currentColor"/><rect x="12.9" y="0.5" width="2.8" height="10.5" rx="0.7" fill="currentColor"/></svg>
-                    <svg class="icon-stat-mini" viewBox="0 0 16 11" fill="none" aria-hidden="true"><path d="M8 9.2a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z" fill="currentColor"/><path d="M4.8 6.8a4.5 4.5 0 0 1 6.4 0" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><path d="M2.2 4.4a7.8 7.8 0 0 1 11.6 0" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
-                    <div class="battery-pill-mini"><div class="battery-level-mini"></div></div>
+                    <svg class="icon-stat-mini" viewBox="0 0 17 11" fill="currentColor" aria-hidden="true">
+                      <rect x="0" y="6" width="2.8" height="5" rx="0.7" />
+                      <rect x="4.3" y="4.5" width="2.8" height="6.5" rx="0.7" />
+                      <rect x="8.6" y="2.5" width="2.8" height="8.5" rx="0.7" />
+                      <rect x="12.9" y="0.5" width="2.8" height="10.5" rx="0.7" />
+                    </svg>
+                    <svg class="icon-stat-mini" viewBox="0 0 16 11" fill="none" stroke="currentColor" stroke-width="1.3"
+                      stroke-linecap="round" aria-hidden="true">
+                      <path d="M8 9.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z" fill="currentColor" />
+                      <path d="M4.5 6.8a4.8 4.8 0 0 1 7 0" />
+                      <path d="M2 4.2a8.4 8.4 0 0 1 12 0" />
+                    </svg>
+                    <div class="battery-pill-mini">
+                      <div class="battery-level-mini"></div>
+                    </div>
                   </div>
                 </div>
 
-                
+
                 <div class="camera-top-bar">
                   <div class="camera-icon-btn">
-                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#fff" stroke-width="2">
+                    <svg data-lucide="zap" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#fff"
+                      stroke-width="2" class="lucide lucide-zap">
                       <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
                     </svg>
                   </div>
                   <span class="camera-mode-title">Auto-Detecting Page...</span>
                   <div class="camera-icon-btn">
-                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#fff" stroke-width="2">
+                    <svg data-lucide="settings" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#fff"
+                      stroke-width="2" class="lucide lucide-settings">
                       <circle cx="12" cy="12" r="3" />
                       <path
                         d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
@@ -2028,7 +2448,7 @@
                   </div>
                 </div>
 
-                
+
                 <div class="scanner-viewfinder-target">
                   <div class="corner-marker top-left"></div>
                   <div class="corner-marker top-right"></div>
@@ -2049,7 +2469,7 @@
                   </div>
                 </div>
 
-                
+
                 <div class="camera-shutter-bar">
                   <div class="camera-gallery-thumb">
                     <div class="thumb-count">3</div>
@@ -2066,7 +2486,7 @@
       </div>
     </section>
 
-    
+
     <section class="section" id="privacy">
       <div class="container">
         <div class="section-header text-center">
@@ -2080,9 +2500,18 @@
         <div class="privacy-cards-grid">
           <div class="privacy-card fade-up">
             <div class="privacy-card-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                <circle cx="12" cy="11" r="3" />
+              <svg data-lucide="cpu" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-cpu">
+                <rect width="16" height="16" x="4" y="4" rx="2" />
+                <rect width="6" height="6" x="9" y="9" rx="1" />
+                <path d="M15 2v2" />
+                <path d="M15 20v2" />
+                <path d="M2 15h2" />
+                <path d="M2 9h2" />
+                <path d="M20 15h2" />
+                <path d="M20 9h2" />
+                <path d="M9 2v2" />
+                <path d="M9 20v2" />
               </svg>
             </div>
             <h3 class="privacy-card-title">Local Processing Whenever Possible</h3>
@@ -2094,9 +2523,11 @@
 
           <div class="privacy-card fade-up fade-up-d1">
             <div class="privacy-card-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2">
-                <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
-                <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+              <svg data-lucide="cloud-off" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-cloud-off">
+                <path d="m2 2 20 20" />
+                <path d="M5.782 5.782A7 7 0 0 0 9 19h8.5a4.5 4.5 0 0 0 1.307-.193" />
+                <path d="M21.532 16.5A4.5 4.5 0 0 0 17.5 10h-1.79A7.008 7.008 0 0 0 10 5.07" />
               </svg>
             </div>
             <h3 class="privacy-card-title">No Unnecessary Document Uploads</h3>
@@ -2108,11 +2539,15 @@
 
           <div class="privacy-card fade-up fade-up-d2">
             <div class="privacy-card-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#D97706" stroke-width="2">
-                <path d="M5 12.55a11 11 0 0 1 14.08 0" />
-                <path d="M1.42 9a16 16 0 0 1 21.16 0" />
-                <path d="M8.53 16.11a6 6 0 0 1 6.95 0" />
-                <line x1="12" y1="20" x2="12.01" y2="20" />
+              <svg data-lucide="wifi-off" viewBox="0 0 24 24" fill="none" stroke="#D97706" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wifi-off">
+                <line x1="2" x2="22" y1="2" y2="22" />
+                <path d="M8.5 16.5a5 5 0 0 1 7 0" />
+                <path d="M5 12.5a10 10 0 0 1 5.1-2.6" />
+                <path d="M19 12.5a10 10 0 0 0-2.1-1.5" />
+                <path d="M2 8.5a15 15 0 0 1 5.8-2.6" />
+                <path d="M22 8.5a15 15 0 0 0-6.8-2.3" />
+                <line x1="12" x2="12.01" y1="20" y2="20" />
               </svg>
             </div>
             <h3 class="privacy-card-title">100% Offline Access</h3>
@@ -2124,8 +2559,10 @@
 
           <div class="privacy-card fade-up fade-up-d3">
             <div class="privacy-card-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#9333EA" stroke-width="2">
-                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+              <svg data-lucide="lock" viewBox="0 0 24 24" fill="none" stroke="#9333EA" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-lock">
+                <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
+                <path d="M7 11V7a5 5 0 0 1 10 0v4" />
               </svg>
             </div>
             <h3 class="privacy-card-title">Private Document Storage</h3>
@@ -2137,7 +2574,7 @@
       </div>
     </section>
 
-    
+
     <section class="section" id="how-it-works">
       <div class="container">
         <div class="section-header text-center">
@@ -2152,7 +2589,8 @@
           <div class="step-card fade-up">
             <div class="step-badge-num">01</div>
             <div class="step-icon-wrap" style="background:#EFF6FF; color:#2563EB;">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <svg data-lucide="layout-grid" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-layout-grid">
                 <rect width="7" height="7" x="3" y="3" rx="1" />
                 <rect width="7" height="7" x="14" y="3" rx="1" />
                 <rect width="7" height="7" x="14" y="14" rx="1" />
@@ -2169,10 +2607,12 @@
           <div class="step-card fade-up fade-up-d1">
             <div class="step-badge-num">02</div>
             <div class="step-icon-wrap" style="background:#ECFDF5; color:#059669;">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                <polyline points="17 8 12 3 7 8" />
-                <line x1="12" y1="3" x2="12" y2="15" />
+              <svg data-lucide="file-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-up">
+                <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
+                <polyline points="14 2 14 8 20 8" />
+                <path d="M12 12v6" />
+                <path d="m15 15-3-3-3 3" />
               </svg>
             </div>
             <h3 class="step-card-title">Add Your Document</h3>
@@ -2184,9 +2624,10 @@
           <div class="step-card fade-up fade-up-d2">
             <div class="step-badge-num">03</div>
             <div class="step-icon-wrap" style="background:#FEF3C7; color:#D97706;">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polygon
-                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+              <svg data-lucide="check-circle-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-circle-2">
+                <circle cx="12" cy="12" r="10" />
+                <path d="m9 12 2 2 4-4" />
               </svg>
             </div>
             <h3 class="step-card-title">Get It Done</h3>
@@ -2198,7 +2639,7 @@
       </div>
     </section>
 
-    
+
     <section class="section section-tint" id="use-cases">
       <div class="container">
         <div class="section-header text-center">
@@ -2210,11 +2651,12 @@
         </div>
 
         <div class="use-cases-grid">
-          
+
           <div class="use-case-card fade-up">
             <div class="use-case-top">
               <div class="use-case-icon-box" style="background:#EFF6FF; color:#2563EB;">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <svg data-lucide="graduation-cap" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-graduation-cap">
                   <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
                   <path d="M6 12v5c3 3 9 3 12 0v-5" />
                 </svg>
@@ -2223,19 +2665,40 @@
             </div>
             <h3 class="use-case-title">Students & Educators</h3>
             <ul class="use-case-list">
-              <li><span class="uc-bullet">✓</span> Scan handwritten notes & textbook pages</li>
-              <li><span class="uc-bullet">✓</span> Chat with lengthy academic PDFs</li>
-              <li><span class="uc-bullet">✓</span> Summarize research papers in seconds</li>
-              <li><span class="uc-bullet">✓</span> Generate revision quizzes & flashcards</li>
-              <li><span class="uc-bullet">✓</span> Translate study material across 6 languages</li>
+              <li><span class="uc-bullet"><svg data-lucide="check" viewBox="0 0 24 24"
+                    class="uc-check-svg lucide lucide-check" fill="none" stroke="currentColor" stroke-width="3"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg></span> Scan handwritten notes & textbook pages</li>
+              <li><span class="uc-bullet"><svg data-lucide="check" viewBox="0 0 24 24"
+                    class="uc-check-svg lucide lucide-check" fill="none" stroke="currentColor" stroke-width="3"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg></span> Chat with lengthy academic PDFs</li>
+              <li><span class="uc-bullet"><svg data-lucide="check" viewBox="0 0 24 24"
+                    class="uc-check-svg lucide lucide-check" fill="none" stroke="currentColor" stroke-width="3"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg></span> Summarize research papers in seconds</li>
+              <li><span class="uc-bullet"><svg data-lucide="check" viewBox="0 0 24 24"
+                    class="uc-check-svg lucide lucide-check" fill="none" stroke="currentColor" stroke-width="3"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg></span> Generate revision quizzes & flashcards</li>
+              <li><span class="uc-bullet"><svg data-lucide="check" viewBox="0 0 24 24"
+                    class="uc-check-svg lucide lucide-check" fill="none" stroke="currentColor" stroke-width="3"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg></span> Translate study material across 6 languages</li>
             </ul>
           </div>
 
-          
+
           <div class="use-case-card fade-up fade-up-d1">
             <div class="use-case-top">
               <div class="use-case-icon-box" style="background:#ECFDF5; color:#059669;">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <svg data-lucide="briefcase" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-briefcase">
                   <rect width="20" height="14" x="2" y="7" rx="2" ry="2" />
                   <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
                 </svg>
@@ -2244,41 +2707,81 @@
             </div>
             <h3 class="use-case-title">Working Professionals</h3>
             <ul class="use-case-list">
-              <li><span class="uc-bullet">✓</span> Annotate & edit contracts on the go</li>
-              <li><span class="uc-bullet">✓</span> Draw, position & save legal signatures</li>
-              <li><span class="uc-bullet">✓</span> Compress large reports up to 90% for email</li>
-              <li><span class="uc-bullet">✓</span> Convert Word proposals to standard PDFs</li>
-              <li><span class="uc-bullet">✓</span> Password-protect & redact sensitive client data</li>
+              <li><span class="uc-bullet"><svg data-lucide="check" viewBox="0 0 24 24"
+                    class="uc-check-svg lucide lucide-check" fill="none" stroke="currentColor" stroke-width="3"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg></span> Annotate & edit contracts on the go</li>
+              <li><span class="uc-bullet"><svg data-lucide="check" viewBox="0 0 24 24"
+                    class="uc-check-svg lucide lucide-check" fill="none" stroke="currentColor" stroke-width="3"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg></span> Draw, position & save legal signatures</li>
+              <li><span class="uc-bullet"><svg data-lucide="check" viewBox="0 0 24 24"
+                    class="uc-check-svg lucide lucide-check" fill="none" stroke="currentColor" stroke-width="3"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg></span> Compress large reports up to 90% for email</li>
+              <li><span class="uc-bullet"><svg data-lucide="check" viewBox="0 0 24 24"
+                    class="uc-check-svg lucide lucide-check" fill="none" stroke="currentColor" stroke-width="3"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg></span> Convert Word proposals to standard PDFs</li>
+              <li><span class="uc-bullet"><svg data-lucide="check" viewBox="0 0 24 24"
+                    class="uc-check-svg lucide lucide-check" fill="none" stroke="currentColor" stroke-width="3"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg></span> Password-protect & redact sensitive client data</li>
             </ul>
           </div>
 
-          
+
           <div class="use-case-card fade-up fade-up-d2">
             <div class="use-case-top">
               <div class="use-case-icon-box" style="background:#F3E8FF; color:#9333EA;">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <svg data-lucide="user-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-check">
                   <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
                   <circle cx="9" cy="7" r="4" />
-                  <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
-                  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                  <polyline points="16 11 18 13 22 9" />
                 </svg>
               </div>
               <span class="use-case-label">Career Growth</span>
             </div>
             <h3 class="use-case-title">Job Seekers & Candidates</h3>
             <ul class="use-case-list">
-              <li><span class="uc-bullet">✓</span> Build ATS-friendly LaTeX resumes effortlessly</li>
-              <li><span class="uc-bullet">✓</span> AI bullet optimizer for quantifiable metrics</li>
-              <li><span class="uc-bullet">✓</span> Auto-generate compelling executive summaries</li>
-              <li><span class="uc-bullet">✓</span> Export pristine PDFs with perfect typography</li>
-              <li><span class="uc-bullet">✓</span> Generate multiple tailored versions per role</li>
+              <li><span class="uc-bullet"><svg data-lucide="check" viewBox="0 0 24 24"
+                    class="uc-check-svg lucide lucide-check" fill="none" stroke="currentColor" stroke-width="3"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg></span> Build ATS-friendly LaTeX resumes effortlessly</li>
+              <li><span class="uc-bullet"><svg data-lucide="check" viewBox="0 0 24 24"
+                    class="uc-check-svg lucide lucide-check" fill="none" stroke="currentColor" stroke-width="3"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg></span> AI bullet optimizer for quantifiable metrics</li>
+              <li><span class="uc-bullet"><svg data-lucide="check" viewBox="0 0 24 24"
+                    class="uc-check-svg lucide lucide-check" fill="none" stroke="currentColor" stroke-width="3"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg></span> Auto-generate compelling executive summaries</li>
+              <li><span class="uc-bullet"><svg data-lucide="check" viewBox="0 0 24 24"
+                    class="uc-check-svg lucide lucide-check" fill="none" stroke="currentColor" stroke-width="3"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg></span> Export pristine PDFs with perfect typography</li>
+              <li><span class="uc-bullet"><svg data-lucide="check" viewBox="0 0 24 24"
+                    class="uc-check-svg lucide lucide-check" fill="none" stroke="currentColor" stroke-width="3"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg></span> Generate multiple tailored versions per role</li>
             </ul>
           </div>
         </div>
       </div>
     </section>
 
-    
+
     <section class="section" id="faq">
       <div class="container" style="max-width: 860px;">
         <div class="section-header text-center">
@@ -2293,7 +2796,8 @@
           <div class="faq-item fade-up">
             <button class="faq-trigger" aria-expanded="false">
               <span>Is PagiQ free?</span>
-              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <svg data-lucide="chevron-down" class="faq-chevron lucide lucide-chevron-down" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <polyline points="6 9 12 15 18 9" />
               </svg>
             </button>
@@ -2309,7 +2813,8 @@
           <div class="faq-item fade-up fade-up-d1">
             <button class="faq-trigger" aria-expanded="false">
               <span>Are my documents private?</span>
-              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <svg data-lucide="chevron-down" class="faq-chevron lucide lucide-chevron-down" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <polyline points="6 9 12 15 18 9" />
               </svg>
             </button>
@@ -2325,7 +2830,8 @@
           <div class="faq-item fade-up fade-up-d2">
             <button class="faq-trigger" aria-expanded="false">
               <span>Can I use PagiQ offline?</span>
-              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <svg data-lucide="chevron-down" class="faq-chevron lucide lucide-chevron-down" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <polyline points="6 9 12 15 18 9" />
               </svg>
             </button>
@@ -2340,7 +2846,8 @@
           <div class="faq-item fade-up fade-up-d3">
             <button class="faq-trigger" aria-expanded="false">
               <span>What can I do with the AI PDF tools?</span>
-              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <svg data-lucide="chevron-down" class="faq-chevron lucide lucide-chevron-down" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <polyline points="6 9 12 15 18 9" />
               </svg>
             </button>
@@ -2355,7 +2862,8 @@
           <div class="faq-item fade-up fade-up-d4">
             <button class="faq-trigger" aria-expanded="false">
               <span>How does the LaTeX Resume Creator work?</span>
-              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <svg data-lucide="chevron-down" class="faq-chevron lucide lucide-chevron-down" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <polyline points="6 9 12 15 18 9" />
               </svg>
             </button>
@@ -2371,7 +2879,8 @@
           <div class="faq-item fade-up fade-up-d5">
             <button class="faq-trigger" aria-expanded="false">
               <span>Which languages are supported?</span>
-              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <svg data-lucide="chevron-down" class="faq-chevron lucide lucide-chevron-down" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <polyline points="6 9 12 15 18 9" />
               </svg>
             </button>
@@ -2386,7 +2895,8 @@
           <div class="faq-item fade-up fade-up-d6">
             <button class="faq-trigger" aria-expanded="false">
               <span>How many PDF tools does PagiQ have?</span>
-              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <svg data-lucide="chevron-down" class="faq-chevron lucide lucide-chevron-down" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <polyline points="6 9 12 15 18 9" />
               </svg>
             </button>
@@ -2401,7 +2911,7 @@
       </div>
     </section>
 
-    
+
     <section class="final-cta-section" id="download">
       <div class="container">
         <div class="final-cta-box fade-up">
@@ -2411,7 +2921,8 @@
 
           <div class="final-cta-content">
             <div class="cta-logo-wrap">
-              <img src="pagiq_logo-256.webp" onerror="this.onerror=null;this.src='pagiq_logo.png'" alt="PagiQ Logo" class="cta-app-icon" width="64" height="64" loading="lazy" decoding="async" />
+              <img src="pagiq_logo-256.webp" onerror="this.onerror=null;this.src='pagiq_logo.png'" alt="PagiQ Logo"
+                class="cta-app-icon" width="64" height="64" loading="lazy" decoding="async" />
             </div>
 
             <h2 class="final-cta-title">Ready to Simplify Your Documents?</h2>
@@ -2435,7 +2946,8 @@
                 </div>
               </a>
 
-              <a href="https://play.google.com/store/apps/details?id=com.pagiq.workspace" target="_blank" rel="noopener noreferrer" class="store-badge-pill light" aria-label="Get it on Google Play">
+              <a href="https://play.google.com/store/apps/details?id=com.pagiq.workspace" target="_blank"
+                rel="noopener noreferrer" class="store-badge-pill light" aria-label="Get it on Google Play">
                 <svg viewBox="0 0 24 24" class="store-svg" fill="currentColor">
                   <path
                     d="M3.6 1.8A1.2 1.2 0 0 0 3 2.9v18.2c0 .5.2.9.6 1.1l10.2-10.2L3.6 1.8zm11.7 11.6l2.9 2.9-12.7 7.3c-.5.3-1.1.2-1.4-.2l11.2-10zm2.9-3l-2.9 2.9-11.2-10c.3-.4.9-.5 1.4-.2l12.7 7.3zm1.5 1.5c.7.4.7 1.1 0 1.5l-2.6 1.5-2.6-2.6 2.6-2.6 2.6 1.5z"
@@ -2457,13 +2969,14 @@
     </section>
   </main>
 
-  
+
   <footer class="footer">
     <div class="container">
       <div class="footer-top-row">
         <div class="footer-brand-col">
           <a href="#" class="footer-brand-link">
-            <img src="pagiq_logo-256.webp" onerror="this.onerror=null;this.src='pagiq_logo.png'" alt="PagiQ Logo" width="32" height="32" loading="lazy" decoding="async" />
+            <img src="pagiq_logo-256.webp" onerror="this.onerror=null;this.src='pagiq_logo.png'" alt="PagiQ Logo"
+              width="32" height="32" loading="lazy" decoding="async" />
             <span class="footer-brand-name">PagiQ</span>
           </a>
           <p class="footer-tagline">Your documents. Simplified.</p>
@@ -2506,7 +3019,8 @@
   </footer>
 
   <script src="script.js" defer></script>
-<script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "80b46c73e29d4af6b3765d58560986ab"}'></script>
+  <script type='module' src='https://static.cloudflareinsights.com/beacon.min.js'
+    data-cf-beacon='{"token": "80b46c73e29d4af6b3765d58560986ab"}'></script>
 </body>
 
 </html>
