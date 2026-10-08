@@ -16,6 +16,7 @@
         initScrollReveals();
         initAppStoreComingSoon();
         initPauseOffscreenAnimations();
+        initScrollProgress();
         initAnalytics();
         if (typeof lucide !== "undefined" && lucide.createIcons) {
             lucide.createIcons();
@@ -31,7 +32,7 @@ function initTheme() {
         if (!icon) return;
         if (html.classList.contains("dark")) {
             icon.innerHTML = `<circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path>`;
-            icon.style.color = "#F59E0B";
+            icon.style.color = "#94A3B8";
         } else {
             icon.innerHTML = `<path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>`;
             icon.style.color = "#64748B";
@@ -239,40 +240,151 @@ function initMobileDrawer() {
     const drawer = document.getElementById("drawer");
     const overlay = document.getElementById("drawerOverlay");
     const drawerClose = document.getElementById("drawerClose");
+    if (!hamburger || !drawer || !overlay) return;
+
+    const focusableSelector = 'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
+    let isOpen = false;
     let scrollY = 0;
-    function openDrawer() {
-        scrollY = window.scrollY || 0;
-        if (drawer) drawer.classList.add("open");
-        if (overlay) overlay.classList.add("open");
+    let lastFocused = null;
+    let closeTimer = null;
+
+    function setExpanded(open) {
+        hamburger.setAttribute("aria-expanded", String(open));
+        hamburger.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+        hamburger.classList.toggle("is-open", open);
+        document.documentElement.classList.toggle("drawer-open", open);
+        document.body.classList.toggle("drawer-open", open);
+    }
+
+    function lockScroll() {
+        scrollY = window.scrollY || window.pageYOffset || 0;
+        const sbw = Math.max(0, window.innerWidth - document.documentElement.clientWidth);
+        document.body.style.overflow = "hidden";
         document.body.style.position = "fixed";
         document.body.style.top = `-${scrollY}px`;
         document.body.style.left = "0";
         document.body.style.right = "0";
+        document.body.style.width = "100%";
+        if (sbw) document.body.style.paddingRight = sbw + "px";
     }
-    function closeDrawer() {
-        if (drawer) drawer.classList.remove("open");
-        if (overlay) overlay.classList.remove("open");
+
+    function unlockScroll() {
+        document.body.style.overflow = "";
         document.body.style.position = "";
         document.body.style.top = "";
         document.body.style.left = "";
         document.body.style.right = "";
+        document.body.style.width = "";
+        document.body.style.paddingRight = "";
         window.scrollTo(0, scrollY);
     }
-    if (hamburger) hamburger.addEventListener("click", openDrawer, {
-        passive: true
-    });
-    if (drawerClose) drawerClose.addEventListener("click", closeDrawer);
-    if (overlay) overlay.addEventListener("click", closeDrawer);
-    document.addEventListener("keydown", e => {
-        if (e.key === "Escape" && drawer && drawer.classList.contains("open")) {
-            closeDrawer();
+
+    function openDrawer() {
+        if (isOpen) return;
+        isOpen = true;
+        clearTimeout(closeTimer);
+        lastFocused = document.activeElement;
+        overlay.hidden = false;
+        try {
+            drawer.inert = false;
+        } catch (err) {
+            drawer.removeAttribute("inert");
         }
-    });
-    if (drawer) {
-        drawer.querySelectorAll("a").forEach(link => {
-            link.addEventListener("click", closeDrawer);
+        drawer.setAttribute("aria-hidden", "false");
+        void overlay.offsetWidth;
+        requestAnimationFrame(() => {
+            drawer.classList.add("open");
+            overlay.classList.add("open");
+            setExpanded(true);
+            lockScroll();
+            const first = drawer.querySelector(focusableSelector);
+            if (first) first.focus({
+                preventScroll: true
+            });
         });
     }
+
+    function closeDrawer() {
+        if (!isOpen) return;
+        isOpen = false;
+        drawer.classList.remove("open");
+        overlay.classList.remove("open");
+        setExpanded(false);
+        unlockScroll();
+        drawer.setAttribute("aria-hidden", "true");
+        closeTimer = setTimeout(() => {
+            if (!isOpen) {
+                overlay.hidden = true;
+                try {
+                    drawer.inert = true;
+                } catch (err) {
+                    drawer.setAttribute("inert", "");
+                }
+            }
+        }, 320);
+        if (lastFocused && typeof lastFocused.focus === "function") {
+            lastFocused.focus({
+                preventScroll: true
+            });
+        } else {
+            hamburger.focus({
+                preventScroll: true
+            });
+        }
+    }
+
+    function toggleDrawer() {
+        if (isOpen) closeDrawer();
+        else openDrawer();
+    }
+
+    hamburger.addEventListener("click", e => {
+        e.preventDefault();
+        toggleDrawer();
+    });
+    if (drawerClose) drawerClose.addEventListener("click", e => {
+        e.preventDefault();
+        closeDrawer();
+    });
+    overlay.addEventListener("click", closeDrawer);
+    overlay.addEventListener("touchmove", e => e.preventDefault(), {
+        passive: false
+    });
+
+    document.addEventListener("keydown", e => {
+        if (!isOpen) return;
+        if (e.key === "Escape") {
+            e.preventDefault();
+            closeDrawer();
+            return;
+        }
+        if (e.key !== "Tab") return;
+        const nodes = Array.from(drawer.querySelectorAll(focusableSelector)).filter(el => !el.hasAttribute("disabled") && el.offsetParent !== null);
+        if (!nodes.length) return;
+        const first = nodes[0];
+        const last = nodes[nodes.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+        }
+    });
+
+    drawer.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", () => closeDrawer());
+    });
+
+    let resizeTimer = null;
+    window.addEventListener("resize", () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+            if (isOpen && window.matchMedia("(min-width: 960px)").matches) closeDrawer();
+        }, 100);
+    }, {
+        passive: true
+    });
 }
 
 function initScrollReveals() {
@@ -346,6 +458,35 @@ function initAppStoreComingSoon() {
             }, 3500);
         });
     });
+}
+
+function initScrollProgress() {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const bar = document.createElement("div");
+    bar.id = "scrollProgress";
+    bar.setAttribute("aria-hidden", "true");
+    document.body.appendChild(bar);
+    let ticking = false;
+    const update = () => {
+        const el = document.documentElement;
+        const max = el.scrollHeight - el.clientHeight;
+        const p = max > 0 ? Math.min(1, Math.max(0, (window.scrollY || window.pageYOffset || 0) / max)) : 0;
+        bar.style.transform = "scaleX(" + p.toFixed(4) + ")";
+        ticking = false;
+    };
+    window.addEventListener("scroll", () => {
+        if (!ticking) {
+            requestAnimationFrame(update);
+            ticking = true;
+        }
+    }, { passive: true });
+    window.addEventListener("resize", () => {
+        if (!ticking) {
+            requestAnimationFrame(update);
+            ticking = true;
+        }
+    }, { passive: true });
+    update();
 }
 
 function initAnalytics() {
